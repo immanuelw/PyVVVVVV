@@ -4,7 +4,6 @@ bg -- Background
 
 Defines the basic set of backgrounds.
 '''
-
 import pygame
 from pygame.locals import *
 from config import *
