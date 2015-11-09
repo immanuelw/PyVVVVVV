@@ -1,0 +1,11 @@
+data
+*.idea*
+build
+dist
+*.pyc
+.*.swp
+.*.swo
+*.sh
+*.cfg
+*.ini
+*.egg-info
