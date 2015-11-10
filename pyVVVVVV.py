@@ -26,6 +26,9 @@ g = Geometry()
 char.x_co = 1
 char.y_co = 3
 
+old_x = char.x_co
+old_y = char.y_co
+
 #location of last room
 last_x = 6
 last_y = 1
@@ -49,7 +52,6 @@ pygame.mixer.music.play(-1, 0.0)
 pygame.display.set_caption('VVVVVV')
 
 while True:
-	environ[1].rects = []
 	gamesurf.fill(BLACK)
 	g.DebugRender(gamesurf)
 
@@ -92,8 +94,14 @@ while True:
 	#	create array where char.x_co, char.y_co have value which says how physics works
 
 	#switches environments upon moving screens, NEEDS CHECKPOINT FIXING?
-	environ = eval('env_%d_%d()' %(char.x_co, char.y_co))
-	envi = Environment(environ[0], environ[1], environ[2], environ[3], environ[4])
+	if old_x != char.x_co or old_y != char.y_co:
+		#print('changed screen to', char.x_co, '-', char.y_co)
+		environ[1].rects = []
+		old_x = char.x_co
+		old_y = char.y_co
+		environ = eval('env_%d_%d()' %(char.x_co, char.y_co))
+		envi = Environment(environ[0], environ[1], environ[2], environ[3], environ[4])
+
 
 	envi.update()
 	envi.draw(gamesurf)
