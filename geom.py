@@ -22,8 +22,14 @@ from config import *
 class Geometry(object):
     def __init__(self, rects=None):
         self.rects = []
+
     def AddRect(self, rect):
         self.rects.append(rect)
+
+	def AddRects(self, rects):
+		for rect in rects:
+			self.rects.append(rects)
+
     def RemoveRect(self, rect):
         try:
             self.rects.remove(rect)

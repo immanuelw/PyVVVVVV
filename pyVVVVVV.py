@@ -102,7 +102,6 @@ while True:
 		environ = eval('env_%d_%d()' %(char.x_co, char.y_co))
 		envi = Environment(environ[0], environ[1], environ[2], environ[3], environ[4])
 
-
 	envi.update()
 	envi.draw(gamesurf)
 	pygame.transform.scale(gamesurf, (backbuf.get_width(), backbuf.get_height()), backbuf)
@@ -111,7 +110,7 @@ while True:
 
 	#char.SetHitWall(False)
 	#char.SetHitFloor(False)
-	#print char.vx, char.vy
+	#print(char.vx, char.vy)
 	if stopper < 1:
 		for ev in pygame.event.get():
 			if ev.type == QUIT:
