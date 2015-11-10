@@ -34,10 +34,10 @@ FRAMERATE = 45 #==ticks/sec, ideally
 WALK_ANIM_TIME = 0.15 #sec before walking frame switch
 
 #Standard directions of movement
-XPOS=(1, 0)
-XNEG=(-1, 0)
-YPOS=(0, 1)
-YNEG=(0, -1)
+XPOS = (1, 0)
+XNEG = (-1, 0)
+YPOS = (0, 1)
+YNEG = (0, -1)
 
 HITLEFT = 0
 HITRIGHT = 1
