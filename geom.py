@@ -20,49 +20,49 @@ from extrect import ExtRect
 from config import *
 
 class Geometry(object):
-    def __init__(self, rects=None):
-        self.rects = []
+	def __init__(self, rects=None):
+		self.rects = [] if rects is None else rects
 
-    def AddRect(self, rect):
-        self.rects.append(rect)
+	def AddRect(self, rect):
+		self.rects.append(rect)
 
 	def AddRects(self, rects):
 		for rect in rects:
 			self.rects.append(rects)
 
-    def RemoveRect(self, rect):
-        try:
-            self.rects.remove(rect)
-        except ValueError:
-            pass
+	def RemoveRect(self, rect):
+		try:
+			self.rects.remove(rect)
+		except ValueError:
+			pass
 
-    '''
-    def RemoveRects(self, rects):
-        self.rects = rects
-        try:
+	'''
+	def RemoveRects(self, rects):
+		self.rects = rects
+		try:
 			for rect in self.rects[::-1]:
 				self.rects.remove(rect)
-        except ValueError:
-            pass
-    '''
+		except ValueError:
+			pass
+	'''
 
-    def TestRect(self, rect):
-        d = {HITLEFT: (0, None), HITRIGHT: (0, None), HITTOP: (0, None), HITBOTTOM: (0, None)}
-        for r in self.rects:
-            coll = ExtRect.AsRect(rect).clip(ExtRect.AsRect(r))
-            if not (coll.width or coll.height):
-                #No intersection
-                continue
-            if coll.left == rect.left and d[HITLEFT][0] < coll.width and coll.width < rect.width:
-                d[HITLEFT]=(coll.width, r)
-            if coll.right == rect.right and d[HITRIGHT][0] < coll.width and coll.width < rect.width:
-                d[HITRIGHT] = (coll.width, r)
-            if coll.top == rect.top and d[HITTOP][0] < coll.height and coll.height < rect.height:
-                d[HITTOP] = (coll.height, r)
-            if coll.bottom == rect.bottom and d[HITBOTTOM][0] < coll.height and coll.height < rect.height:
-                d[HITBOTTOM] = (coll.height, r)
-        return d
+	def TestRect(self, rect):
+		d = {HITLEFT: (0, None), HITRIGHT: (0, None), HITTOP: (0, None), HITBOTTOM: (0, None)}
+		for r in self.rects:
+			coll = ExtRect.AsRect(rect).clip(ExtRect.AsRect(r))
+			if not (coll.width or coll.height):
+				#No intersection
+				continue
+			if coll.left == rect.left and d[HITLEFT][0] < coll.width and coll.width < rect.width:
+				d[HITLEFT]=(coll.width, r)
+			if coll.right == rect.right and d[HITRIGHT][0] < coll.width and coll.width < rect.width:
+				d[HITRIGHT] = (coll.width, r)
+			if coll.top == rect.top and d[HITTOP][0] < coll.height and coll.height < rect.height:
+				d[HITTOP] = (coll.height, r)
+			if coll.bottom == rect.bottom and d[HITBOTTOM][0] < coll.height and coll.height < rect.height:
+				d[HITBOTTOM] = (coll.height, r)
+		return d
 
-    def DebugRender(self, surf):
-        for r in self.rects:
-            pygame.draw.rect(surf, GEOMDEBUG, ExtRect.AsRect(r), 1)
+	def DebugRender(self, surf):
+		for r in self.rects:
+			pygame.draw.rect(surf, GEOMDEBUG, ExtRect.AsRect(r), 1)
