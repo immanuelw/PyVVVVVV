@@ -117,9 +117,97 @@ gc = MovingEntity(gcimg, dx=0, dy=48, vx=0, vy=0, etype=ENT_TOKEN)
 spikesimgs = [pygame.image.load('./data/img/spikes{num}.png'.format(num=num)) for num in range(1, 9)]
 spikesUimgs = [pygame.transform.flip(spikesimg.copy(), False, True) for spikesimg in spikesimgs]
 
-spikes_1_0 = MovingEntity(spikesimgs[0], dx=0, dy=0, vx=0, vy=0, etype=ENT_OBSTACLE)
 
-spikesU_1_0 = MovingEntity(spikesUimg[0], dx=0, dy=0, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_2_0 = MovingEntity(spikesimgs[1], dx=52, dy=172, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikes_3_0 = MovingEntity(spikesimgs[2], dx=80, dy=92, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_3_1 = MovingEntity(spikesimgs[2], dx=82, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_3_2 = MovingEntity(spikesimgs[2], dx=208, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_3_3 = MovingEntity(spikesimgs[2], dx=132, dy=132, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_3_4 = MovingEntity(spikesimgs[2], dx=190, dy=132, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_3_5 = MovingEntity(spikesimgs[2], dx=135, dy=124, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikes_4_0 = MovingEntity(spikesimgs[3], dx=176, dy=107, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_4_1 = MovingEntity(spikesimgs[3], dx=44, dy=219, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_4_2 = MovingEntity(spikesimgs[3], dx=132, dy=219, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_4_3 = MovingEntity(spikesimgs[3], dx=220, dy=219, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_4_4 = MovingEntity(spikesimgs[3], dx=92, dy=188, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_4_5 = MovingEntity(spikesimgs[3], dx=120, dy=116, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_4_6 = MovingEntity(spikesimgs[3], dx=170, dy=206, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_4_7 = MovingEntity(spikesimgs[3], dx=140, dy=128, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_4_8 = MovingEntity(spikesimgs[3], dx=50, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikes_5_0 = MovingEntity(spikesimgs[4], dx=212, dy=220, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_5_1 = MovingEntity(spikesimgs[4], dx=132, dy=212, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_5_2 = MovingEntity(spikesimgs[4], dx=182, dy=212, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_5_3 = MovingEntity(spikesimgs[4], dx=0, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_5_4 = MovingEntity(spikesimgs[4], dx=50, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_5_5 = MovingEntity(spikesimgs[4], dx=220, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_5_6 = MovingEntity(spikesimgs[4], dx=270, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_5_7 = MovingEntity(spikesimgs[4], dx=270, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_5_8 = MovingEntity(spikesimgs[4], dx=199, dy=129, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_5_9 = MovingEntity(spikesimgs[4], dx=0, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikes_6_0 = MovingEntity(spikesimgs[5], dx=110, dy=206, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_6_1 = MovingEntity(spikesimgs[5], dx=120, dy=172, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_6_2 = MovingEntity(spikesimgs[5], dx=132, dy=204, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikes_7_0 = MovingEntity(spikesimgs[6], dx=0, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_7_1 = MovingEntity(spikesimgs[6], dx=70, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_7_2 = MovingEntity(spikesimgs[6], dx=180, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_7_3 = MovingEntity(spikesimgs[6], dx=250, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikes_8_0 = MovingEntity(spikesimgs[7], dx=132, dy=220, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_8_1 = MovingEntity(spikesimgs[7], dx=0, dy=92, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikes_8_2 = MovingEntity(spikesimgs[7], dx=190, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+
+spikesU_2_0 = MovingEntity(spikesUimgs[1], dx=150, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_2_1 = MovingEntity(spikesUimgs[1], dx=210, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_2_2 = MovingEntity(spikesUimgs[1], dx=187, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_2_3 = MovingEntity(spikesUimgs[1], dx=8, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikesU_3_0 = MovingEntity(spikesUimgs[2], dx=174, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_3_1 = MovingEntity(spikesUimgs[2], dx=164, dy=95, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_3_2 = MovingEntity(spikesUimgs[2], dx=160, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikesU_4_0 = MovingEntity(spikesUimgs[3], dx=120, dy=32, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_1 = MovingEntity(spikesUimgs[3], dx=232, dy=32, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_2 = MovingEntity(spikesUimgs[3], dx=0, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_3 = MovingEntity(spikesUimgs[3], dx=88, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_4 = MovingEntity(spikesUimgs[3], dx=176, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_5 = MovingEntity(spikesUimgs[3], dx=92, dy=63, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_6 = MovingEntity(spikesUimgs[3], dx=140, dy=163, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_7 = MovingEntity(spikesUimgs[3], dx=140, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_8 = MovingEntity(spikesUimgs[3], dx=180, dy=32, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_9 = MovingEntity(spikesUimgs[3], dx=68, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_A = MovingEntity(spikesUimgs[3], dx=212, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_4_B = MovingEntity(spikesUimgs[3], dx=292, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikesU_5_0 = MovingEntity(spikesUimgs[4], dx=264, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_5_1 = MovingEntity(spikesUimgs[4], dx=212, dy=31, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_5_2 = MovingEntity(spikesUimgs[4], dx=52, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_5_3 = MovingEntity(spikesUimgs[4], dx=102, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_5_4 = MovingEntity(spikesUimgs[4], dx=152, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_5_5 = MovingEntity(spikesUimgs[4], dx=200, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_5_6 = MovingEntity(spikesUimgs[4], dx=234, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_5_7 = MovingEntity(spikesUimgs[4], dx=132, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_5_8 = MovingEntity(spikesUimgs[4], dx=182, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_5_9 = MovingEntity(spikesUimgs[4], dx=68, dy=95, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikesU_6_0 = MovingEntity(spikesUimgs[5], dx=100, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikesU_7_0 = MovingEntity(spikesUimgs[6], dx=80, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_7_1 = MovingEntity(spikesUimgs[6], dx=250, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_7_2 = MovingEntity(spikesUimgs[6], dx=244, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+
+spikesU_8_0 = MovingEntity(spikesUimgs[7], dx=132, dy=31, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_8_1 = MovingEntity(spikesUimgs[7], dx=92, dy=63, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_8_2 = MovingEntity(spikesUimgs[7], dx=0, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_8_3 = MovingEntity(spikesUimgs[7], dx=170, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_8_4 = MovingEntity(spikesUimgs[7], dx=68, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_8_5 = MovingEntity(spikesUimgs[7], dx=56, dy=48, vx=0, vy=0, etype=ENT_OBSTACLE)
+spikesU_8_6 = MovingEntity(spikesUimgs[7], dx=184, dy=48, vx=0, vy=0, etype=ENT_OBSTACLE)
 
 #spikes = {num + 1: [MovingEntity(spikesimg, vx=0, vy=0, etype=ENT_OBSTACLE) for _ in range(10)] for num, spikesimg in enumerate(spikesimgs)}
 #spikesU = {num + 1: [MovingEntity(spikesUimg, vx=0, vy=0, etype=ENT_OBSTACLE) for _ in range(10)] for num, spikesUimg in enumerate(spikesUimgs)}
@@ -143,18 +231,6 @@ def env_0_1():
 	g.AddRect(pygame.Rect(172, 204, 48, 15))
 	g.AddRect(pygame.Rect(260, 1204, 60, 15))
 
-	spikesU_4_0.SetSpike(120, 32)
-	spikesU_4_1.SetSpike(232, 32)
-	spikesU_4_2.SetSpike(0, 143)
-	spikesU_4_3.SetSpike(88, 143)
-	spikesU_4_4.SetSpike(176, 143)
-	spikesU_5_0.SetSpike(264, 143)
-
-	spikes_4_0.SetSpike(176, 107)
-	spikes_4_1.SetSpike(44, 219)
-	spikes_4_2.SetSpike(132, 219)
-	spikes_4_3.SetSpike(220, 219)
-
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[0][1], bg, (char, checkpoint1, checkpoint2, spikesU_4_0, spikesU_4_1, spikesU_4_2, spikesU_4_3, spikesU_4_4, spikes_4_0, spikes_4_1, spikes_4_2, spikes_4_3)]
 
@@ -170,17 +246,9 @@ def env_0_2():
 	g.AddRect(pygame.Rect(132, 218, 136, 22))
 	g.AddRect(pygame.Rect(268, 188, 52, 52))
 
-	spikesU_4_5.SetSpike(92, 63)
-	spikesU_8_0.SetSpike(132, 31)
-	spikesU_5_1.SetSpike(212, 31)
-
-	spikes_4_4.SetSpike(92, 188)
-	spikes_5_0.SetSpike(212, 220)
-	spikes_8_0.SetSpike(132, 220)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[0][2], bg, (char, checkpoint3, spikesU_4_5, spikesU_8_0, spikesU_5_1, spikes_4_4, spikes_5_0, spikes_8_0,
-											platv1, platv2, platv3)]
+	env = [GAMERECT, g, imgs[0][2], bg, (char, checkpoint3, platv1, platv2, platv3,
+											spikesU_4_5, spikesU_8_0, spikesU_5_1, spikes_4_4, spikes_5_0, spikes_8_0)]
 
 	return env
 
@@ -215,18 +283,10 @@ def env_0_4():
 	g.AddRect(pygame.Rect(236, 204, 84, 36))
 	g.AddRect(pygame.Rect(92, 216, 144, 24))
 
-	spikesU_5_2.SetSpike(52, 159)
-	spikesU_5_3.SetSpike(102, 159)
-	spikesU_5_4.SetSpike(152, 159)
-	spikesU_5_5.SetSpike(200, 159)
-	spikesU_8_1.SetSpike(92, 63)
-
-	spikes_4_5.SetSpike(120, 116)
-	spikes_5_1.SetSpike(132, 212)
-	spikes_5_2.SetSpike(182, 212)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[0][4], bg, (char, checkpoint5, checkpoint6, spikesU_5_2, spikesU_5_3, spikesU_5_4, spikesU_5_5, spikesU_8_1, spikes_4_5, spikes_5_1, spikes_5_2, plat1, plat2, plath1)]
+	env = [GAMERECT, g, imgs[0][4], bg, (char, checkpoint5, checkpoint6, plat1, plat2, plath1,
+											spikesU_5_2, spikesU_5_3, spikesU_5_4, spikesU_5_5, spikesU_8_1,
+											spikes_4_5, spikes_5_1, spikes_5_2)]
 
 	return env
 
@@ -252,18 +312,9 @@ def env_1_1():
 	g.AddRect(pygame.Rect(150, 133, 20, 15))
 	g.AddRect(pygame.Rect(100, 92, 220, 15))
 
-	spikesU_7_0.SetSpike(80, 143)
-	spikesU_7_1.SetSpike(250, 143)
-	spikesU_8_2.SetSpike(0, 143)
-	spikesU_8_3.SetSpike(170, 143)
-
-	spikes_5_3.SetSpike(0, 108)
-	spikes_5_4.SetSpike(50, 108)
-	spikes_5_5.SetSpike(220, 108)
-	spikes_5_6.SetSpike(270, 108)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[1][1], bg, (char, spikesU_7_0, spikesU_7_1, spikesU_8_2, spikesU_8_3, spikes_5_3, spikesU_5_4, spikesU_5_5, spikesU_5_6, bus)]
+	env = [GAMERECT, g, imgs[1][1], bg, (char, bus,
+										spikesU_7_0, spikesU_7_1, spikesU_8_2, spikesU_8_3, spikes_5_3, spikes_5_4, spikes_5_5, spikes_5_6)]
 
 	return env
 
@@ -281,14 +332,8 @@ def env_1_2():
 	g.AddRect(pygame.Rect(284, 36, 36, 188))
 	g.AddRect(pygame.Rect(0, 224, 320, 16))
 	
-	spikesU_2_0.SetSpike(150, 91)
-	spikesU_2_1.SetSpike(210, 91)
-	spikesU_3_0.SetSpike(174, 37)
-	spikesU_5_6.SetSpike(234, 47)
-	spikesU_8_4.SetSpike(68, 37)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[1][2], bg, (char, trinket, spikesU_2_0, spikesU_2_1, spikesU_3_0, spikesU_5_6, spikesU_8_4, man1, man2, man3)]
+	env = [GAMERECT, g, imgs[1][2], bg, (char, trinket, man1, man2, man3, spikesU_2_0, spikesU_2_1, spikesU_3_0, spikesU_5_6, spikesU_8_4)]
 
 	return env
 
@@ -340,9 +385,6 @@ def env_2_1():
 	g.AddRect(pygame.Rect(92, 132, 136, 108))
 	g.AddRect(pygame.Rect(284, 92, 36, 148))
 
-	spikes_3_0.SetSpike(80, 92)
-	spikes_8_1.SetSpike(0, 92)
-
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[2][1], bg, (char, checkpoint9, checkpointU2, spikes_3_0, spikes_8_1)]
 
@@ -353,14 +395,8 @@ def env_2_2():
 	g.AddRect(pygame.Rect(132, 0, 188, 36))
 	g.AddRect(pygame.Rect(188, 140, 132, 100))
 
-	spikesU_5_7.SetSpike(132, 47)
-	spikesU_5_8.SetSpike(182, 47)
-
-	spikes_5_7.SetSpike(270, 140)
-	spikes_8_2.SetSpike(190, 140)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[2][2], bg, (char, spikesU_5_7, spikesU_5_8, spikes_5_8, spikes_8_2, plat3, plat4)]
+	env = [GAMERECT, g, imgs[2][2], bg, (char, plat3, plat4, spikesU_5_7, spikesU_5_8, spikes_5_7, spikes_8_2)]
 
 	return env
 
@@ -370,11 +406,8 @@ def env_2_3():
 	g.AddRect(pygame.Rect(210, 188, 110, 52))
 	g.AddRect(pygame.Rect(110, 206, 100, 34))
 
-	spikes_4_6.SetSpike(170, 206)
-	spikes_6_0.SetSpike(110, 206)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[2][3], bg, (char, spikes_4_6, spikes_6_0, checkpointA)]
+	env = [GAMERECT, g, imgs[2][3], bg, (char, checkpointA, spikes_4_6, spikes_6_0)]
 
 	return env
 
@@ -388,12 +421,6 @@ def env_2_4():
 	g.AddRect(pygame.Rect(180, 164, 40, 8))
 	g.AddRect(pygame.Rect(220, 0, 320, 240))
 	g.AddRect(pygame.Rect(124, 84, 40, 8))
-
-	spikesU_3_1.SetSpike(164, 95)
-	spikesU_5_9.SetSpike(68, 95)
-
-	spikes_2_0.SetSpike(52, 172)
-	spikes_6_1.SetSpike(120, 172)
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[2][4], bg, (char, checkpointB, trinket2, spikesU_3_1, spikesU_5_9, spikes_2_0, spikes_6_1)]
@@ -410,11 +437,6 @@ def env_2_5():
 	g.AddRect(pygame.Rect(0, 204, 192, 36))
 	g.AddRect(pygame.Rect(220, 92, 40, 148))
 	g.AddRect(pygame.Rect(260, 124, 60, 116))
-
-	spikesU_3_2.SetSpike(160, 37)
-	spikesU_6_0.SetSpike(100, 37)
-
-	spikes_6_2.SetSpike(132, 204)
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[2][5], bg, (char, checkpointC, checkpointU3, spikesU_3_2, spikesU_6_0, spikes_6_2)]
@@ -444,14 +466,6 @@ def env_3_1():
 	g.AddRect(pygame.Rect(238, 76, 82, 154))
 	g.AddRect(pygame.Rect(140, 128, 40, 24))
 
-	spikesU_4_6.SetSpike(140, 163)
-	spikesU_8_5.SetSpike(56, 48)
-	spikesU_8_6.SetSpike(184, 48)
-
-	spikes_3_1.SetSpike(82, 91)
-	spikes_3_2.SetSpike(208, 91)
-	spikes_4_7.SetSpike(140, 128)
-
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[3][1], bg, (char, spikesU_4_6, spikesU_8_5, spikesU_8_6, spikes_3_1, spikes_3_2, spikes_4_7)]
 
@@ -461,13 +475,6 @@ def env_3_2():
 	g.AddRect(pygame.Rect(0, 0, 320, 36))
 	g.AddRect(pygame.Rect(0, 140, 140, 100))
 	g.AddRect(pygame.Rect(180, 140, 140, 100))
-
-	spikesU_4_7.SetSpike(140, 47)
-
-	spikes_7_0.SetSpike(0, 140)
-	spikes_7_1.SetSpike(70, 140)
-	spikes_7_2.SetSpike(180, 140)
-	spikes_7_3.SetSpike(250, 140)
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[3][2], bg, (char, checkpointU4, checkpointU5, spikesU_4_7, spikes_7_0, spikes_7_1, spikes_7_2, spikes_7_3)]
@@ -521,13 +528,8 @@ def env_4_1():
 	g.AddRect(pygame.Rect(188, 0, 132, 26))
 	g.AddRect(pygame.Rect(202, 36, 42, 8))
 
-	spikesU_2_2.SetSpike(187, 47)
-	spikesU_7_2.SetSpike(244, 47)
-
-	spikes_5_7.SetSpike(199, 129)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[4][1], bg, (char, checkpointE, checkpointU7, spikesU_2_2, spikesU_7_2, spikes_5_7, ghost)]
+	env = [GAMERECT, g, imgs[4][1], bg, (char, checkpointE, checkpointU7, ghost, spikesU_2_2, spikesU_7_2, spikes_5_8)]
 
 	return env
 
@@ -540,15 +542,8 @@ def env_4_2():
 	g.AddRect(pygame.Rect(92, 76, 40, 164))
 	g.AddRect(pygame.Rect(132, 132, 32, 40))
 
-	spikesU_4_8.SetSpike(180, 32)
-
-	spikes_3_3.SetSpike(132, 132)
-	spikes_3_4.SetSpike(190, 132)
-	spikes_4_8.SetSpike(50, 140)
-	spikes_5_8.SetSpike(0, 140)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[4][2], bg, (char, spikesU_4_8, spikes_3_3, spikes_3_4, spikes_4_8, spikes_5_8, plat5)]
+	env = [GAMERECT, g, imgs[4][2], bg, (char, plat5, spikesU_4_8, spikes_3_3, spikes_3_4, spikes_4_8, spikes_5_9)]
 
 	return env
 
@@ -566,15 +561,8 @@ def env_5_1():
 	g.AddRect(pygame.Rect(210, 92, 26, 36))
 	g.AddRect(pygame.Rect(236, 92, 84, 72))
 
-	spikesU_2_3.SetSpike(8, 47)
-	spikesU_4_9.SetSpike(68, 47)
-	spikesU_4_A.SetSpike(212, 47)
-	spikesU_4_B.SetSpike(292, 47)
-
-	spikes_3_5.SetSpike(135, 124)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[5][1], bg, (char, spikesU_2_3, spikesU_4_9, spikesU_4_A, spikesU_4_B, spikes_3_5, walker1, walker2)]
+	env = [GAMERECT, g, imgs[5][1], bg, (char, walker1, walker2, spikesU_2_3, spikesU_4_9, spikesU_4_A, spikesU_4_B, spikes_3_5)]
 
 	return env
 
