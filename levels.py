@@ -9,8 +9,8 @@ from env import Environment
 from entity import Entity, MovingEntity, AnimatingEntity, MovingAnimatingEntity
 from config import *
 
-pygame.init()
-clk = pygame.time.Clock()
+#pygame.init()
+#clk = pygame.time.Clock()
 GAMERECT = pygame.Rect(0, 0, 320, 240)
 
 window = pygame.display.set_mode((GAMERECT.width * 2, GAMERECT.height * 2))
