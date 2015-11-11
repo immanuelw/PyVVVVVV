@@ -56,17 +56,22 @@ checkpointU2 = MovingEntity(checkpointimgU, vx=0, vy=0, etype=ENT_CHECKPOINT)
 #pygame.transform.flip(image, False, True)
 #spikes = MovingEntity(spikesimg, vx=0, vy=0, etype=ENT_OBSTACLE)
 
-for j in range(1, 9):
-	exec "spikesimg%d=pygame.image.load('./data/img/spikes%d.png')" %(j, j)
-	exec 'spikes%d = []' %(j)
-	for i in range(10):
-		exec 'spikes%d.append(MovingEntity(spikesimg%d, vx=0, vy=0, etype=ENT_OBSTACLE))' %(j,j)
+spikesimgs = [pygame.image.load('./data/img/spikes{num}.png'.format(num=num)) for num in range(1, 9)]
+spikesUimgs = [pygame.transform.flip(spikesimg.copy(), False, True) for spikesimg in spikesimgs]
+spikes = [[MovingEntity(spikesimg, vx=0, vy=0, etype=ENT_OBSTACLE) for spikesimg in spikesimgs] for _ in range(10)]
+spikesU = [[MovingEntity(spikesUimg, vx=0, vy=0, etype=ENT_OBSTACLE) for spikesUimg in spikesUimgs] for _ in range(10)]
 
-for j in range(1,9):
-	exec "spikesimgU%d=pygame.transform.flip(spikesimg%d.copy(), False, True)" %(j, j)
-	exec 'spikesU%d = []' %(j)
-	for i in range(10):
-		exec 'spikesU%d.append(MovingEntity(spikesimgU%d, vx=0, vy=0, etype=ENT_OBSTACLE))' %(j,j)
+#for j in range(1, 9):
+#	exec "spikesimg%d=pygame.image.load('./data/img/spikes%d.png')" %(j, j)
+#	exec 'spikes%d = []' %(j)
+#	for i in range(10):
+#		exec 'spikes%d.append(MovingEntity(spikesimg%d, vx=0, vy=0, etype=ENT_OBSTACLE))' %(j, j)
+
+#for j in range(1, 9):
+#	exec "spikesimgU%d=pygame.transform.flip(spikesimg%d.copy(), False, True)" %(j, j)
+#	exec 'spikesU%d = []' %(j)
+#	for i in range(10):
+#		exec 'spikesU%d.append(MovingEntity(spikesimgU%d, vx=0, vy=0, etype=ENT_OBSTACLE))' %(j, j)
 
 trinketimg = pygame.image.load('./data/img/sprites/sprite_trinket.png')
 trinket = MovingEntity(trinketimg, dx=270, dy=172, vx=0, vy=0, etype=ENT_TOKEN)
