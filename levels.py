@@ -45,10 +45,28 @@ checkpointimg1 = pygame.image.load('./data/img/checkpointBW.png')
 checkpointimgU = pygame.image.load('./data/img/checkpointUBW.png')
 checkpointimg2 = pygame.image.load('./data/img/checkpoint.png')
 
-checkpoint1 = MovingEntity(checkpointimg1, vx=0, vy=0, etype=ENT_CHECKPOINT)
-checkpoint2 = MovingEntity(checkpointimg1, vx=0, vy=0, etype=ENT_CHECKPOINT)
-checkpointU1 = MovingEntity(checkpointimgU, vx=0, vy=0, etype=ENT_CHECKPOINT)
-checkpointU2 = MovingEntity(checkpointimgU, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpoint1 = MovingEntity(checkpointimg1, dx=64, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpoint2 = MovingEntity(checkpointimg1, dx=284, dy=220, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpoint3 = MovingEntity(checkpointimg1, dx=288, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpoint4 = MovingEntity(checkpointimg1, dx=64, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpoint5 = MovingEntity(checkpointimg1, dx=60, dy=124, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpoint6 = MovingEntity(checkpointimg1, dx=280, dy=220, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpoint7 = MovingEntity(checkpointimg1, dx=122, dy=124, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpoint8 = MovingEntity(checkpointimg1, dx=12, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpoint9 = MovingEntity(checkpointimg1, dx=152, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointA = MovingEntity(checkpointimg1, dx=32, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointB = MovingEntity(checkpointimg1, dx=198, dy=180, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointC = MovingEntity(checkpointimg1, dx=110, dy=188, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointD = MovingEntity(checkpointimg1, dx=52, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointE = MovingEntity(checkpointimg1, dx=152, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
+
+checkpointU1 = MovingEntity(checkpointimgU, dx=64, dy=164, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointU2 = MovingEntity(checkpointimgU, dx=52, dy=148, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointU3 = MovingEntity(checkpointimgU, dx=202, dy=68, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointU4 = MovingEntity(checkpointimgU, dx=24, dy=52, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointU5 = MovingEntity(checkpointimgU, dx=280, dy=52, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointU6 = MovingEntity(checkpointimgU, dx=186, dy=212, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointU7 = MovingEntity(checkpointimgU, dx=38, dy=84, vx=0, vy=0, etype=ENT_CHECKPOINT)
 
 trinketimg = pygame.image.load('./data/img/sprites/sprite_trinket.png')
 trinket = MovingEntity(trinketimg, dx=270, dy=172, vx=0, vy=0, etype=ENT_TOKEN)
@@ -123,9 +141,6 @@ def env_0_1():
 	g.AddRect(pygame.Rect(172, 204, 48, 15))
 	g.AddRect(pygame.Rect(260, 1204, 60, 15))
 
-	checkpoint1.SetPos(72, 92)
-	checkpoint2.SetPos(292, 204)
-
 	spikesU[4][0].SetSpikeU(120, 21)
 	spikesU[4][1].SetSpikeU(232, 21)
 	spikes[4][0].SetSpike(176, 107)
@@ -153,7 +168,6 @@ def env_0_2():
 	g.AddRect(pygame.Rect(132, 218, 136, 22))
 	g.AddRect(pygame.Rect(268, 188, 52, 52))
 
-	checkpoint1.SetPos(296, 188)
 	spikesU[4][0].SetSpikeU(92, 52)
 	spikes[4][0].SetSpike(92, 188)
 	spikesU[8][0].SetSpikeU(132, 20)
@@ -162,8 +176,9 @@ def env_0_2():
 	spikes[5][0].SetSpike(212, 220)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[0][2], bg, (char, checkpoint1, spikes[4][0], spikesU[4][0], spikesU[8][0], spikes[5][0], spikes[8][0], spikesU[5][0],
-		 platv1, platv2, platv3)]
+	env = [GAMERECT, g, imgs[0][2], bg, (char, checkpoint3,
+											spikes[4][0], spikesU[4][0], spikesU[8][0], spikes[5][0], spikes[8][0], spikesU[5][0],
+											platv1, platv2, platv3)]
 
 	return env
 
@@ -181,11 +196,8 @@ def env_0_3():
 	g.AddRect(pygame.Rect(152, 188, 148, 52))
 	g.AddRect(pygame.Rect(92, 228, 64, 12))
 
-	checkpoint1.SetPos(72, 92)
-	checkpointU1.SetPos(72, 148)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[0][3], bg, (char, checkpoint1, checkpointU1, yes1, yes2, yes3, yes4, yes5)]
+	env = [GAMERECT, g, imgs[0][3], bg, (char, checkpoint4, checkpointU1, yes1, yes2, yes3, yes4, yes5)]
 
 	return env
 
@@ -201,9 +213,6 @@ def env_0_4():
 	g.AddRect(pygame.Rect(236, 204, 84, 36))
 	g.AddRect(pygame.Rect(92, 216, 144, 24))
 
-	checkpoint1.SetPos(68, 108)
-	checkpoint2.SetPos(288, 204)
-
 	spikesU[8][0].SetSpikeU(92, 52)
 	spikes[4][0].SetSpike(120, 116)
 	spikesU[5][0].SetSpikeU(52, 148)
@@ -214,7 +223,7 @@ def env_0_4():
 	spikes[5][1].SetSpike(182, 212)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[0][4], bg, (char, checkpoint1, checkpoint2, spikesU[8][0], spikes[5][0], spikesU[5][0],
+	env = [GAMERECT, g, imgs[0][4], bg, (char, checkpoint5, checkpoint6, spikesU[8][0], spikes[5][0], spikesU[5][0],
 		spikesU[5][1], spikesU[5][2], spikesU[5][3], spikes[5][0], spikes[5][1], plat1, plat2, plath1)]
 
 	return env
@@ -229,10 +238,8 @@ def env_0_5():
 	g.AddRect(pygame.Rect(204, 76, 56, 112))
 	g.AddRect(pygame.Rect(147, 58, 26, 17))
 
-	checkpoint1.SetPos(130, 108)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[0][5], bg, (char, checkpoint1, reddisc)]
+	env = [GAMERECT, g, imgs[0][5], bg, (char, checkpoint7, reddisc)]
 
 	return env
 
@@ -323,10 +330,8 @@ def env_1_5():
 	g.AddRect(pygame.Rect(44, 76, 40, 164))
 	g.AddRect(pygame.Rect(84, 172, 112, 68))
 	
-	checkpoint1.SetPos(20, 188)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[1][5], bg, (char, checkpoint1, green1, green2)]
+	env = [GAMERECT, g, imgs[1][5], bg, (char, checkpoint8, green1, green2)]
 
 	return env
 
@@ -339,14 +344,11 @@ def env_2_1():
 	g.AddRect(pygame.Rect(92, 132, 136, 108))
 	g.AddRect(pygame.Rect(284, 92, 36, 148))
 
-	checkpoint1.SetPos(160, 92)
-	checkpointU1.SetPos(60, 132)
-
 	spikes[8][0].SetSpike(0, 92)
 	spikes[3][0].SetSpike(80, 92)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[2][1], bg, (char, checkpoint1, checkpointU1, spikes[8][0], spikes[3][0])]
+	env = [GAMERECT, g, imgs[2][1], bg, (char, checkpoint9, checkpointU2, spikes[8][0], spikes[3][0])]
 
 	return env
 
@@ -371,13 +373,11 @@ def env_2_3():
 	g.AddRect(pygame.Rect(210, 188, 110, 52))
 	g.AddRect(pygame.Rect(110, 206, 100, 34))
 
-	checkpoint1.SetPos(40, 188)
-	
 	spikes[6][0].SetSpike(110, 206)
 	spikes[4][0].SetSpike(170, 206)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[2][3], bg, (char, spikes[6][0], spikes[4][0], checkpoint1)]
+	env = [GAMERECT, g, imgs[2][3], bg, (char, spikes[6][0], spikes[4][0], checkpointA)]
 
 	return env
 
@@ -392,15 +392,13 @@ def env_2_4():
 	g.AddRect(pygame.Rect(220, 0, 320, 240))
 	g.AddRect(pygame.Rect(124, 84, 40, 8))
 
-	checkpoint1.SetPos(206, 164)
-
 	spikesU[3][0].SetSpikeU(164, 84)
 	spikes[6][0].SetSpike(120, 172)
 	spikesU[5][0].SetSpikeU(68, 84)
 	spikes[2][0].SetSpike(52, 172)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[2][4], bg, (char, checkpoint1, trinket2, spikesU[3][0], spikes[6][0], spikesU[5][0], spikes[2][0])]
+	env = [GAMERECT, g, imgs[2][4], bg, (char, checkpointB, trinket2, spikesU[3][0], spikes[6][0], spikesU[5][0], spikes[2][0])]
 
 	return env
 
@@ -415,15 +413,12 @@ def env_2_5():
 	g.AddRect(pygame.Rect(220, 92, 40, 148))
 	g.AddRect(pygame.Rect(260, 124, 60, 116))
 
-	checkpointU1.SetPos(210, 52)
-	checkpoint1.SetPos(118, 172)
-
 	spikesU[6][0].SetSpikeU(100, 26)
 	spikesU[3][0].SetSpikeU(160, 26)
 	spikes[6][0].SetSpike(132, 204)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[2][5], bg, (char, checkpoint1, checkpointU1, spikesU[6][0], spikesU[3][0], spikes[6][0])]
+	env = [GAMERECT, g, imgs[2][5], bg, (char, checkpointC, checkpointU3, spikesU[6][0], spikesU[3][0], spikes[6][0])]
 
 	return env
 
@@ -469,9 +464,6 @@ def env_3_2():
 	g.AddRect(pygame.Rect(0, 140, 140, 100))
 	g.AddRect(pygame.Rect(180, 140, 140, 100))
 
-	checkpointU1.SetPos(32, 36)
-	checkpointU2.SetPos(288, 36)
-
 	spikesU[4][0].SetSpikeU(140, 36)
 	spikes[7][0].SetSpike(0, 140)
 	spikes[7][1].SetSpike(70, 140)
@@ -479,7 +471,7 @@ def env_3_2():
 	spikes[7][3].SetSpike(250, 140)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[3][2], bg, (char, checkpointU1, checkpointU2, spikesU[4][0], spikes[7][0], spikes[7][1], spikes[7][2], spikes[7][3])]
+	env = [GAMERECT, g, imgs[3][2], bg, (char, checkpointU4, checkpointU5, spikesU[4][0], spikes[7][0], spikes[7][1], spikes[7][2], spikes[7][3])]
 
 	return env
 
@@ -490,10 +482,8 @@ def env_3_3():
 	g.AddRect(pygame.Rect(36, 60, 112, 50))
 	g.AddRect(pygame.Rect(60, 96, 88, 36))
 	
-	checkpoint1.SetPos(60, 188)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[3][3], bg, (char, checkpoint1)]
+	env = [GAMERECT, g, imgs[3][3], bg, (char, checkpointD)]
 
 	return env
 
@@ -518,10 +508,8 @@ def env_3_5():
 	g.AddRect(pygame.Rect(70, 124, 120, 44))
 	g.AddRect(pygame.Rect(220, 124, 24, 44))
 
-	checkpointU1.SetPos(194, 196)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[3][5], bg, (char, checkpointU1, stop1, stop2, stop3)]
+	env = [GAMERECT, g, imgs[3][5], bg, (char, checkpointU6, stop1, stop2, stop3)]
 
 	return env
 
@@ -536,15 +524,12 @@ def env_4_1():
 	g.AddRect(pygame.Rect(188, 0, 132, 26))
 	g.AddRect(pygame.Rect(202, 36, 42, 8))
 
-	checkpointU1.SetPos(46, 68)
-	checkpoint1.SetPos(160, 92)
-
 	spikesU[2][0].SetSpikeU(187, 36)
 	spikesU[7][0].SetSpikeU(244, 36)
 	spikes[5][0].SetSpike(199, 128)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[4][1], bg, (char, checkpoint1, checkpointU1, spikesU[2][0], spikesU[7][0], spikes[5][0], ghost)]
+	env = [GAMERECT, g, imgs[4][1], bg, (char, checkpointE, checkpointU7, spikesU[2][0], spikesU[7][0], spikes[5][0], ghost)]
 
 	return env
 
