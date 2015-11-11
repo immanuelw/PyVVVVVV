@@ -8,6 +8,7 @@ from bg import Background
 from env import Environment
 from entity import Entity, MovingEntity, AnimatingEntity, MovingAnimatingEntity
 from config import *
+from rects import rect_list
 
 imgs = {x_coord: {y_coord: pygame.image.load('./data/img/background/background_{x}-{y}_320x240.png'.format(x=x_coord, y=y_coord))\
 					for y_coord in range(7) if (x_coord, y_coord) in level_array} for x_coord in range(7)}
@@ -69,11 +70,11 @@ checkpointU6 = MovingEntity(checkpointimgU, dx=186, dy=212, vx=0, vy=0, etype=EN
 checkpointU7 = MovingEntity(checkpointimgU, dx=38, dy=84, vx=0, vy=0, etype=ENT_CHECKPOINT)
 
 trinketimg = pygame.image.load('./data/img/sprites/sprite_trinket.png')
-trinket = MovingEntity(trinketimg, dx=270, dy=172, vx=0, vy=0, etype=ENT_TOKEN)
+trinket1 = MovingEntity(trinketimg, dx=270, dy=172, vx=0, vy=0, etype=ENT_TOKEN)
 trinket2 = MovingEntity(trinketimg, dx=40, dy=140, vx=0, vy=0, etype=ENT_TOKEN)
 
 portalimg = pygame.image.load('./data/img/warptoken.bmp')
-portal = MovingEntity(portalimg, vx=0, vy=0, etype=ENT_PORTAL)
+portal1 = MovingEntity(portalimg, vx=0, vy=0, etype=ENT_PORTAL)
 portalimg2 = pygame.image.load('./data/img/warptoken2.bmp')
 portal2 = MovingEntity(portalimg2, vx=0, vy=0, etype=ENT_PORTAL)
 
@@ -212,24 +213,32 @@ spikesU_8_6 = MovingEntity(spikesUimgs[7], dx=184, dy=48, vx=0, vy=0, etype=ENT_
 #spikes = {num + 1: [MovingEntity(spikesimg, vx=0, vy=0, etype=ENT_OBSTACLE) for _ in range(10)] for num, spikesimg in enumerate(spikesimgs)}
 #spikesU = {num + 1: [MovingEntity(spikesUimg, vx=0, vy=0, etype=ENT_OBSTACLE) for _ in range(10)] for num, spikesUimg in enumerate(spikesUimgs)}
 
+#{'entities': [{'img_file': 'filename', 'dx': 174, 'dy': 37, 'vx': 0, 'vy': 0, 'etype': 2}, ...]
+#there is an image_dict:
+#{'filename': pygame_image_object}
+#ent_list = {x_co: {y_co: (MovingEntity(img_dict[ent['img_file']], dx=ent['dx'], dy=ent['dy'], vx=ent['vx'], vy=ent['vy'], etype=ent['etype'])\
+#							for ent in ent_dict[x_co][y_co]) for y_co in range(7) if (x_co, y_co) in level_array} for x_co in range(7)}
+
+
 def env_0_1():
-	g.AddRect(pygame.Rect(0, 0, 52, 92))
-	g.AddRect(pygame.Rect(0, 92, 176, 40))
-	g.AddRect(pygame.Rect(176, 106, 40, 26))
-	g.AddRect(pygame.Rect(216, 106, 102, 26))
-	g.AddRect(pygame.Rect(216, 92, 64, 16))
-	g.AddRect(pygame.Rect(40, 133, 48, 15))
-	g.AddRect(pygame.Rect(128, 133, 48, 15))
-	g.AddRect(pygame.Rect(216, 133, 48, 15))
-	g.AddRect(pygame.Rect(92, 10, 228, 20))
-	g.AddRect(pygame.Rect(92, 21, 28, 15))
-	g.AddRect(pygame.Rect(160, 21, 172, 15))
-	g.AddRect(pygame.Rect(272, 21, 148, 15))
-	g.AddRect(pygame.Rect(0, 219, 320, 21))
-	g.AddRect(pygame.Rect(0, 204, 44, 15))
-	g.AddRect(pygame.Rect(84, 204, 48, 15))
-	g.AddRect(pygame.Rect(172, 204, 48, 15))
-	g.AddRect(pygame.Rect(260, 1204, 60, 15))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[0][1]]
+	#g.AddRect(pygame.Rect(0, 0, 52, 92))
+	#g.AddRect(pygame.Rect(0, 92, 176, 40))
+	#g.AddRect(pygame.Rect(176, 106, 40, 26))
+	#g.AddRect(pygame.Rect(216, 106, 102, 26))
+	#g.AddRect(pygame.Rect(216, 92, 64, 16))
+	#g.AddRect(pygame.Rect(40, 133, 48, 15))
+	#g.AddRect(pygame.Rect(128, 133, 48, 15))
+	#g.AddRect(pygame.Rect(216, 133, 48, 15))
+	#g.AddRect(pygame.Rect(92, 10, 228, 20))
+	#g.AddRect(pygame.Rect(92, 21, 28, 15))
+	#g.AddRect(pygame.Rect(160, 21, 172, 15))
+	#g.AddRect(pygame.Rect(272, 21, 148, 15))
+	#g.AddRect(pygame.Rect(0, 219, 320, 21))
+	#g.AddRect(pygame.Rect(0, 204, 44, 15))
+	#g.AddRect(pygame.Rect(84, 204, 48, 15))
+	#g.AddRect(pygame.Rect(172, 204, 48, 15))
+	#g.AddRect(pygame.Rect(260, 1204, 60, 15))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[0][1], bg, (char, checkpoint1, checkpoint2, spikesU_4_0, spikesU_4_1, spikesU_4_2, spikesU_4_3, spikesU_4_4, spikes_4_0, spikes_4_1, spikes_4_2, spikes_4_3)]
@@ -237,14 +246,15 @@ def env_0_1():
 	return env
 
 def env_0_2():
-	g.AddRect(pygame.Rect(0, 0, 52, 240))
-	g.AddRect(pygame.Rect(52, 100, 80, 40))
-	g.AddRect(pygame.Rect(92, 0, 40, 52))
-	g.AddRect(pygame.Rect(132, 0, 136, 20))
-	g.AddRect(pygame.Rect(268, 0, 52, 52))
-	g.AddRect(pygame.Rect(92, 188, 40, 32))
-	g.AddRect(pygame.Rect(132, 218, 136, 22))
-	g.AddRect(pygame.Rect(268, 188, 52, 52))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[0][2]]
+	#g.AddRect(pygame.Rect(0, 0, 52, 240))
+	#g.AddRect(pygame.Rect(52, 100, 80, 40))
+	#g.AddRect(pygame.Rect(92, 0, 40, 52))
+	#g.AddRect(pygame.Rect(132, 0, 136, 20))
+	#g.AddRect(pygame.Rect(268, 0, 52, 52))
+	#g.AddRect(pygame.Rect(92, 188, 40, 32))
+	#g.AddRect(pygame.Rect(132, 218, 136, 22))
+	#g.AddRect(pygame.Rect(268, 188, 52, 52))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[0][2], bg, (char, checkpoint3, platv1, platv2, platv3,
@@ -253,18 +263,19 @@ def env_0_2():
 	return env
 
 def env_0_3():
-	g.AddRect(pygame.Rect(0, 0, 52, 240))
-	g.AddRect(pygame.Rect(52, 92, 130, 56))
-	g.AddRect(pygame.Rect(202, 92, 58, 56))
-	g.AddRect(pygame.Rect(182, 116, 40, 8))
-	g.AddRect(pygame.Rect(92, 16, 40, 36))
-	g.AddRect(pygame.Rect(152, 16, 72, 36))
-	g.AddRect(pygame.Rect(284, 16, 16, 36))
-	g.AddRect(pygame.Rect(300, 0, 20, 240))
-	g.AddRect(pygame.Rect(92, 0, 228, 16))
-	g.AddRect(pygame.Rect(92, 188, 40, 40))
-	g.AddRect(pygame.Rect(152, 188, 148, 52))
-	g.AddRect(pygame.Rect(92, 228, 64, 12))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[0][3]]
+	#g.AddRect(pygame.Rect(0, 0, 52, 240))
+	#g.AddRect(pygame.Rect(52, 92, 130, 56))
+	#g.AddRect(pygame.Rect(202, 92, 58, 56))
+	#g.AddRect(pygame.Rect(182, 116, 40, 8))
+	#g.AddRect(pygame.Rect(92, 16, 40, 36))
+	#g.AddRect(pygame.Rect(152, 16, 72, 36))
+	#g.AddRect(pygame.Rect(284, 16, 16, 36))
+	#g.AddRect(pygame.Rect(300, 0, 20, 240))
+	#g.AddRect(pygame.Rect(92, 0, 228, 16))
+	#g.AddRect(pygame.Rect(92, 188, 40, 40))
+	#g.AddRect(pygame.Rect(152, 188, 148, 52))
+	#g.AddRect(pygame.Rect(92, 228, 64, 12))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[0][3], bg, (char, checkpoint4, checkpointU1, yes1, yes2, yes3, yes4, yes5)]
@@ -272,16 +283,17 @@ def env_0_3():
 	return env
 
 def env_0_4():
-	g.AddRect(pygame.Rect(0, 0, 52, 240))
-	g.AddRect(pygame.Rect(92, 0, 228, 52))
-	g.AddRect(pygame.Rect(180, 52, 48, 12))
-	g.AddRect(pygame.Rect(52, 108, 68, 8))
-	g.AddRect(pygame.Rect(160, 92, 11, 8))
-	g.AddRect(pygame.Rect(52, 116, 200, 32))
-	g.AddRect(pygame.Rect(252, 92, 68, 72))
-	g.AddRect(pygame.Rect(92, 204, 40, 12))
-	g.AddRect(pygame.Rect(236, 204, 84, 36))
-	g.AddRect(pygame.Rect(92, 216, 144, 24))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[0][4]]
+	#g.AddRect(pygame.Rect(0, 0, 52, 240))
+	#g.AddRect(pygame.Rect(92, 0, 228, 52))
+	#g.AddRect(pygame.Rect(180, 52, 48, 12))
+	#g.AddRect(pygame.Rect(52, 108, 68, 8))
+	#g.AddRect(pygame.Rect(160, 92, 11, 8))
+	#g.AddRect(pygame.Rect(52, 116, 200, 32))
+	#g.AddRect(pygame.Rect(252, 92, 68, 72))
+	#g.AddRect(pygame.Rect(92, 204, 40, 12))
+	#g.AddRect(pygame.Rect(236, 204, 84, 36))
+	#g.AddRect(pygame.Rect(92, 216, 144, 24))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[0][4], bg, (char, checkpoint5, checkpoint6, plat1, plat2, plath1,
@@ -291,14 +303,15 @@ def env_0_4():
 	return env
 
 def env_0_5():
-	g.AddRect(pygame.Rect(0, 0, 320, 36))
-	g.AddRect(pygame.Rect(300, 36, 20, 96))
-	g.AddRect(pygame.Rect(0, 36, 100, 112))
-	g.AddRect(pygame.Rect(100, 108, 80, 40))
-	g.AddRect(pygame.Rect(0, 148, 52, 82))
-	g.AddRect(pygame.Rect(92, 188, 228, 52))
-	g.AddRect(pygame.Rect(204, 76, 56, 112))
-	g.AddRect(pygame.Rect(147, 58, 26, 17))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[0][5]]
+	#g.AddRect(pygame.Rect(0, 0, 320, 36))
+	#g.AddRect(pygame.Rect(300, 36, 20, 96))
+	#g.AddRect(pygame.Rect(0, 36, 100, 112))
+	#g.AddRect(pygame.Rect(100, 108, 80, 40))
+	#g.AddRect(pygame.Rect(0, 148, 52, 82))
+	#g.AddRect(pygame.Rect(92, 188, 228, 52))
+	#g.AddRect(pygame.Rect(204, 76, 56, 112))
+	#g.AddRect(pygame.Rect(147, 58, 26, 17))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[0][5], bg, (char, checkpoint7, reddisc)]
@@ -306,11 +319,12 @@ def env_0_5():
 	return env
 
 def env_1_1():
-	g.AddRect(pygame.Rect(0, 0, 320, 36))
-	g.AddRect(pygame.Rect(0, 204, 320, 240))
-	g.AddRect(pygame.Rect(0, 107, 320, 26))
-	g.AddRect(pygame.Rect(150, 133, 20, 15))
-	g.AddRect(pygame.Rect(100, 92, 220, 15))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[1][1]]
+	#g.AddRect(pygame.Rect(0, 0, 320, 36))
+	#g.AddRect(pygame.Rect(0, 204, 320, 240))
+	#g.AddRect(pygame.Rect(0, 107, 320, 26))
+	#g.AddRect(pygame.Rect(150, 133, 20, 15))
+	#g.AddRect(pygame.Rect(100, 92, 220, 15))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[1][1], bg, (char, bus,
@@ -319,29 +333,40 @@ def env_1_1():
 	return env
 
 def env_1_2():
-	g.AddRect(pygame.Rect(0, 0, 320, 36))
-	g.AddRect(pygame.Rect(0, 36, 68, 16))
-	g.AddRect(pygame.Rect(148, 36, 24, 8))
-	g.AddRect(pygame.Rect(208, 36, 24, 8))
-	g.AddRect(pygame.Rect(148, 56, 24, 24))
-	g.AddRect(pygame.Rect(208, 56, 24, 24))
-	g.AddRect(pygame.Rect(0, 188, 124, 36))
-	g.AddRect(pygame.Rect(140, 188, 44, 36))
-	g.AddRect(pygame.Rect(200, 188, 40, 36))
-	g.AddRect(pygame.Rect(256, 188, 28, 36))
-	g.AddRect(pygame.Rect(284, 36, 36, 188))
-	g.AddRect(pygame.Rect(0, 224, 320, 16))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[1][2]]
+	#g.AddRect(pygame.Rect(0, 0, 320, 36))
+	#g.AddRect(pygame.Rect(0, 36, 68, 16))
+	#g.AddRect(pygame.Rect(148, 36, 24, 8))
+	#g.AddRect(pygame.Rect(208, 36, 24, 8))
+	#g.AddRect(pygame.Rect(148, 56, 24, 24))
+	#g.AddRect(pygame.Rect(208, 56, 24, 24))
+	#g.AddRect(pygame.Rect(0, 188, 124, 36))
+	#g.AddRect(pygame.Rect(140, 188, 44, 36))
+	#g.AddRect(pygame.Rect(200, 188, 40, 36))
+	#g.AddRect(pygame.Rect(256, 188, 28, 36))
+	#g.AddRect(pygame.Rect(284, 36, 36, 188))
+	#g.AddRect(pygame.Rect(0, 224, 320, 16))
 	
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[1][2], bg, (char, trinket, man1, man2, man3, spikesU_2_0, spikesU_2_1, spikesU_3_0, spikesU_5_6, spikesU_8_4)]
+	env = [GAMERECT, g, imgs[1][2], bg, (char, trinket1, man1, man2, man3, spikesU_2_0, spikesU_2_1, spikesU_3_0, spikesU_5_6, spikesU_8_4)]
+
+	return env
+
+
+def env_create(x_co, y_co):
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[x_co][y_co]]
+	#stuff = tuple(ent for ent in ent_list[x_co][y_co]['entities'])
+	stuff = (gc,)
+	env = [GAMERECT, g, imgs[x_co][y_co], bg, (char,)+stuff]
 
 	return env
 
 def env_1_3():
-	g.AddRect(pygame.Rect(0, 0, 11, 240))
-	g.AddRect(pygame.Rect(11, 0, 309, 12))
-	g.AddRect(pygame.Rect(187, 12, 133, 88))
-	g.AddRect(pygame.Rect(12, 188, 308, 52))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[1][3]]
+	#g.AddRect(pygame.Rect(0, 0, 11, 240))
+	#g.AddRect(pygame.Rect(11, 0, 309, 12))
+	#g.AddRect(pygame.Rect(187, 12, 133, 88))
+	#g.AddRect(pygame.Rect(12, 188, 308, 52))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[1][3], bg, (char,)]
@@ -349,10 +374,11 @@ def env_1_3():
 	return env
 
 def env_1_4():
-	g.AddRect(pygame.Rect(0, 0, 320, 52))
-	g.AddRect(pygame.Rect(284, 52, 36, 152))
-	g.AddRect(pygame.Rect(0, 204, 284, 36))
-	g.AddRect(pygame.Rect(0, 92, 244, 72))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[1][4]]
+	#g.AddRect(pygame.Rect(0, 0, 320, 52))
+	#g.AddRect(pygame.Rect(284, 52, 36, 152))
+	#g.AddRect(pygame.Rect(0, 204, 284, 36))
+	#g.AddRect(pygame.Rect(0, 92, 244, 72))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[1][4], bg, (char,)]
@@ -360,16 +386,17 @@ def env_1_4():
 	return env
 
 def env_1_5():
-	g.AddRect(pygame.Rect(0, 0, 20, 132))
-	g.AddRect(pygame.Rect(20, 0, 300, 36))
-	g.AddRect(pygame.Rect(108, 36, 212, 16))
-	g.AddRect(pygame.Rect(108, 52, 152, 32))
-	g.AddRect(pygame.Rect(220, 84, 40, 96))
-	g.AddRect(pygame.Rect(284, 108, 36, 132))
-	g.AddRect(pygame.Rect(196, 220, 88, 20))
-	g.AddRect(pygame.Rect(0, 188, 44, 52))
-	g.AddRect(pygame.Rect(44, 76, 40, 164))
-	g.AddRect(pygame.Rect(84, 172, 112, 68))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[1][5]]
+	#g.AddRect(pygame.Rect(0, 0, 20, 132))
+	#g.AddRect(pygame.Rect(20, 0, 300, 36))
+	#g.AddRect(pygame.Rect(108, 36, 212, 16))
+	#g.AddRect(pygame.Rect(108, 52, 152, 32))
+	#g.AddRect(pygame.Rect(220, 84, 40, 96))
+	#g.AddRect(pygame.Rect(284, 108, 36, 132))
+	#g.AddRect(pygame.Rect(196, 220, 88, 20))
+	#g.AddRect(pygame.Rect(0, 188, 44, 52))
+	#g.AddRect(pygame.Rect(44, 76, 40, 164))
+	#g.AddRect(pygame.Rect(84, 172, 112, 68))
 	
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[1][5], bg, (char, checkpoint8, green1, green2)]
@@ -377,13 +404,14 @@ def env_1_5():
 	return env
 
 def env_2_1():
-	g.AddRect(pygame.Rect(0, 0, 132, 36))
-	g.AddRect(pygame.Rect(188, 0, 132, 52))
-	g.AddRect(pygame.Rect(188, 52, 40, 40))
-	g.AddRect(pygame.Rect(0, 92, 228, 40))
-	g.AddRect(pygame.Rect(0, 204, 52, 36))
-	g.AddRect(pygame.Rect(92, 132, 136, 108))
-	g.AddRect(pygame.Rect(284, 92, 36, 148))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[2][1]]
+	#g.AddRect(pygame.Rect(0, 0, 132, 36))
+	#g.AddRect(pygame.Rect(188, 0, 132, 52))
+	#g.AddRect(pygame.Rect(188, 52, 40, 40))
+	#g.AddRect(pygame.Rect(0, 92, 228, 40))
+	#g.AddRect(pygame.Rect(0, 204, 52, 36))
+	#g.AddRect(pygame.Rect(92, 132, 136, 108))
+	#g.AddRect(pygame.Rect(284, 92, 36, 148))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[2][1], bg, (char, checkpoint9, checkpointU2, spikes_3_0, spikes_8_1)]
@@ -391,9 +419,10 @@ def env_2_1():
 	return env
 
 def env_2_2():
-	g.AddRect(pygame.Rect(0, 0, 132, 240))
-	g.AddRect(pygame.Rect(132, 0, 188, 36))
-	g.AddRect(pygame.Rect(188, 140, 132, 100))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[2][2]]
+	#g.AddRect(pygame.Rect(0, 0, 132, 240))
+	#g.AddRect(pygame.Rect(132, 0, 188, 36))
+	#g.AddRect(pygame.Rect(188, 140, 132, 100))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[2][2], bg, (char, plat3, plat4, spikesU_5_7, spikesU_5_8, spikes_5_7, spikes_8_2)]
@@ -401,10 +430,11 @@ def env_2_2():
 	return env
 
 def env_2_3():
-	g.AddRect(pygame.Rect(0, 0, 320, 100))
-	g.AddRect(pygame.Rect(0, 188, 110, 52))
-	g.AddRect(pygame.Rect(210, 188, 110, 52))
-	g.AddRect(pygame.Rect(110, 206, 100, 34))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[2][3]]
+	#g.AddRect(pygame.Rect(0, 0, 320, 100))
+	#g.AddRect(pygame.Rect(0, 188, 110, 52))
+	#g.AddRect(pygame.Rect(210, 188, 110, 52))
+	#g.AddRect(pygame.Rect(110, 206, 100, 34))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[2][3], bg, (char, checkpointA, spikes_4_6, spikes_6_0)]
@@ -412,15 +442,16 @@ def env_2_3():
 	return env
 
 def env_2_4():
-	g.AddRect(pygame.Rect(0, 0, 196, 84))
-	g.AddRect(pygame.Rect(0, 84, 68, 14))
-	g.AddRect(pygame.Rect(0, 100, 12, 72))
-	g.AddRect(pygame.Rect(0, 172, 12, 68))
-	g.AddRect(pygame.Rect(12, 164, 40, 13))
-	g.AddRect(pygame.Rect(10, 160, 160, 12))
-	g.AddRect(pygame.Rect(180, 164, 40, 8))
-	g.AddRect(pygame.Rect(220, 0, 320, 240))
-	g.AddRect(pygame.Rect(124, 84, 40, 8))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[2][4]]
+	#g.AddRect(pygame.Rect(0, 0, 196, 84))
+	#g.AddRect(pygame.Rect(0, 84, 68, 14))
+	#g.AddRect(pygame.Rect(0, 100, 12, 72))
+	#g.AddRect(pygame.Rect(0, 172, 12, 68))
+	#g.AddRect(pygame.Rect(12, 164, 40, 13))
+	#g.AddRect(pygame.Rect(10, 160, 160, 12))
+	#g.AddRect(pygame.Rect(180, 164, 40, 8))
+	#g.AddRect(pygame.Rect(220, 0, 320, 240))
+	#g.AddRect(pygame.Rect(124, 84, 40, 8))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[2][4], bg, (char, checkpointB, trinket2, spikesU_3_1, spikesU_5_9, spikes_2_0, spikes_6_1)]
@@ -428,15 +459,16 @@ def env_2_4():
 	return env
 
 def env_2_5():
-	g.AddRect(pygame.Rect(0, 0, 100, 52))
-	g.AddRect(pygame.Rect(100, 0, 90, 26))
-	g.AddRect(pygame.Rect(190, 26, 126, 26))
-	g.AddRect(pygame.Rect(60, 52, 40, 92))
-	g.AddRect(pygame.Rect(0, 108, 32, 64))
-	g.AddRect(pygame.Rect(0, 172, 132, 32))
-	g.AddRect(pygame.Rect(0, 204, 192, 36))
-	g.AddRect(pygame.Rect(220, 92, 40, 148))
-	g.AddRect(pygame.Rect(260, 124, 60, 116))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[2][5]]
+	#g.AddRect(pygame.Rect(0, 0, 100, 52))
+	#g.AddRect(pygame.Rect(100, 0, 90, 26))
+	#g.AddRect(pygame.Rect(190, 26, 126, 26))
+	#g.AddRect(pygame.Rect(60, 52, 40, 92))
+	#g.AddRect(pygame.Rect(0, 108, 32, 64))
+	#g.AddRect(pygame.Rect(0, 172, 132, 32))
+	#g.AddRect(pygame.Rect(0, 204, 192, 36))
+	#g.AddRect(pygame.Rect(220, 92, 40, 148))
+	#g.AddRect(pygame.Rect(260, 124, 60, 116))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[2][5], bg, (char, checkpointC, checkpointU3, spikesU_3_2, spikesU_6_0, spikes_6_2)]
@@ -444,11 +476,12 @@ def env_2_5():
 	return env
 
 def env_3_0():
-	g.AddRect(pygame.Rect(0, 0, 116, 36))
-	g.AddRect(pygame.Rect(76, 36, 40, 128))
-	g.AddRect(pygame.Rect(204, 0, 116, 36))
-	g.AddRect(pygame.Rect(294, 36, 40, 128))
-	g.AddRect(pygame.Rect(92, 164, 136, 16))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[3][0]]
+	#g.AddRect(pygame.Rect(0, 0, 116, 36))
+	#g.AddRect(pygame.Rect(76, 36, 40, 128))
+	#g.AddRect(pygame.Rect(204, 0, 116, 36))
+	#g.AddRect(pygame.Rect(294, 36, 40, 128))
+	#g.AddRect(pygame.Rect(92, 164, 136, 16))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[3][0], bg, (char,)]
@@ -456,15 +489,16 @@ def env_3_0():
 	return env
 
 def env_3_1():
-	g.AddRect(pygame.Rect(0, 0, 140, 36))
-	g.AddRect(pygame.Rect(0, 36, 56, 16))
-	g.AddRect(pygame.Rect(180, 0, 140, 36))
-	g.AddRect(pygame.Rect(264, 36, 56, 16))
-	g.AddRect(pygame.Rect(0, 76, 82, 164))
-	g.AddRect(pygame.Rect(82, 90, 34, 150))
-	g.AddRect(pygame.Rect(204, 90, 34, 150))
-	g.AddRect(pygame.Rect(238, 76, 82, 154))
-	g.AddRect(pygame.Rect(140, 128, 40, 24))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[3][1]]
+	#g.AddRect(pygame.Rect(0, 0, 140, 36))
+	#g.AddRect(pygame.Rect(0, 36, 56, 16))
+	#g.AddRect(pygame.Rect(180, 0, 140, 36))
+	#g.AddRect(pygame.Rect(264, 36, 56, 16))
+	#g.AddRect(pygame.Rect(0, 76, 82, 164))
+	#g.AddRect(pygame.Rect(82, 90, 34, 150))
+	#g.AddRect(pygame.Rect(204, 90, 34, 150))
+	#g.AddRect(pygame.Rect(238, 76, 82, 154))
+	#g.AddRect(pygame.Rect(140, 128, 40, 24))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[3][1], bg, (char, spikesU_4_6, spikesU_8_5, spikesU_8_6, spikes_3_1, spikes_3_2, spikes_4_7)]
@@ -472,9 +506,10 @@ def env_3_1():
 	return env
 
 def env_3_2():
-	g.AddRect(pygame.Rect(0, 0, 320, 36))
-	g.AddRect(pygame.Rect(0, 140, 140, 100))
-	g.AddRect(pygame.Rect(180, 140, 140, 100))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[3][2]]
+	#g.AddRect(pygame.Rect(0, 0, 320, 36))
+	#g.AddRect(pygame.Rect(0, 140, 140, 100))
+	#g.AddRect(pygame.Rect(180, 140, 140, 100))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[3][2], bg, (char, checkpointU4, checkpointU5, spikesU_4_7, spikes_7_0, spikes_7_1, spikes_7_2, spikes_7_3)]
@@ -482,11 +517,12 @@ def env_3_2():
 	return env
 
 def env_3_3():
-	g.AddRect(pygame.Rect(0, 188, 320, 52))
-	g.AddRect(pygame.Rect(284, 0, 56, 188))
-	g.AddRect(pygame.Rect(0, 0, 36, 100))
-	g.AddRect(pygame.Rect(36, 60, 112, 50))
-	g.AddRect(pygame.Rect(60, 96, 88, 36))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[3][3]]
+	#g.AddRect(pygame.Rect(0, 188, 320, 52))
+	#g.AddRect(pygame.Rect(284, 0, 56, 188))
+	#g.AddRect(pygame.Rect(0, 0, 36, 100))
+	#g.AddRect(pygame.Rect(36, 60, 112, 50))
+	#g.AddRect(pygame.Rect(60, 96, 88, 36))
 	
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[3][3], bg, (char, checkpointD)]
@@ -494,8 +530,9 @@ def env_3_3():
 	return env
 
 def env_3_4():
-	g.AddRect(pygame.Rect(0, 0, 36, 240))
-	g.AddRect(pygame.Rect(284, 0, 36, 240))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[3][4]]
+	#g.AddRect(pygame.Rect(0, 0, 36, 240))
+	#g.AddRect(pygame.Rect(284, 0, 36, 240))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[3][4], bg, (char,)]
@@ -503,14 +540,15 @@ def env_3_4():
 	return env
 
 def env_3_5():
-	g.AddRect(pygame.Rect(284, 0, 36, 240))
-	g.AddRect(pygame.Rect(0, 0, 115, 52))
-	g.AddRect(pygame.Rect(115, 0, 34, 8))
-	g.AddRect(pygame.Rect(149, 0, 135, 52))
-	g.AddRect(pygame.Rect(0, 124, 40, 116))
-	g.AddRect(pygame.Rect(40, 168, 204, 28))
-	g.AddRect(pygame.Rect(70, 124, 120, 44))
-	g.AddRect(pygame.Rect(220, 124, 24, 44))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[3][5]]
+	#g.AddRect(pygame.Rect(284, 0, 36, 240))
+	#g.AddRect(pygame.Rect(0, 0, 115, 52))
+	#g.AddRect(pygame.Rect(115, 0, 34, 8))
+	#g.AddRect(pygame.Rect(149, 0, 135, 52))
+	#g.AddRect(pygame.Rect(0, 124, 40, 116))
+	#g.AddRect(pygame.Rect(40, 168, 204, 28))
+	#g.AddRect(pygame.Rect(70, 124, 120, 44))
+	#g.AddRect(pygame.Rect(220, 124, 24, 44))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[3][5], bg, (char, checkpointU6, stop1, stop2, stop3)]
@@ -518,15 +556,16 @@ def env_3_5():
 	return env
 
 def env_4_1():
-	g.AddRect(pygame.Rect(0, 204, 320, 36))
-	g.AddRect(pygame.Rect(0, 108, 36, 96))
-	g.AddRect(pygame.Rect(0, 0, 132, 68))
-	g.AddRect(pygame.Rect(60, 68, 72, 96))
-	g.AddRect(pygame.Rect(132, 92, 64, 72))
-	g.AddRect(pygame.Rect(196, 128, 56, 36))
-	g.AddRect(pygame.Rect(252, 92, 68, 72))
-	g.AddRect(pygame.Rect(188, 0, 132, 26))
-	g.AddRect(pygame.Rect(202, 36, 42, 8))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[4][1]]
+	#g.AddRect(pygame.Rect(0, 204, 320, 36))
+	#g.AddRect(pygame.Rect(0, 108, 36, 96))
+	#g.AddRect(pygame.Rect(0, 0, 132, 68))
+	#g.AddRect(pygame.Rect(60, 68, 72, 96))
+	#g.AddRect(pygame.Rect(132, 92, 64, 72))
+	#g.AddRect(pygame.Rect(196, 128, 56, 36))
+	#g.AddRect(pygame.Rect(252, 92, 68, 72))
+	#g.AddRect(pygame.Rect(188, 0, 132, 26))
+	#g.AddRect(pygame.Rect(202, 36, 42, 8))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[4][1], bg, (char, checkpointE, checkpointU7, ghost, spikesU_2_2, spikesU_7_2, spikes_5_8)]
@@ -534,13 +573,14 @@ def env_4_1():
 	return env
 
 def env_4_2():
-	g.AddRect(pygame.Rect(0, 0, 180, 36))
-	g.AddRect(pygame.Rect(180, 0, 40, 21))
-	g.AddRect(pygame.Rect(220, 0, 100, 132))
-	g.AddRect(pygame.Rect(188, 132, 132, 108))
-	g.AddRect(pygame.Rect(0, 140, 92, 36))
-	g.AddRect(pygame.Rect(92, 76, 40, 164))
-	g.AddRect(pygame.Rect(132, 132, 32, 40))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[4][2]]
+	#g.AddRect(pygame.Rect(0, 0, 180, 36))
+	#g.AddRect(pygame.Rect(180, 0, 40, 21))
+	#g.AddRect(pygame.Rect(220, 0, 100, 132))
+	#g.AddRect(pygame.Rect(188, 132, 132, 108))
+	#g.AddRect(pygame.Rect(0, 140, 92, 36))
+	#g.AddRect(pygame.Rect(92, 76, 40, 164))
+	#g.AddRect(pygame.Rect(132, 132, 32, 40))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[4][2], bg, (char, plat5, spikesU_4_8, spikes_3_3, spikes_3_4, spikes_4_8, spikes_5_9)]
@@ -548,18 +588,19 @@ def env_4_2():
 	return env
 
 def env_5_1():
-	g.AddRect(pygame.Rect(0, 0, 320, 36))
-	g.AddRect(pygame.Rect(28, 36, 40, 16))
-	g.AddRect(pygame.Rect(108, 36, 104, 16))
-	g.AddRect(pygame.Rect(252, 36, 40, 16))
-	g.AddRect(pygame.Rect(0, 204, 320, 36))
-	g.AddRect(pygame.Rect(0, 92, 84, 72))
-	g.AddRect(pygame.Rect(84, 92, 24, 36))
-	g.AddRect(pygame.Rect(108, 92, 24, 72))
-	g.AddRect(pygame.Rect(132, 124, 56, 40))
-	g.AddRect(pygame.Rect(188, 92, 22, 36))
-	g.AddRect(pygame.Rect(210, 92, 26, 36))
-	g.AddRect(pygame.Rect(236, 92, 84, 72))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[5][1]]
+	#g.AddRect(pygame.Rect(0, 0, 320, 36))
+	#g.AddRect(pygame.Rect(28, 36, 40, 16))
+	#g.AddRect(pygame.Rect(108, 36, 104, 16))
+	#g.AddRect(pygame.Rect(252, 36, 40, 16))
+	#g.AddRect(pygame.Rect(0, 204, 320, 36))
+	#g.AddRect(pygame.Rect(0, 92, 84, 72))
+	#g.AddRect(pygame.Rect(84, 92, 24, 36))
+	#g.AddRect(pygame.Rect(108, 92, 24, 72))
+	#g.AddRect(pygame.Rect(132, 124, 56, 40))
+	#g.AddRect(pygame.Rect(188, 92, 22, 36))
+	#g.AddRect(pygame.Rect(210, 92, 26, 36))
+	#g.AddRect(pygame.Rect(236, 92, 84, 72))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[5][1], bg, (char, walker1, walker2, spikesU_2_3, spikesU_4_9, spikesU_4_A, spikesU_4_B, spikes_3_5)]
@@ -567,16 +608,17 @@ def env_5_1():
 	return env
 
 def env_6_1():
-	g.AddRect(pygame.Rect(0, 0, 320, 36))
-	g.AddRect(pygame.Rect(284, 36, 36, 136))
-	g.AddRect(pygame.Rect(156, 172, 164, 68))
-	g.AddRect(pygame.Rect(0, 204, 100, 36))
-	g.AddRect(pygame.Rect(0, 92, 36, 16))
-	g.AddRect(pygame.Rect(0, 108, 68, 16))
-	g.AddRect(pygame.Rect(0, 124, 100, 16))
-	g.AddRect(pygame.Rect(0, 140, 132, 16))
-	g.AddRect(pygame.Rect(0, 156, 156, 24))
-	g.AddRect(pygame.Rect(156, 168, 4, 80))
+	g.rects = [pygame.Rect(*rect) for rect in rect_list[6][1]]
+	#g.AddRect(pygame.Rect(0, 0, 320, 36))
+	#g.AddRect(pygame.Rect(284, 36, 36, 136))
+	#g.AddRect(pygame.Rect(156, 172, 164, 68))
+	#g.AddRect(pygame.Rect(0, 204, 100, 36))
+	#g.AddRect(pygame.Rect(0, 92, 36, 16))
+	#g.AddRect(pygame.Rect(0, 108, 68, 16))
+	#g.AddRect(pygame.Rect(0, 124, 100, 16))
+	#g.AddRect(pygame.Rect(0, 140, 132, 16))
+	#g.AddRect(pygame.Rect(0, 156, 156, 24))
+	#g.AddRect(pygame.Rect(156, 168, 4, 80))
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[6][1], bg, (char, gc)]
