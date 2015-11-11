@@ -121,33 +121,6 @@ gc = MovingEntity(gcimg, dx=0, dy=48, vx=0, vy=0, etype=ENT_TOKEN)
 imgs = {x_coord: {y_coord: pygame.image.load('./data/img/background/background_{x}-{y}_320x240.png'.format(x=x_coord, y=y_coord))\
 					for y_coord in range(7) if (x_coord, y_coord) in level_array} for x_coord in range(7)}
 
-img0_1 = pygame.image.load('./data/img/background/background_0-1_320x240.png')
-img0_2 = pygame.image.load('./data/img/background/background_0-2_320x240.png')
-img0_3 = pygame.image.load('./data/img/background/background_0-3_320x240.png')
-img0_4 = pygame.image.load('./data/img/background/background_0-4_320x240.png')
-img0_5 = pygame.image.load('./data/img/background/background_0-5_320x240.png')
-img1_1 = pygame.image.load('./data/img/background/background_1-1_320x240.png')
-img1_2 = pygame.image.load('./data/img/background/background_1-2_320x240.png')
-img1_3 = pygame.image.load('./data/img/background/background_1-3_320x240.png')
-img1_4 = pygame.image.load('./data/img/background/background_1-4_320x240.png')
-img1_5 = pygame.image.load('./data/img/background/background_1-5_320x240.png')
-img2_1 = pygame.image.load('./data/img/background/background_2-1_320x240.png')
-img2_2 = pygame.image.load('./data/img/background/background_2-2_320x240.png')
-img2_3 = pygame.image.load('./data/img/background/background_2-3_320x240.png')
-img2_4 = pygame.image.load('./data/img/background/background_2-4_320x240.png')
-img2_5 = pygame.image.load('./data/img/background/background_2-5_320x240.png')
-img3_0 = pygame.image.load('./data/img/background/background_3-0_320x240.png')
-img3_1 = pygame.image.load('./data/img/background/background_3-1_320x240.png')
-img3_2 = pygame.image.load('./data/img/background/background_3-2_320x240.png')
-img3_3 = pygame.image.load('./data/img/background/background_3-3_320x240.png')
-img3_4 = pygame.image.load('./data/img/background/background_3-4_320x240.png')
-img3_5 = pygame.image.load('./data/img/background/background_3-5_320x240.png')
-img4_1 = pygame.image.load('./data/img/background/background_4-1_320x240.png')
-img4_2 = pygame.image.load('./data/img/background/background_4-2_320x240.png')
-img5_1 = pygame.image.load('./data/img/background/background_5-1_320x240.png')
-img6_1 = pygame.image.load('./data/img/background/background_6-1_320x240.png')
-
-
 def env_0_1():
 	g.AddRect(pygame.Rect(0, 0, 52, 92))
 	g.AddRect(pygame.Rect(0, 92, 176, 40))
@@ -182,7 +155,7 @@ def env_0_1():
 	spikes4[3].SetSpike(220, 219)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img0_1, bg, (char, checkpoint, checkpoint2, spikesU4[0], spikesU4[1], spikes4[0], spikesU4[2],
+	env = [GAMERECT, g, imgs[0][1], bg, (char, checkpoint, checkpoint2, spikesU4[0], spikesU4[1], spikes4[0], spikesU4[2],
 		spikesU4[3], spikesU4[4], spikesU5[0], spikes4[1], spikes4[2], spikes4[3])]
 
 	return env
@@ -206,7 +179,7 @@ def env_0_2():
 	spikes5[0].SetSpike(212, 220)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img0_2, bg, (char, checkpoint, spikes4[0], spikesU4[0], spikesU8[0], spikes5[0], spikes8[0], spikesU5[0],
+	env = [GAMERECT, g, imgs[0][2], bg, (char, checkpoint, spikes4[0], spikesU4[0], spikesU8[0], spikes5[0], spikes8[0], spikesU5[0],
 		 platv[0], platv[1], platv[2])]
 
 	return env
@@ -229,7 +202,7 @@ def env_0_3():
 	checkpointU.SetPos(72, 148)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img0_3, bg, (char, checkpoint, checkpointU, yes1, yes2, yes3, yes4, yes5)]
+	env = [GAMERECT, g, imgs[0][3], bg, (char, checkpoint, checkpointU, yes1, yes2, yes3, yes4, yes5)]
 
 	return env
 
@@ -261,7 +234,7 @@ def env_0_4():
 	plat[1].SetSpike(120, 70)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img0_4, bg, (char, checkpoint, checkpoint2, spikesU8[0], spikes5[0], spikesU5[0],
+	env = [GAMERECT, g, imgs[0][4], bg, (char, checkpoint, checkpoint2, spikesU8[0], spikes5[0], spikesU5[0],
 		spikesU5[1], spikesU5[2], spikesU5[3], spikes5[0], spikes5[1], plat[0], plat[1], plath[0])]
 
 	return env
@@ -279,7 +252,7 @@ def env_0_5():
 	checkpoint.SetPos(130, 108)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img0_5, bg, (char, checkpoint, reddisc)]
+	env = [GAMERECT, g, imgs[0][5], bg, (char, checkpoint, reddisc)]
 
 	return env
 
@@ -300,7 +273,7 @@ def env_1_1():
 	spikesU7[1].SetSpikeU(250, 132)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img1_1, bg, (char, spikes5[0], spikes5[1], spikes5[2], spikes5[3], spikesU8[0],
+	env = [GAMERECT, g, imgs[1][1], bg, (char, spikes5[0], spikes5[1], spikes5[2], spikes5[3], spikesU8[0],
 		 spikesU7[0], spikesU8[1], spikesU7[1], bus)]
 
 	return env
@@ -326,7 +299,7 @@ def env_1_2():
 	spikesU2[1].SetSpikeU(210, 80)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img1_2, bg, (char, trinket, spikesU8[0], spikesU3[0], spikesU5[0], spikesU2[0], spikesU2[1], man1, man2, man3)]
+	env = [GAMERECT, g, imgs[1][2], bg, (char, trinket, spikesU8[0], spikesU3[0], spikesU5[0], spikesU2[0], spikesU2[1], man1, man2, man3)]
 
 	return env
 
@@ -340,7 +313,7 @@ def env_1_3():
 	empty.SetSpike(130, 187)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img1_3, bg, (char, empty)]
+	env = [GAMERECT, g, imgs[1][3], bg, (char, empty)]
 
 	return env
 
@@ -354,7 +327,7 @@ def env_1_4():
 	empty.SetSpike(130, 187)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img1_4, bg, (char, empty)]
+	env = [GAMERECT, g, imgs[1][4], bg, (char, empty)]
 
 	return env
 
@@ -373,7 +346,7 @@ def env_1_5():
 	checkpoint.SetPos(20, 188)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img1_5, bg, (char, checkpoint, green1, green2)]
+	env = [GAMERECT, g, imgs[1][5], bg, (char, checkpoint, green1, green2)]
 
 	return env
 
@@ -393,7 +366,7 @@ def env_2_1():
 	spikes3[0].SetSpike(80, 92)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img2_1, bg, (char, checkpoint, checkpointU, spikes8[0], spikes3[0])]
+	env = [GAMERECT, g, imgs[2][1], bg, (char, checkpoint, checkpointU, spikes8[0], spikes3[0])]
 
 	return env
 
@@ -411,7 +384,7 @@ def env_2_2():
 	plat[1].SetSpike(150, 52)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img2_2, bg, (char, spikesU5[0], spikesU5[1], spikes8[0], spikes5[0], plat[0], plat[1])]
+	env = [GAMERECT, g, imgs[2][2], bg, (char, spikesU5[0], spikesU5[1], spikes8[0], spikes5[0], plat[0], plat[1])]
 
 	return env
 
@@ -427,7 +400,7 @@ def env_2_3():
 	spikes4[0].SetSpike(170, 206)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img2_3, bg, (char, spikes6[0], spikes4[0], checkpoint)]
+	env = [GAMERECT, g, imgs[2][3], bg, (char, spikes6[0], spikes4[0], checkpoint)]
 
 	return env
 
@@ -450,7 +423,7 @@ def env_2_4():
 	spikes2[0].SetSpike(52, 172)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img2_4, bg, (char, checkpoint, trinket2, spikesU3[0], spikes6[0], spikesU5[0], spikes2[0])]
+	env = [GAMERECT, g, imgs[2][4], bg, (char, checkpoint, trinket2, spikesU3[0], spikes6[0], spikesU5[0], spikes2[0])]
 
 	return env
 
@@ -473,7 +446,7 @@ def env_2_5():
 	spikes6[0].SetSpike(132, 204)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img2_5, bg, (char, checkpoint, checkpointU, spikesU6[0], spikesU3[0], spikes6[0])]
+	env = [GAMERECT, g, imgs[2][5], bg, (char, checkpoint, checkpointU, spikesU6[0], spikesU3[0], spikes6[0])]
 
 	return env
 
@@ -487,7 +460,7 @@ def env_3_0():
 	empty.SetSpike(130,187)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img3_0, bg, (char, empty)]
+	env = [GAMERECT, g, imgs[3][0], bg, (char, empty)]
 
 	return env
 
@@ -510,7 +483,7 @@ def env_3_1():
 	spikesU4[0].SetSpikeU(140, 152)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img3_1, bg, (char, spikesU8[0], spikesU8[1], spikes3[0], spikes3[1], spikes4[1], spikesU4[0])]
+	env = [GAMERECT, g, imgs[3][1], bg, (char, spikesU8[0], spikesU8[1], spikes3[0], spikes3[1], spikes4[1], spikesU4[0])]
 
 	return env
 
@@ -529,7 +502,7 @@ def env_3_2():
 	spikes7[3].SetSpike(250, 140)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img3_2, bg, (char, checkpointU, checkpointU2, spikesU4[0], spikes7[0], spikes7[1], spikes7[2], spikes7[3])]
+	env = [GAMERECT, g, imgs[3][2], bg, (char, checkpointU, checkpointU2, spikesU4[0], spikes7[0], spikes7[1], spikes7[2], spikes7[3])]
 
 	return env
 
@@ -543,7 +516,7 @@ def env_3_3():
 	checkpoint.SetPos(60, 188)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img3_3, bg, (char, checkpoint)]
+	env = [GAMERECT, g, imgs[3][3], bg, (char, checkpoint)]
 
 	return env
 
@@ -554,7 +527,7 @@ def env_3_4():
 	empty.SetSpike(130, 187)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img3_4, bg, (char, empty)]
+	env = [GAMERECT, g, imgs[3][4], bg, (char, empty)]
 
 	return env
 
@@ -571,7 +544,7 @@ def env_3_5():
 	checkpointU.SetPos(194, 196)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img3_5, bg, (char, checkpointU, stop1, stop2, stop3)]
+	env = [GAMERECT, g, imgs[3][5], bg, (char, checkpointU, stop1, stop2, stop3)]
 
 	return env
 
@@ -594,7 +567,7 @@ def env_4_1():
 	spikes5[0].SetSpike(199, 128)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img4_1, bg, (char, checkpoint, checkpointU, spikesU2[0], spikesU7[0], spikes5[0], ghost)]
+	env = [GAMERECT, g, imgs[4][1], bg, (char, checkpoint, checkpointU, spikesU2[0], spikesU7[0], spikes5[0], ghost)]
 
 	return env
 
@@ -616,7 +589,7 @@ def env_4_2():
 	plat[0].SetSpike(132, 88)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img4_2, bg, (char, spikes5[0], spikes4[0], spikesU4[0], spikes3[0], spikes3[1], plat[0])]
+	env = [GAMERECT, g, imgs[4][2], bg, (char, spikes5[0], spikes4[0], spikesU4[0], spikes3[0], spikes3[1], plat[0])]
 
 	return env
 
@@ -641,7 +614,7 @@ def env_5_1():
 	spikes3[0].SetSpike(135, 124)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img5_1, bg, (char, spikesU2[0], spikesU4[0], spikesU4[1], spikesU4[2], spikes3[0], walker1, walker2)]
+	env = [GAMERECT, g, imgs[5][1], bg, (char, spikesU2[0], spikesU4[0], spikesU4[1], spikesU4[2], spikes3[0], walker1, walker2)]
 
 	return env
 
@@ -660,6 +633,6 @@ def env_6_1():
 	empty.SetSpike(130, 187)
 
 	#initalizes all parts of screen
-	env = [GAMERECT, g, img6_1, bg, (char, empty, gc)]
+	env = [GAMERECT, g, imgs[6][1], bg, (char, empty, gc)]
 
 	return env

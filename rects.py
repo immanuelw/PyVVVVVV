@@ -165,11 +165,9 @@ rect_list = {0:
 					(76, 36, 40, 128),
 					(204, 0, 116, 36),
 					(294, 36, 40, 128),
-					(92, 164, 136, 16))
-				},
+					(92, 164, 136, 16)),
 
-			3:
-				{1:
+				1:
 					((0, 0, 140, 36),
 					(0, 36, 56, 16),
 					(180, 0, 140, 36),
@@ -262,7 +260,7 @@ rect_list = {0:
 
 level_array = tuple((x,y) for x, val in rect_list.items() for y, value in val.items())
 rects = {x_co: {y_co: rect_list[x_co][y_co] if (x_co, y_co) in level_array else ((0, 0, 0, 0),) for y_co in range(7)} for x_co in range(7)}
-#print(level_array)
+print(level_array)
 #print(rects)
 
 backup_path = 'rects.json'
