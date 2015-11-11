@@ -9,9 +9,8 @@ from env import Environment
 from entity import Entity, MovingEntity, AnimatingEntity, MovingAnimatingEntity
 from config import *
 
-#pygame.init()
-#clk = pygame.time.Clock()
-GAMERECT = pygame.Rect(0, 0, 320, 240)
+imgs = {x_coord: {y_coord: pygame.image.load('./data/img/background/background_{x}-{y}_320x240.png'.format(x=x_coord, y=y_coord))\
+					for y_coord in range(7) if (x_coord, y_coord) in level_array} for x_coord in range(7)}
 
 window = pygame.display.set_mode((GAMERECT.width * 2, GAMERECT.height * 2))
 gamesurf = pygame.Surface((GAMERECT.width, GAMERECT.height))
@@ -23,15 +22,15 @@ char.SetPulseRate(VIRIDIAN_PULSERATE)
 
 g = Geometry()
 
-counter = 0 #random counter to cheat gifs
-
-img = pygame.image.load('./data/img/envtest.png')
-
 bgimg = pygame.image.load('./data/img/bg_cross.png')
 bg = Background(bgimg, GAMERECT, 1, 0)
 
 platimg = pygame.image.load('./data/img/plat_o.png')
-plat = [MovingEntity(platimg, vx=0, vy=0, etype=ENT_PLATFORM) for i in range(10)]
+plat1 = MovingEntity(platimg, dx=100, dy=70, vx=0, vy=0, etype=ENT_PLATFORM)
+plat2 = MovingEntity(platimg, dx=120, dy=70, vx=0, vy=0, etype=ENT_PLATFORM)
+plat3 = MovingEntity(platimg, dx=200, dy=116, vx=0, vy=0, etype=ENT_PLATFORM)
+plat4 = MovingEntity(platimg, dx=150, dy=52, vx=0, vy=0, etype=ENT_PLATFORM)
+plat5 = MovingEntity(platimg, dx=132, dy=88, vx=0, vy=0, etype=ENT_PLATFORM)
 
 platv1 = MovingEntity(platimg, dx=140, dy=100, vx=0, vy=1, etype=ENT_PLATFORM)
 platv2 = MovingEntity(platimg, dx=170, dy=120, vx=0, vy=1, etype=ENT_PLATFORM)
@@ -104,9 +103,6 @@ spikesimgs = [pygame.image.load('./data/img/spikes{num}.png'.format(num=num)) fo
 spikesUimgs = [pygame.transform.flip(spikesimg.copy(), False, True) for spikesimg in spikesimgs]
 spikes = {num + 1: [MovingEntity(spikesimg, vx=0, vy=0, etype=ENT_OBSTACLE) for _ in range(10)] for num, spikesimg in enumerate(spikesimgs)}
 spikesU = {num + 1: [MovingEntity(spikesUimg, vx=0, vy=0, etype=ENT_OBSTACLE) for _ in range(10)] for num, spikesUimg in enumerate(spikesUimgs)}
-
-imgs = {x_coord: {y_coord: pygame.image.load('./data/img/background/background_{x}-{y}_320x240.png'.format(x=x_coord, y=y_coord))\
-					for y_coord in range(7) if (x_coord, y_coord) in level_array} for x_coord in range(7)}
 
 def env_0_1():
 	g.AddRect(pygame.Rect(0, 0, 52, 92))
@@ -217,12 +213,9 @@ def env_0_4():
 	spikes[5][0].SetSpike(132, 212)
 	spikes[5][1].SetSpike(182, 212)
 
-	plat[0].SetSpike(100, 70)
-	plat[1].SetSpike(120, 70)
-
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[0][4], bg, (char, checkpoint1, checkpoint2, spikesU[8][0], spikes[5][0], spikesU[5][0],
-		spikesU[5][1], spikesU[5][2], spikesU[5][3], spikes[5][0], spikes[5][1], plat[0], plat[1], plath1)]
+		spikesU[5][1], spikesU[5][2], spikesU[5][3], spikes[5][0], spikes[5][1], plat1, plat2, plath1)]
 
 	return env
 
@@ -367,11 +360,8 @@ def env_2_2():
 	spikes[8][0].SetSpike(190, 140)
 	spikes[5][0].SetSpike(270, 140)
 
-	plat[0].SetSpike(200, 116)
-	plat[1].SetSpike(150, 52)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[2][2], bg, (char, spikesU[5][0], spikesU[5][1], spikes[8][0], spikes[5][0], plat[0], plat[1])]
+	env = [GAMERECT, g, imgs[2][2], bg, (char, spikesU[5][0], spikesU[5][1], spikes[8][0], spikes[5][0], plat3, plat4)]
 
 	return env
 
@@ -573,10 +563,8 @@ def env_4_2():
 	spikes[3][0].SetSpike(132, 132)
 	spikes[3][1].SetSpike(190, 132)
 
-	plat[0].SetSpike(132, 88)
-
 	#initalizes all parts of screen
-	env = [GAMERECT, g, imgs[4][2], bg, (char, spikes[5][0], spikes[4][0], spikesU[4][0], spikes[3][0], spikes[3][1], plat[0])]
+	env = [GAMERECT, g, imgs[4][2], bg, (char, spikes[5][0], spikes[4][0], spikesU[4][0], spikes[3][0], spikes[3][1], plat5)]
 
 	return env
 
