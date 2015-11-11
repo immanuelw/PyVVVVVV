@@ -141,13 +141,13 @@ def env_0_1():
 	g.AddRect(pygame.Rect(172, 204, 48, 15))
 	g.AddRect(pygame.Rect(260, 1204, 60, 15))
 
-	spikesU[4][0].SetSpikeU(120, 21)
-	spikesU[4][1].SetSpikeU(232, 21)
+	spikesU[4][0].SetSpikeU(120, 31)
+	spikesU[4][1].SetSpikeU(232, 31)
+	spikesU[4][2].SetSpikeU(0, 142)
+	spikesU[4][3].SetSpikeU(88, 142)
+	spikesU[4][4].SetSpikeU(176, 142)
+	spikesU[5][0].SetSpikeU(264, 142)
 	spikes[4][0].SetSpike(176, 107)
-	spikesU[4][2].SetSpikeU(0, 132)
-	spikesU[4][3].SetSpikeU(88, 132)
-	spikesU[4][4].SetSpikeU(176, 132)
-	spikesU[5][0].SetSpikeU(264, 132)
 	spikes[4][1].SetSpike(44, 219)
 	spikes[4][2].SetSpike(132, 219)
 	spikes[4][3].SetSpike(220, 219)
@@ -168,10 +168,10 @@ def env_0_2():
 	g.AddRect(pygame.Rect(132, 218, 136, 22))
 	g.AddRect(pygame.Rect(268, 188, 52, 52))
 
-	spikesU[4][0].SetSpikeU(92, 52)
+	spikesU[4][0].SetSpikeU(92, 62)
 	spikes[4][0].SetSpike(92, 188)
-	spikesU[8][0].SetSpikeU(132, 20)
-	spikesU[5][0].SetSpikeU(212, 20)
+	spikesU[8][0].SetSpikeU(132, 30)
+	spikesU[5][0].SetSpikeU(212, 30)
 	spikes[8][0].SetSpike(132, 220)
 	spikes[5][0].SetSpike(212, 220)
 
@@ -213,12 +213,12 @@ def env_0_4():
 	g.AddRect(pygame.Rect(236, 204, 84, 36))
 	g.AddRect(pygame.Rect(92, 216, 144, 24))
 
-	spikesU[8][0].SetSpikeU(92, 52)
+	spikesU[8][0].SetSpikeU(92, 62)
 	spikes[4][0].SetSpike(120, 116)
-	spikesU[5][0].SetSpikeU(52, 148)
-	spikesU[5][1].SetSpikeU(102, 148)
-	spikesU[5][2].SetSpikeU(152, 148)
-	spikesU[5][3].SetSpikeU(200, 148)
+	spikesU[5][0].SetSpikeU(52, 158)
+	spikesU[5][1].SetSpikeU(102, 158)
+	spikesU[5][2].SetSpikeU(152, 158)
+	spikesU[5][3].SetSpikeU(200, 158)
 	spikes[5][0].SetSpike(132, 212)
 	spikes[5][1].SetSpike(182, 212)
 
@@ -254,10 +254,10 @@ def env_1_1():
 	spikes[5][1].SetSpike(50, 108)
 	spikes[5][2].SetSpike(220, 108)
 	spikes[5][3].SetSpike(270, 108)
-	spikesU[8][0].SetSpikeU(0, 132)
-	spikesU[7][0].SetSpikeU(80, 132)
-	spikesU[8][1].SetSpikeU(170, 132)
-	spikesU[7][1].SetSpikeU(250, 132)
+	spikesU[8][0].SetSpikeU(0, 142)
+	spikesU[7][0].SetSpikeU(80, 142)
+	spikesU[8][1].SetSpikeU(170, 142)
+	spikesU[7][1].SetSpikeU(250, 142)
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[1][1], bg, (char, spikes[5][0], spikes[5][1], spikes[5][2], spikes[5][3], spikesU[8][0],
@@ -279,11 +279,11 @@ def env_1_2():
 	g.AddRect(pygame.Rect(284, 36, 36, 188))
 	g.AddRect(pygame.Rect(0, 224, 320, 16))
 	
-	spikesU[8][0].SetSpikeU(68, 26)
-	spikesU[3][0].SetSpikeU(174, 26)
-	spikesU[5][0].SetSpikeU(234, 36)
-	spikesU[2][0].SetSpikeU(150, 80)
-	spikesU[2][1].SetSpikeU(210, 80)
+	spikesU[8][0].SetSpikeU(68, 36)
+	spikesU[3][0].SetSpikeU(174, 36)
+	spikesU[5][0].SetSpikeU(234, 46)
+	spikesU[2][0].SetSpikeU(150, 90)
+	spikesU[2][1].SetSpikeU(210, 90)
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[1][2], bg, (char, trinket, spikesU[8][0], spikesU[3][0], spikesU[5][0], spikesU[2][0], spikesU[2][1], man1, man2, man3)]
@@ -357,8 +357,8 @@ def env_2_2():
 	g.AddRect(pygame.Rect(132, 0, 188, 36))
 	g.AddRect(pygame.Rect(188, 140, 132, 100))
 
-	spikesU[5][0].SetSpikeU(132, 36)
-	spikesU[5][1].SetSpikeU(182, 36)
+	spikesU[5][0].SetSpikeU(132, 46)
+	spikesU[5][1].SetSpikeU(182, 46)
 	spikes[8][0].SetSpike(190, 140)
 	spikes[5][0].SetSpike(270, 140)
 
@@ -392,9 +392,9 @@ def env_2_4():
 	g.AddRect(pygame.Rect(220, 0, 320, 240))
 	g.AddRect(pygame.Rect(124, 84, 40, 8))
 
-	spikesU[3][0].SetSpikeU(164, 84)
+	spikesU[3][0].SetSpikeU(164, 94)
 	spikes[6][0].SetSpike(120, 172)
-	spikesU[5][0].SetSpikeU(68, 84)
+	spikesU[5][0].SetSpikeU(68, 94)
 	spikes[2][0].SetSpike(52, 172)
 
 	#initalizes all parts of screen
@@ -413,8 +413,8 @@ def env_2_5():
 	g.AddRect(pygame.Rect(220, 92, 40, 148))
 	g.AddRect(pygame.Rect(260, 124, 60, 116))
 
-	spikesU[6][0].SetSpikeU(100, 26)
-	spikesU[3][0].SetSpikeU(160, 26)
+	spikesU[6][0].SetSpike(100, 36)
+	spikesU[3][0].SetSpike(160, 36)
 	spikes[6][0].SetSpike(132, 204)
 
 	#initalizes all parts of screen
@@ -447,12 +447,12 @@ def env_3_1():
 	g.AddRect(pygame.Rect(238, 76, 82, 154))
 	g.AddRect(pygame.Rect(140, 128, 40, 24))
 
-	spikesU[8][0].SetSpikeU(56, 37)
-	spikesU[8][1].SetSpikeU(184, 37)
+	spikesU[8][0].SetSpikeU(56, 47)
+	spikesU[8][1].SetSpikeU(184, 47)
 	spikes[3][0].SetSpike(82, 91)
 	spikes[3][1].SetSpike(208, 91)
 	spikes[4][1].SetSpike(140, 128)
-	spikesU[4][0].SetSpikeU(140, 152)
+	spikesU[4][0].SetSpikeU(140, 162)
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[3][1], bg, (char, spikesU[8][0], spikesU[8][1], spikes[3][0], spikes[3][1], spikes[4][1], spikesU[4][0])]
@@ -464,7 +464,7 @@ def env_3_2():
 	g.AddRect(pygame.Rect(0, 140, 140, 100))
 	g.AddRect(pygame.Rect(180, 140, 140, 100))
 
-	spikesU[4][0].SetSpikeU(140, 36)
+	spikesU[4][0].SetSpikeU(140, 46)
 	spikes[7][0].SetSpike(0, 140)
 	spikes[7][1].SetSpike(70, 140)
 	spikes[7][2].SetSpike(180, 140)
@@ -524,8 +524,8 @@ def env_4_1():
 	g.AddRect(pygame.Rect(188, 0, 132, 26))
 	g.AddRect(pygame.Rect(202, 36, 42, 8))
 
-	spikesU[2][0].SetSpikeU(187, 36)
-	spikesU[7][0].SetSpikeU(244, 36)
+	spikesU[2][0].SetSpikeU(187, 46)
+	spikesU[7][0].SetSpikeU(244, 46)
 	spikes[5][0].SetSpike(199, 128)
 
 	#initalizes all parts of screen
@@ -544,9 +544,9 @@ def env_4_2():
 
 	spikes[5][0].SetSpike(0, 140)
 	spikes[4][0].SetSpike(50, 140)
-	spikesU[4][0].SetSpikeU(180, 21)
 	spikes[3][0].SetSpike(132, 132)
 	spikes[3][1].SetSpike(190, 132)
+	spikesU[4][0].SetSpikeU(180, 31)
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[4][2], bg, (char, spikes[5][0], spikes[4][0], spikesU[4][0], spikes[3][0], spikes[3][1], plat5)]
@@ -567,10 +567,10 @@ def env_5_1():
 	g.AddRect(pygame.Rect(210, 92, 26, 36))
 	g.AddRect(pygame.Rect(236, 92, 84, 72))
 
-	spikesU[2][0].SetSpikeU(8, 36)
-	spikesU[4][0].SetSpikeU(68, 36)
-	spikesU[4][1].SetSpikeU(212, 36)
-	spikesU[4][2].SetSpikeU(292, 36)
+	spikesU[2][0].SetSpikeU(8, 46)
+	spikesU[4][0].SetSpikeU(68, 46)
+	spikesU[4][1].SetSpikeU(212, 46)
+	spikesU[4][2].SetSpikeU(292, 46)
 	spikes[3][0].SetSpike(135, 124)
 
 	#initalizes all parts of screen
