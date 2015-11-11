@@ -12,10 +12,13 @@ from config import *
 
 class Entity(pygame.sprite.Sprite):
 	#A basic entity inherits all sprite properties.
-	def __init__(self, image, etype):
+	def __init__(self, image, dx=0, dy=0, etype=ENT_OBSTACLE):
 		self.image = image
 		self.rect = ExtRect.Wrap(image.get_rect())
 		self.enttype = etype
+		self.dx = dx
+		self.dy = dy
+		self.rect.bottomleft = (dx, dy)
 
 	def draw(self, surf):
 		surf.blit(self.image, self.rect.topleft)
@@ -27,15 +30,13 @@ class Entity(pygame.sprite.Sprite):
 		self.rect.bottomleft = (x, y)
 
 	def SetSpikeU(self, x, y):
-		self.rect.topleft = (x,y)
+		self.rect.topleft = (x, y)
 
 class MovingEntity(Entity):
-	def __init__(self, image, dx, dy, etype=ENT_OBSTACLE):
-		Entity.__init__(self, image, etype)
-		self.dx = dx
-		self.dy = dy
-		self.vx = dx
-		self.vy = dy
+	def __init__(self, image, dx=0, dy=0, vx=0, vy=0, etype=ENT_OBSTACLE):
+		Entity.__init__(self, image, dx, dy, etype)
+		self.vx = vx
+		self.vy = vy
 
 	def CollideArea(self, area):
 		if self.rect.left < area.left or self.rect.right > area.right:
@@ -82,8 +83,8 @@ class AnimatingEntity(Entity):
 		self.Animate()
 
 class MovingAnimatingEntity(MovingEntity, AnimatingEntity):
-	def __init__(self, images, frametime, dx, dy, etype=ENT_OBSTACLE):
-		MovingEntity.__init__(self, images[0], dx, dy, etype)
+	def __init__(self, images, frametime, dx, dy, vx, vy, etype=ENT_OBSTACLE):
+		MovingEntity.__init__(self, images[0], dx, dy, vx, vy, etype)
 		AnimatingEntity.__init__(self, images, frametime, etype)
 
 	def update(self, gamearea, env=None):

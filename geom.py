@@ -26,10 +26,6 @@ class Geometry(object):
 	def AddRect(self, rect):
 		self.rects.append(rect)
 
-	def AddRects(self, rects):
-		for rect in rects:
-			self.rects.append(rects)
-
 	def RemoveRect(self, rect):
 		try:
 			self.rects.remove(rect)

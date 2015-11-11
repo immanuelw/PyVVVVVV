@@ -33,87 +33,87 @@ bgimg = pygame.image.load('./data/img/bg_cross.png')
 bg = Background(bgimg, GAMERECT, 1, 0)
 
 platimg = pygame.image.load('./data/img/plat_o.png')
-#plat = MovingEntity(platimg, 2, 0, ENT_PLATFORM)
-#plat2 = MovingEntity(platimg, -2, 0, ENT_PLATFORM)
+#plat = MovingEntity(platimg, 2, 0, etype=ENT_PLATFORM)
+#plat2 = MovingEntity(platimg, -2, 0, etype=ENT_PLATFORM)
 
-plat = [MovingEntity(platimg, 0, 0, ENT_PLATFORM) for i in range(10)]
-platv = [MovingEntity(platimg, 0, 1, ENT_PLATFORM) for i in range(10)]
-plath = [MovingEntity(platimg, 1, 0, ENT_PLATFORM) for i in range(10)]
+plat = [MovingEntity(platimg, vx=0, vy=0, etype=ENT_PLATFORM) for i in range(10)]
+platv = [MovingEntity(platimg, vx=0, vy=1, etype=ENT_PLATFORM) for i in range(10)]
+plath = [MovingEntity(platimg, vx=1, vy=0, etype=ENT_PLATFORM) for i in range(10)]
 
 spriteimg = pygame.image.load('./data/img/sprite1.png')
-sprite = MovingEntity(spriteimg, 1, 1, ENT_OBSTACLE)
+sprite = MovingEntity(spriteimg, vx=1, vy=1, etype=ENT_OBSTACLE)
 
 checkpointimg = pygame.image.load('./data/img/checkpointBW.png')
 checkpointimgU = pygame.image.load('./data/img/checkpointUBW.png')
 checkpointimg2 = pygame.image.load('./data/img/checkpoint.png')
 
-checkpoint = MovingEntity(checkpointimg, 0, 0, ENT_CHECKPOINT)
-checkpoint2 = MovingEntity(checkpointimg, 0, 0, ENT_CHECKPOINT)
-checkpointU = MovingEntity(checkpointimgU, 0, 0, ENT_CHECKPOINT)
-checkpointU2 = MovingEntity(checkpointimgU, 0, 0, ENT_CHECKPOINT)
+checkpoint = MovingEntity(checkpointimg, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpoint2 = MovingEntity(checkpointimg, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointU = MovingEntity(checkpointimgU, vx=0, vy=0, etype=ENT_CHECKPOINT)
+checkpointU2 = MovingEntity(checkpointimgU, vx=0, vy=0, etype=ENT_CHECKPOINT)
 
 #pygame.transform.flip(image, False, True)
-#spikes = MovingEntity(spikesimg, 0, 0, ENT_OBSTACLE)
+#spikes = MovingEntity(spikesimg, vx=0, vy=0, etype=ENT_OBSTACLE)
 
 for j in range(1, 9):
 	exec "spikesimg%d=pygame.image.load('./data/img/spikes%d.png')" %(j, j)
 	exec 'spikes%d = []' %(j)
 	for i in range(10):
-		exec 'spikes%d.append(MovingEntity(spikesimg%d, 0, 0, ENT_OBSTACLE))' %(j,j)
+		exec 'spikes%d.append(MovingEntity(spikesimg%d, vx=0, vy=0, etype=ENT_OBSTACLE))' %(j,j)
 
 for j in range(1,9):
 	exec "spikesimgU%d=pygame.transform.flip(spikesimg%d.copy(), False, True)" %(j, j)
 	exec 'spikesU%d = []' %(j)
 	for i in range(10):
-		exec 'spikesU%d.append(MovingEntity(spikesimgU%d, 0, 0, ENT_OBSTACLE))' %(j,j)
+		exec 'spikesU%d.append(MovingEntity(spikesimgU%d, vx=0, vy=0, etype=ENT_OBSTACLE))' %(j,j)
 
 trinketimg = pygame.image.load('./data/img/sprites/sprite_trinket.png')
-trinket = MovingEntity(trinketimg, 0, 0, ENT_TOKEN)
-trinket2 = MovingEntity(trinketimg, 0, 0, ENT_TOKEN)
+trinket = MovingEntity(trinketimg, vx=0, vy=0, etype=ENT_TOKEN)
+trinket2 = MovingEntity(trinketimg, vx=0, vy=0, etype=ENT_TOKEN)
 portalimg = pygame.image.load('./data/img/warptoken.bmp')
-portal = MovingEntity(portalimg, 0, 0, ENT_PORTAL)
+portal = MovingEntity(portalimg, vx=0, vy=0, etype=ENT_PORTAL)
 portalimg2 = pygame.image.load('./data/img/warptoken2.bmp')
-portal2 = MovingEntity(portalimg2, 0, 0, ENT_PORTAL)
+portal2 = MovingEntity(portalimg2, vx=0, vy=0, etype=ENT_PORTAL)
 
 emptyimg = pygame.image.load('./data/img/background/tiles/tile_maker.png')
-empty = MovingEntity(emptyimg, 0, 0, ENT_EMPTY)
+empty = MovingEntity(emptyimg, vx=0, vy=0, etype=ENT_EMPTY)
 
 busimg = pygame.image.load('./data/img/sprites/sprite_BUS_3.png')
-bus = MovingEntity(busimg, 1, 0, ENT_OBSTACLE)
+bus = MovingEntity(busimg, vx=1, vy=0, etype=ENT_OBSTACLE)
 
 greenimg = pygame.image.load('./data/img/sprites/sprite_green_1.png')
-green1 = MovingEntity(greenimg, 1.5, 0, ENT_OBSTACLE)
-green2 = MovingEntity(greenimg, 1.5, 0, ENT_OBSTACLE)
+green1 = MovingEntity(greenimg, vx=1.5, vy=0, etype=ENT_OBSTACLE)
+green2 = MovingEntity(greenimg, vx=1.5, vy=0, etype=ENT_OBSTACLE)
 
 reddiscimg = pygame.image.load('./data/img/sprites/sprite_reddisc_1.png')
-reddisc = MovingEntity(reddiscimg, 0, 1, ENT_OBSTACLE)
+reddisc = MovingEntity(reddiscimg, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 stopimg = pygame.image.load('./data/img/sprites/sprite_STOP_2.png')
-stop1 = MovingEntity(stopimg, 0, 1.5, ENT_OBSTACLE)
-stop2 = MovingEntity(stopimg, 0, 1.5, ENT_OBSTACLE)
-stop3 = MovingEntity(stopimg, 0, 1, ENT_OBSTACLE)
+stop1 = MovingEntity(stopimg, vx=0, vy=1.5, etype=ENT_OBSTACLE)
+stop2 = MovingEntity(stopimg, vx=0, vy=1.5, etype=ENT_OBSTACLE)
+stop3 = MovingEntity(stopimg, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 walkerimg = pygame.image.load('./data/img/sprites/sprite_walker_2.png')
-walker1 = MovingEntity(walkerimg, 1.5, 0, ENT_OBSTACLE)
-walker2 = MovingEntity(walkerimg, 1.5, 0, ENT_OBSTACLE)
+walker1 = MovingEntity(walkerimg, vx=1.5, vy=0, etype=ENT_OBSTACLE)
+walker2 = MovingEntity(walkerimg, vx=1.5, vy=0, etype=ENT_OBSTACLE)
 
 yesimg = pygame.image.load('./data/img/sprites/sprite_YES_2.png')
-yes1 = MovingEntity(yesimg, 0, 1, ENT_OBSTACLE)
-yes2 = MovingEntity(yesimg, 0, 1, ENT_OBSTACLE)
-yes3 = MovingEntity(yesimg, 0, 1, ENT_OBSTACLE)
-yes4 = MovingEntity(yesimg, 0, 1, ENT_OBSTACLE)
-yes5 = MovingEntity(yesimg, 0, 1, ENT_OBSTACLE)
+yes1 = MovingEntity(yesimg, vx=0, vy=1, etype=ENT_OBSTACLE)
+yes2 = MovingEntity(yesimg, vx=0, vy=1, etype=ENT_OBSTACLE)
+yes3 = MovingEntity(yesimg, vx=0, vy=1, etype=ENT_OBSTACLE)
+yes4 = MovingEntity(yesimg, vx=0, vy=1, etype=ENT_OBSTACLE)
+yes5 = MovingEntity(yesimg, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 ghostimg = pygame.image.load('./data/img/sprites/sprite_ghost_1.png')
-ghost = MovingEntity(ghostimg, 0, 1, ENT_OBSTACLE)
+ghost = MovingEntity(ghostimg, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 manimg = pygame.image.load('./data/img/sprites/sprite_man_2.png')
-man1 = MovingEntity(manimg, 0, 1, ENT_OBSTACLE)
-man2 = MovingEntity(manimg, 0, 1, ENT_OBSTACLE)
-man3 = MovingEntity(manimg, 0, 1, ENT_OBSTACLE)
+man1 = MovingEntity(manimg, vx=0, vy=1, etype=ENT_OBSTACLE)
+man2 = MovingEntity(manimg, vx=0, vy=1, etype=ENT_OBSTACLE)
+man3 = MovingEntity(manimg, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 gcimg = pygame.image.load('./data/img/gamecomplete.png')
-gc = MovingEntity(gcimg, 0, 0, ENT_TOKEN)
+gc = MovingEntity(gcimg, vx=0, vy=0, etype=ENT_TOKEN)
 gc.SetSpike(0, 48)
 
 img0_1 = pygame.image.load('./data/img/background/background_0-1_320x240.png')
