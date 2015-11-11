@@ -57,38 +57,6 @@ while True:
 
 	if (char.x_co == last_x) and (char.y_co == last_y): #placeholder for specifying rooms in which active
 		stopper += 1
-	'''
-	if (char.x_co == 2) and (char.y_co == 4):
-		if char.tokens > 0:
-			envi.RemoveEntity(trinket2)
-	elif (char.x_co == 1) and (char.y_co == 2):
-		if char.tokens > 1:
-			envi.RemoveEntity(trinket)
-	'''
-
-	'''
-	if counter % 10 == 0:
-		portal, portal2 = portal2, pocheckpoint_rtal
-		envi.RemoveEntity(portal)
-		envi.AddEntity(portal2)
-		counter += 1
-	'''
-
-	'''
-	if (char.checkpoint_x, char.checkpoint_y) == checkpoint[0]:
-		checkpointimg = litcheckpointimg
-	'''
-
-	'''
-	if 0 < char.breakaway <=  FRAMERATE:
-		breakawayimg = breakawayimg1
-	elif FRAMERATE < char.breakaway <= 2 * FRAMERATE:
-		breakawayimg = breakawayimg2
-	elif 2 * FRAMERATE < char.breakaway <= 3 * FRAMERATE:
-		breakawayimg = breakawayimg3
-	elif char.breakaway > 3 * FRAMERATE:
-		environ[4].RemoveEntity(breakawayblock)
-	'''
 
 	#can do selective physics by making rules only apply to certain list:
 	#	create array where char.x_co, char.y_co have value which says how physics works
