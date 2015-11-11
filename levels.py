@@ -23,76 +23,45 @@ char.SetPulseRate(VIRIDIAN_PULSERATE)
 
 g = Geometry()
 
+#could import glob: glob.glob(./data/img/*.png)
+all_imgs = ('./data/img/bg_cross.png',
+			'./data/img/plat_o.png',
+			'./data/img/sprite1.png',
+			'./data/img/checkpointBW.png',
+			'./data/img/checkpointUBW.png',
+			'./data/img/checkpoint.png',
+			'./data/img/sprites/sprite_trinket.png',
+			'./data/img/warptoken.bmp',
+			'./data/img/warptoken2.bmp',
+			'./data/img/sprites/sprite_BUS_3.png',
+			'./data/img/sprites/sprite_green_1.png',
+			'./data/img/sprites/sprite_reddisc_1.png',
+			'./data/img/sprites/sprite_STOP_2.png',
+			'./data/img/sprites/sprite_walker_2.png',
+			'./data/img/sprites/sprite_YES_2.png',
+			'./data/img/sprites/sprite_ghost_1.png',
+			'./data/img/sprites/sprite_man_2.png',
+			'./data/img/gamecomplete.png',
+			'./data/img/spikes1.png',
+			'./data/img/spikes2.png',
+			'./data/img/spikes3.png',
+			'./data/img/spikes4.png',
+			'./data/img/spikes5.png',
+			'./data/img/spikes6.png',
+			'./data/img/spikes7.png',
+			'./data/img/spikes8.png',
+			'./data/img/spikesU1.png',
+			'./data/img/spikesU2.png',
+			'./data/img/spikesU3.png',
+			'./data/img/spikesU4.png',
+			'./data/img/spikesU5.png',
+			'./data/img/spikesU6.png',
+			'./data/img/spikesU7.png',
+			'./data/img/spikesU8.png')
 
-img_dict = {'./data/img/bg_cross.png': pygame.image.load('./data/img/bg_cross.png'),
-			'./data/img/plat_o.png': pygame.image.load('./data/img/plat_o.png'),
-			'./data/img/sprite1.png': pygame.image.load('./data/img/sprite1.png'),
-			'./data/img/checkpointBW.png': pygame.image.load('./data/img/checkpointBW.png'),
-			'./data/img/checkpointUBW.png': pygame.image.load('./data/img/checkpointUBW.png'),
-			'./data/img/checkpoint.png': pygame.image.load('./data/img/checkpoint.png'),
-			'./data/img/sprites/sprite_trinket.png': pygame.image.load('./data/img/sprites/sprite_trinket.png'),
-			'./data/img/warptoken.bmp': pygame.image.load('./data/img/warptoken.bmp'),
-			'./data/img/warptoken2.bmp': pygame.image.load('./data/img/warptoken2.bmp'),
-			'./data/img/sprites/sprite_BUS_3.png': pygame.image.load('./data/img/sprites/sprite_BUS_3.png'),
-			'./data/img/sprites/sprite_green_1.png': pygame.image.load('./data/img/sprites/sprite_green_1.png'),
-			'./data/img/sprites/sprite_reddisc_1.png': pygame.image.load('./data/img/sprites/sprite_reddisc_1.png'),
-			'./data/img/sprites/sprite_STOP_2.png': pygame.image.load('./data/img/sprites/sprite_STOP_2.png'),
-			'./data/img/sprites/sprite_walker_2.png': pygame.image.load('./data/img/sprites/sprite_walker_2.png'),
-			'./data/img/sprites/sprite_YES_2.png': pygame.image.load('./data/img/sprites/sprite_YES_2.png'),
-			'./data/img/sprites/sprite_ghost_1.png': pygame.image.load('./data/img/sprites/sprite_ghost_1.png'),
-			'./data/img/sprites/sprite_man_2.png': pygame.image.load('./data/img/sprites/sprite_man_2.png'),
-			'./data/img/gamecomplete.png': pygame.image.load('./data/img/gamecomplete.png'),
-			'./data/img/spikes1.png': pygame.image.load('./data/img/spikes1.png'),
-			'./data/img/spikes2.png': pygame.image.load('./data/img/spikes2.png'),
-			'./data/img/spikes3.png': pygame.image.load('./data/img/spikes3.png'),
-			'./data/img/spikes4.png': pygame.image.load('./data/img/spikes4.png'),
-			'./data/img/spikes5.png': pygame.image.load('./data/img/spikes5.png'),
-			'./data/img/spikes6.png': pygame.image.load('./data/img/spikes6.png'),
-			'./data/img/spikes7.png': pygame.image.load('./data/img/spikes7.png'),
-			'./data/img/spikes8.png': pygame.image.load('./data/img/spikes8.png'),
-			'./data/img/spikesU1.png': pygame.image.load('./data/img/spikesU1.png'),
-			'./data/img/spikesU2.png': pygame.image.load('./data/img/spikesU2.png'),
-			'./data/img/spikesU3.png': pygame.image.load('./data/img/spikesU3.png'),
-			'./data/img/spikesU4.png': pygame.image.load('./data/img/spikesU4.png'),
-			'./data/img/spikesU5.png': pygame.image.load('./data/img/spikesU5.png'),
-			'./data/img/spikesU6.png': pygame.image.load('./data/img/spikesU6.png'),
-			'./data/img/spikesU7.png': pygame.image.load('./data/img/spikesU7.png'),
-			'./data/img/spikesU8.png': pygame.image.load('./data/img/spikesU8.png')}
+#there is an image_dict:
+img_dict = {img_name: pygame.image.load(img_name) for img_name in all_imgs}
 
-#bgimg = pygame.image.load('./data/img/bg_cross.png')
-#platimg = pygame.image.load('./data/img/plat_o.png')
-#spriteimg = pygame.image.load('./data/img/sprite1.png')
-#checkpointimg1 = pygame.image.load('./data/img/checkpointBW.png')
-#checkpointimgU = pygame.image.load('./data/img/checkpointUBW.png')
-#checkpointimg2 = pygame.image.load('./data/img/checkpoint.png')
-#trinketimg = pygame.image.load('./data/img/sprites/sprite_trinket.png')
-#portalimg = pygame.image.load('./data/img/warptoken.bmp')
-#portalimg2 = pygame.image.load('./data/img/warptoken2.bmp')
-#busimg = pygame.image.load('./data/img/sprites/sprite_BUS_3.png')
-#greenimg = pygame.image.load('./data/img/sprites/sprite_green_1.png')
-#reddiscimg = pygame.image.load('./data/img/sprites/sprite_reddisc_1.png')
-#stopimg = pygame.image.load('./data/img/sprites/sprite_STOP_2.png')
-#walkerimg = pygame.image.load('./data/img/sprites/sprite_walker_2.png')
-#yesimg = pygame.image.load('./data/img/sprites/sprite_YES_2.png')
-#ghostimg = pygame.image.load('./data/img/sprites/sprite_ghost_1.png')
-#manimg = pygame.image.load('./data/img/sprites/sprite_man_2.png')
-#gcimg = pygame.image.load('./data/img/gamecomplete.png')
-#spikesimg1 = pygame.image.load('./data/img/spikes1.png')
-#spikesimg2 = pygame.image.load('./data/img/spikes2.png')
-#spikesimg3 = pygame.image.load('./data/img/spikes3.png')
-#spikesimg4 = pygame.image.load('./data/img/spikes4.png')
-#spikesimg5 = pygame.image.load('./data/img/spikes5.png')
-#spikesimg6 = pygame.image.load('./data/img/spikes6.png')
-#spikesimg7 = pygame.image.load('./data/img/spikes7.png')
-#spikesimg8 = pygame.image.load('./data/img/spikes8.png')
-#spikesimgU1 = pygame.image.load('./data/img/spikesU1.png')
-#spikesimgU2 = pygame.image.load('./data/img/spikesU2.png')
-#spikesimgU3 = pygame.image.load('./data/img/spikesU3.png')
-#spikesimgU4 = pygame.image.load('./data/img/spikesU4.png')
-#spikesimgU5 = pygame.image.load('./data/img/spikesU5.png')
-#spikesimgU6 = pygame.image.load('./data/img/spikesU6.png')
-#spikesimgU7 = pygame.image.load('./data/img/spikesU7.png')
-#spikesimgU8 = pygame.image.load('./data/img/spikesU8.png')
 
 bgimg = pygame.image.load('./data/img/bg_cross.png')
 bg = Background(bgimg, GAMERECT, 1, 0)
@@ -160,6 +129,8 @@ reddiscimg = pygame.image.load('./data/img/sprites/sprite_reddisc_1.png')
 reddisc = MovingEntity(reddiscimg, dx=184, dy=188, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 stopimg = pygame.image.load('./data/img/sprites/sprite_STOP_2.png')
+#stop_str = './data/img/sprites/sprite_STOP_2.png'
+#stop1 = MovingEntity(img_dict[stop_str], dx=192, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
 stop1 = MovingEntity(stopimg, dx=192, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
 stop2 = MovingEntity(stopimg, dx=42, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
 stop3 = MovingEntity(stopimg, dx=118, dy=50, vx=0, vy=1, etype=ENT_OBSTACLE)
@@ -282,8 +253,6 @@ spikesU_8_5 = MovingEntity(spikesUimgs[7], dx=56, dy=48, vx=0, vy=0, etype=ENT_O
 spikesU_8_6 = MovingEntity(spikesUimgs[7], dx=184, dy=48, vx=0, vy=0, etype=ENT_OBSTACLE)
 
 #{1: {3: [{'img_file': 'filename', 'dx': 174, 'dy': 37, 'vx': 0, 'vy': 0, 'etype': 2}, ...], 4: ...}. 2: {...}}
-#there is an image_dict:
-#img_dict = {img_name: pygame.image.load(img_name) for img_name in all_imgs}
 #{'filename': pygame_image_object}
 #ent_list = {x_co: {y_co: (MovingEntity(img_dict[ent['img_file']], dx=ent['dx'], dy=ent['dy'], vx=ent['vx'], vy=ent['vy'], etype=ent['etype'])\
 #							for ent in ent_dict[x_co][y_co]) for y_co in range(7) if (x_co, y_co) in level_array} for x_co in range(7)}
