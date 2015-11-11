@@ -20,9 +20,7 @@ backbuf = pygame.Surface((window.get_width(), window.get_height()))
 char = Character(VIRIDIAN_BASE)
 char.SetPulsation(VIRIDIAN_PULSATION)
 char.SetPulseRate(VIRIDIAN_PULSERATE)
-#char.SetCheckpointHere()
 
-#char.SetPos(160, 187)
 g = Geometry()
 
 counter = 0 #random counter to cheat gifs
@@ -119,6 +117,9 @@ man3 = MovingEntity(manimg, dx=240, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 gcimg = pygame.image.load('./data/img/gamecomplete.png')
 gc = MovingEntity(gcimg, dx=0, dy=48, vx=0, vy=0, etype=ENT_TOKEN)
+
+imgs = {x_coord: {y_coord: pygame.image.load('./data/img/background/background_{x}-{y}_320x240.png'.format(x=x_coord, y=y_coord))\
+					for y_coord in range(7) if (x_coord, y_coord) in level_array} for x_coord in range(7)}
 
 img0_1 = pygame.image.load('./data/img/background/background_0-1_320x240.png')
 img0_2 = pygame.image.load('./data/img/background/background_0-2_320x240.png')
