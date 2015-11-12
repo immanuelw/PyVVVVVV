@@ -114,51 +114,48 @@ trinket1 = MovingEntity(trinketimg, dx=270, dy=172, vx=0, vy=0, etype=ENT_TOKEN)
 trinket2 = MovingEntity(trinketimg, dx=40, dy=140, vx=0, vy=0, etype=ENT_TOKEN)
 
 portalimg = pygame.image.load('./data/img/warptoken.bmp')
-portal1 = MovingEntity(portalimg, vx=0, vy=0, etype=ENT_PORTAL)
+portal1 = MovingEntity(img_dict['./data/img/warptoken.bmp'], vx=0, vy=0, etype=ENT_PORTAL)
 portalimg2 = pygame.image.load('./data/img/warptoken2.bmp')
-portal2 = MovingEntity(portalimg2, vx=0, vy=0, etype=ENT_PORTAL)
+portal2 = MovingEntity(img_dict['./data/img/warptoken2.bmp'], vx=0, vy=0, etype=ENT_PORTAL)
 
 busimg = pygame.image.load('./data/img/sprites/sprite_BUS_3.png')
-bus = MovingEntity(busimg, dx=320, dy=60, vx=1, vy=0, etype=ENT_OBSTACLE)
+bus = MovingEntity(img_dict['./data/img/sprites/sprite_BUS_3.png'], dx=320, dy=60, vx=1, vy=0, etype=ENT_OBSTACLE)
 
 greenimg = pygame.image.load('./data/img/sprites/sprite_green_1.png')
-green1 = MovingEntity(greenimg, dx=84, dy=110, vx=1.5, vy=0, etype=ENT_OBSTACLE)
-green2 = MovingEntity(greenimg, dx=124, dy=150, vx=1.5, vy=0, etype=ENT_OBSTACLE)
+green1 = MovingEntity(img_dict['./data/img/sprites/sprite_green_1.png'], dx=84, dy=110, vx=1.5, vy=0, etype=ENT_OBSTACLE)
+green2 = MovingEntity(img_dict['./data/img/sprites/sprite_green_1.png'], dx=124, dy=150, vx=1.5, vy=0, etype=ENT_OBSTACLE)
 
 reddiscimg = pygame.image.load('./data/img/sprites/sprite_reddisc_1.png')
-reddisc = MovingEntity(reddiscimg, dx=184, dy=188, vx=0, vy=1, etype=ENT_OBSTACLE)
+reddisc = MovingEntity(img_dict['./data/img/sprites/sprite_reddisc_1.png'], dx=184, dy=188, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 stopimg = pygame.image.load('./data/img/sprites/sprite_STOP_2.png')
 #stop_str = './data/img/sprites/sprite_STOP_2.png'
 #stop1 = MovingEntity(img_dict[stop_str], dx=192, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
-stop1 = MovingEntity(stopimg, dx=192, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
-stop2 = MovingEntity(stopimg, dx=42, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
-stop3 = MovingEntity(stopimg, dx=118, dy=50, vx=0, vy=1, etype=ENT_OBSTACLE)
+stop1 = MovingEntity(img_dict['./data/img/sprites/sprite_STOP_2.png'], dx=192, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
+stop2 = MovingEntity(img_dict['./data/img/sprites/sprite_STOP_2.png'], dx=42, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
+stop3 = MovingEntity(img_dict['./data/img/sprites/sprite_STOP_2.png'], dx=118, dy=50, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 walkerimg = pygame.image.load('./data/img/sprites/sprite_walker_2.png')
-walker1 = MovingEntity(walkerimg, dx=272, dy=204, vx=1.5, vy=0, etype=ENT_OBSTACLE)
-walker2 = MovingEntity(walkerimg, dx=284, dy=92, vx=1.5, vy=0, etype=ENT_OBSTACLE)
+walker1 = MovingEntity(img_dict['./data/img/sprites/sprite_walker_2.png'], dx=272, dy=204, vx=1.5, vy=0, etype=ENT_OBSTACLE)
+walker2 = MovingEntity(img_dict['./data/img/sprites/sprite_walker_2.png'], dx=284, dy=92, vx=1.5, vy=0, etype=ENT_OBSTACLE)
 
 yesimg = pygame.image.load('./data/img/sprites/sprite_YES_2.png')
-yes1 = MovingEntity(yesimg, dx=132, dy=52, vx=0, vy=1, etype=ENT_OBSTACLE)
-yes2 = MovingEntity(yesimg, dx=264, dy=52, vx=0, vy=1, etype=ENT_OBSTACLE)
-yes3 = MovingEntity(yesimg, dx=182, dy=112, vx=0, vy=1, etype=ENT_OBSTACLE)
-yes4 = MovingEntity(yesimg, dx=132, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
-yes5 = MovingEntity(yesimg, dx=182, dy=148, vx=0, vy=1, etype=ENT_OBSTACLE)
+yes1 = MovingEntity(img_dict['./data/img/sprites/sprite_YES_2.png'], dx=132, dy=52, vx=0, vy=1, etype=ENT_OBSTACLE)
+yes2 = MovingEntity(img_dict['./data/img/sprites/sprite_YES_2.png'], dx=264, dy=52, vx=0, vy=1, etype=ENT_OBSTACLE)
+yes3 = MovingEntity(img_dict['./data/img/sprites/sprite_YES_2.png'], dx=182, dy=112, vx=0, vy=1, etype=ENT_OBSTACLE)
+yes4 = MovingEntity(img_dict['./data/img/sprites/sprite_YES_2.png'], dx=132, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
+yes5 = MovingEntity(img_dict['./data/img/sprites/sprite_YES_2.png'], dx=182, dy=148, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 ghostimg = pygame.image.load('./data/img/sprites/sprite_ghost_1.png')
-ghost = MovingEntity(ghostimg, dx=212, dy=128, vx=0, vy=1, etype=ENT_OBSTACLE)
+ghost = MovingEntity(img_dict['./data/img/sprites/sprite_ghost_1.png'], dx=212, dy=128, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 manimg = pygame.image.load('./data/img/sprites/sprite_man_2.png')
-man1 = MovingEntity(manimg, dx=124, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
-man2 = MovingEntity(manimg, dx=184, dy=214, vx=0, vy=1, etype=ENT_OBSTACLE)
-man3 = MovingEntity(manimg, dx=240, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
+man1 = MovingEntity(img_dict['./data/img/sprites/sprite_man_2.png'], dx=124, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
+man2 = MovingEntity(img_dict['./data/img/sprites/sprite_man_2.png'], dx=184, dy=214, vx=0, vy=1, etype=ENT_OBSTACLE)
+man3 = MovingEntity(img_dict['./data/img/sprites/sprite_man_2.png'], dx=240, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
 
 gcimg = pygame.image.load('./data/img/gamecomplete.png')
-gc = MovingEntity(gcimg, dx=0, dy=48, vx=0, vy=0, etype=ENT_TOKEN)
-
-spikesimgs = [pygame.image.load('./data/img/spikes{num}.png'.format(num=num)) for num in range(1, 9)]
-spikesUimgs = [pygame.transform.flip(spikesimg.copy(), False, True) for spikesimg in spikesimgs]
+gc = MovingEntity(img_dict['./data/img/gamecomplete.png'], dx=0, dy=48, vx=0, vy=0, etype=ENT_TOKEN)
 
 
 spikes_2_0 = MovingEntity(img_dict['./data/img/spikes2.png'], dx=52, dy=172, vx=0, vy=0, etype=ENT_OBSTACLE)
