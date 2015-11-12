@@ -25,170 +25,181 @@ rect_dict = {x_co: {y_co: [pygame.Rect(*rect) for rect in rect_list[x_co][y_co]]
 
 bg = Background('./data/img/bg_cross.png', GAMERECT, 1, 0)
 
-checkpoint1 = MovingEntity(image='./data/img/checkpointBW.png', dx=64, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
-checkpoint2 = MovingEntity(image='./data/img/checkpointBW.png', dx=284, dy=220, vx=0, vy=0, etype=ENT_CHECKPOINT)
-spikesU_4_0 = MovingEntity(image='./data/img/spikesU4.png', dx=120, dy=32, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_4_1 = MovingEntity(image='./data/img/spikesU4.png', dx=232, dy=32, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_4_2 = MovingEntity(image='./data/img/spikesU4.png', dx=0, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_4_3 = MovingEntity(image='./data/img/spikesU4.png', dx=88, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_4_4 = MovingEntity(image='./data/img/spikesU4.png', dx=176, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_5_0 = MovingEntity(image='./data/img/spikesU5.png', dx=264, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_4_0 = MovingEntity(image='./data/img/spikes4.png', dx=176, dy=107, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_4_1 = MovingEntity(image='./data/img/spikes4.png', dx=44, dy=219, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_4_2 = MovingEntity(image='./data/img/spikes3.png', dx=132, dy=219, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_4_3 = MovingEntity(image='./data/img/spikes4.png', dx=220, dy=219, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-checkpoint3 = MovingEntity(image='./data/img/checkpointBW.png', dx=288, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
-platv1 = MovingEntity(image='./data/img/plat_o.png', dx=140, dy=100, vx=0, vy=1, etype=ENT_PLATFORM)
-platv2 = MovingEntity(image='./data/img/plat_o.png', dx=170, dy=120, vx=0, vy=1, etype=ENT_PLATFORM)
-platv3 = MovingEntity(image='./data/img/plat_o.png', dx=200, dy=140, vx=0, vy=1, etype=ENT_PLATFORM)
-spikesU_4_5 = MovingEntity(image='./data/img/spikesU4.png', dx=92, dy=63, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_5_1 = MovingEntity(image='./data/img/spikesU5.png', dx=212, dy=31, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_8_0 = MovingEntity(image='./data/img/spikesU8.png', dx=132, dy=31, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_4_4 = MovingEntity(image='./data/img/spikes4.png', dx=92, dy=188, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_5_0 = MovingEntity(image='./data/img/spikes5.png', dx=212, dy=220, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_8_0 = MovingEntity(image='./data/img/spikes8.png', dx=132, dy=220, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-checkpoint4 = MovingEntity(image='./data/img/checkpointBW.png', dx=64, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
-checkpointU1 = MovingEntity(image='./data/img/checkpointUBW.png', dx=64, dy=164, vx=0, vy=0, etype=ENT_CHECKPOINT)
-yes1 = MovingEntity(image='./data/img/sprites/sprite_YES_2.png', dx=132, dy=52, vx=0, vy=1, etype=ENT_OBSTACLE)
-yes2 = MovingEntity(image='./data/img/sprites/sprite_YES_2.png', dx=264, dy=52, vx=0, vy=1, etype=ENT_OBSTACLE)
-yes3 = MovingEntity(image='./data/img/sprites/sprite_YES_2.png', dx=182, dy=112, vx=0, vy=1, etype=ENT_OBSTACLE)
-yes4 = MovingEntity(image='./data/img/sprites/sprite_YES_2.png', dx=132, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
-yes5 = MovingEntity(image='./data/img/sprites/sprite_YES_2.png', dx=182, dy=148, vx=0, vy=1, etype=ENT_OBSTACLE)
-
-checkpoint5 = MovingEntity(image='./data/img/checkpointBW.png', dx=60, dy=124, vx=0, vy=0, etype=ENT_CHECKPOINT)
-checkpoint6 = MovingEntity(image='./data/img/checkpointBW.png', dx=280, dy=220, vx=0, vy=0, etype=ENT_CHECKPOINT)
-plat1 = MovingEntity(image='./data/img/plat_o.png', dx=100, dy=70, vx=0, vy=0, etype=ENT_PLATFORM)
-plat2 = MovingEntity(image='./data/img/plat_o.png', dx=120, dy=70, vx=0, vy=0, etype=ENT_PLATFORM)
-plath1 = MovingEntity(image='./data/img/plat_o.png', dx=52, dy=166, vx=1, vy=0, etype=ENT_PLATFORM)
-spikesU_5_2 = MovingEntity(image='./data/img/spikesU5.png', dx=52, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_5_3 = MovingEntity(image='./data/img/spikesU5.png', dx=102, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_5_4 = MovingEntity(image='./data/img/spikesU5.png', dx=152, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_5_5 = MovingEntity(image='./data/img/spikesU5.png', dx=200, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_8_1 = MovingEntity(image='./data/img/spikesU8.png', dx=92, dy=63, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_4_5 = MovingEntity(image='./data/img/spikes4.png', dx=120, dy=116, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_5_1 = MovingEntity(image='./data/img/spikes5.png', dx=132, dy=212, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_5_2 = MovingEntity(image='./data/img/spikes5.png', dx=182, dy=212, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-checkpoint7 = MovingEntity(image='./data/img/checkpointBW.png', dx=122, dy=124, vx=0, vy=0, etype=ENT_CHECKPOINT)
-reddisc = MovingEntity(image='./data/img/sprites/sprite_reddisc_1.png', dx=184, dy=188, vx=0, vy=1, etype=ENT_OBSTACLE)
-
-
-bus = MovingEntity(image='./data/img/sprites/sprite_BUS_3.png', dx=320, dy=60, vx=1, vy=0, etype=ENT_OBSTACLE)
-spikesU_7_0 = MovingEntity(image='./data/img/spikesU7.png', dx=80, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_7_1 = MovingEntity(image='./data/img/spikesU7.png', dx=250, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_8_2 = MovingEntity(image='./data/img/spikesU8.png', dx=0, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_8_3 = MovingEntity(image='./data/img/spikesU8.png', dx=170, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_5_3 = MovingEntity(image='./data/img/spikes5.png', dx=0, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_5_4 = MovingEntity(image='./data/img/spikes5.png', dx=50, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_5_5 = MovingEntity(image='./data/img/spikes5.png', dx=220, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_5_6 = MovingEntity(image='./data/img/spikes5.png', dx=270, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-trinket1 = MovingEntity(image='./data/img/sprites/sprite_trinket.png', dx=270, dy=172, vx=0, vy=0, etype=ENT_TOKEN)
-man1 = MovingEntity(image='./data/img/sprites/sprite_man_2.png', dx=124, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
-man2 = MovingEntity(image='./data/img/sprites/sprite_man_2.png', dx=184, dy=214, vx=0, vy=1, etype=ENT_OBSTACLE)
-man3 = MovingEntity(image='./data/img/sprites/sprite_man_2.png', dx=240, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
-spikesU_2_0 = MovingEntity(image='./data/img/spikesU2.png', dx=150, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_2_1 = MovingEntity(image='./data/img/spikesU2.png', dx=210, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_3_0 = MovingEntity(image='./data/img/spikesU3.png', dx=174, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_5_6 = MovingEntity(image='./data/img/spikesU5.png', dx=234, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_8_4 = MovingEntity(image='./data/img/spikesU8.png', dx=68, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-#
-
-#
-
-checkpoint8 = MovingEntity(image='./data/img/checkpointBW.png', dx=12, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
-green1 = MovingEntity(image='./data/img/sprites/sprite_green_1.png', dx=84, dy=110, vx=1.5, vy=0, etype=ENT_OBSTACLE)
-green2 = MovingEntity(image='./data/img/sprites/sprite_green_1.png', dx=124, dy=150, vx=1.5, vy=0, etype=ENT_OBSTACLE)
-
-
-checkpoint9 = MovingEntity(image='./data/img/checkpointBW.png', dx=152, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
-checkpointU2 = MovingEntity(image='./data/img/checkpointUBW.png', dx=52, dy=148, vx=0, vy=0, etype=ENT_CHECKPOINT)
-spikes_3_0 = MovingEntity(image='./data/img/spikes3.png', dx=80, dy=92, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_8_1 = MovingEntity(image='./data/img/spikes8.png', dx=0, dy=92, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-plat3 = MovingEntity(image='./data/img/plat_o.png', dx=200, dy=116, vx=0, vy=0, etype=ENT_PLATFORM)
-plat4 = MovingEntity(image='./data/img/plat_o.png', dx=150, dy=52, vx=0, vy=0, etype=ENT_PLATFORM)
-spikesU_5_7 = MovingEntity(image='./data/img/spikesU5.png', dx=132, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_5_8 = MovingEntity(image='./data/img/spikesU5.png', dx=182, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_5_7 = MovingEntity(image='./data/img/spikes5.png', dx=270, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_8_2 = MovingEntity(image='./data/img/spikes8.png', dx=190, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-checkpointA = MovingEntity(image='./data/img/checkpointBW.png', dx=32, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
-spikes_4_6 = MovingEntity(image='./data/img/spikes4.png', dx=170, dy=206, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_6_0 = MovingEntity(image='./data/img/spikes6.png', dx=110, dy=206, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-checkpointB = MovingEntity(image='./data/img/checkpointBW.png', dx=198, dy=180, vx=0, vy=0, etype=ENT_CHECKPOINT)
-trinket2 = MovingEntity(image='./data/img/sprites/sprite_trinket.png', dx=40, dy=140, vx=0, vy=0, etype=ENT_TOKEN)
-spikesU_3_1 = MovingEntity(image='./data/img/spikesU3.png', dx=164, dy=95, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_5_9 = MovingEntity(image='./data/img/spikesU5.png', dx=68, dy=95, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_2_0 = MovingEntity(image='./data/img/spikes2.png', dx=52, dy=172, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_6_1 = MovingEntity(image='./data/img/spikes6.png', dx=120, dy=172, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-checkpointC = MovingEntity(image='./data/img/checkpointBW.png', dx=110, dy=188, vx=0, vy=0, etype=ENT_CHECKPOINT)
-checkpointU3 = MovingEntity(image='./data/img/checkpointUBW.png', dx=202, dy=68, vx=0, vy=0, etype=ENT_CHECKPOINT)
-spikesU_3_2 = MovingEntity(image='./data/img/spikesU3.png', dx=160, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_6_0 = MovingEntity(image='./data/img/spikesU6.png', dx=100, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_6_2 = MovingEntity(image='./data/img/spikes6.png', dx=132, dy=204, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-
-#
-
-spikesU_4_6 = MovingEntity(image='./data/img/spikesU4.png', dx=140, dy=163, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_8_5 = MovingEntity(image='./data/img/spikesU8.png', dx=56, dy=48, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_8_6 = MovingEntity(image='./data/img/spikesU8.png', dx=184, dy=48, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_3_1 = MovingEntity(image='./data/img/spikes3.png', dx=82, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_3_2 = MovingEntity(image='./data/img/spikes3.png', dx=208, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_4_7 = MovingEntity(image='./data/img/spikes4.png', dx=140, dy=128, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-checkpointU4 = MovingEntity(image='./data/img/checkpointUBW.png', dx=24, dy=52, vx=0, vy=0, etype=ENT_CHECKPOINT)
-checkpointU5 = MovingEntity(image='./data/img/checkpointUBW.png', dx=280, dy=52, vx=0, vy=0, etype=ENT_CHECKPOINT)
-spikesU_4_7 = MovingEntity(image='./data/img/spikesU4.png', dx=140, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_7_0 = MovingEntity(image='./data/img/spikes7.png', dx=0, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_7_1 = MovingEntity(image='./data/img/spikes7.png', dx=70, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_7_2 = MovingEntity(image='./data/img/spikes7.png', dx=180, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_7_3 = MovingEntity(image='./data/img/spikes7.png', dx=250, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-checkpointD = MovingEntity(image='./data/img/checkpointBW.png', dx=52, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
-
-#
-
-checkpointU6 = MovingEntity(image='./data/img/checkpointUBW.png', dx=186, dy=212, vx=0, vy=0, etype=ENT_CHECKPOINT)
-stop1 = MovingEntity(image='./data/img/sprites/sprite_STOP_2.png', dx=192, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
-stop2 = MovingEntity(image='./data/img/sprites/sprite_STOP_2.png', dx=42, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
-stop3 = MovingEntity(image='./data/img/sprites/sprite_STOP_2.png', dx=118, dy=50, vx=0, vy=1, etype=ENT_OBSTACLE)
-
-
-checkpointE = MovingEntity(image='./data/img/checkpointBW.png', dx=152, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
-checkpointU7 = MovingEntity(image='./data/img/checkpointUBW.png', dx=38, dy=84, vx=0, vy=0, etype=ENT_CHECKPOINT)
-ghost = MovingEntity(image='./data/img/sprites/sprite_ghost_1.png', dx=212, dy=128, vx=0, vy=1, etype=ENT_OBSTACLE)
-spikesU_2_2 = MovingEntity(image='./data/img/spikesU2.png', dx=187, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_7_2 = MovingEntity(image='./data/img/spikesU7.png', dx=244, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_5_8 = MovingEntity(image='./data/img/spikes5.png', dx=199, dy=129, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-plat5 = MovingEntity(image='./data/img/plat_o.png', dx=132, dy=88, vx=0, vy=0, etype=ENT_PLATFORM)
-spikesU_4_8 = MovingEntity(image='./data/img/spikesU4.png', dx=180, dy=32, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_3_3 = MovingEntity(image='./data/img/spikes3.png', dx=132, dy=132, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_3_4 = MovingEntity(image='./data/img/spikes3.png', dx=190, dy=132, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_4_8 = MovingEntity(image='./data/img/spikes4.png', dx=50, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_5_9 = MovingEntity(image='./data/img/spikes5.png', dx=0, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-walker1 = MovingEntity(image='./data/img/sprites/sprite_walker_2.png', dx=272, dy=204, vx=1.5, vy=0, etype=ENT_OBSTACLE)
-walker2 = MovingEntity(image='./data/img/sprites/sprite_walker_2.png', dx=284, dy=92, vx=1.5, vy=0, etype=ENT_OBSTACLE)
-spikesU_2_3 = MovingEntity(image='./data/img/spikesU2.png', dx=8, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_4_9 = MovingEntity(image='./data/img/spikesU4.png', dx=68, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_4_A = MovingEntity(image='./data/img/spikesU4.png', dx=212, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikesU_4_B = MovingEntity(image='./data/img/spikesU4.png', dx=292, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
-spikes_3_5 = MovingEntity(image='./data/img/spikes3.png', dx=135, dy=124, vx=0, vy=0, etype=ENT_OBSTACLE)
-
-
+{0:
+	{1:
+		{name='checkpoint1': MovingEntity(image='./data/img/checkpointBW.png', dx=64, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='checkpoint2': MovingEntity(image='./data/img/checkpointBW.png', dx=284, dy=220, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='spikesU_4_0': MovingEntity(image='./data/img/spikesU4.png', dx=120, dy=32, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_4_1': MovingEntity(image='./data/img/spikesU4.png', dx=232, dy=32, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_4_2': MovingEntity(image='./data/img/spikesU4.png', dx=0, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_4_3': MovingEntity(image='./data/img/spikesU4.png', dx=88, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_4_4': MovingEntity(image='./data/img/spikesU4.png', dx=176, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_5_0': MovingEntity(image='./data/img/spikesU5.png', dx=264, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_4_0': MovingEntity(image='./data/img/spikes4.png', dx=176, dy=107, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_4_1': MovingEntity(image='./data/img/spikes4.png', dx=44, dy=219, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_4_2': MovingEntity(image='./data/img/spikes3.png', dx=132, dy=219, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_4_3': MovingEntity(image='./data/img/spikes4.png', dx=220, dy=219, vx=0, vy=0, etype=ENT_OBSTACLE)
+	2:
+		{name='checkpoint3': MovingEntity(image='./data/img/checkpointBW.png', dx=288, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='platv1': MovingEntity(image='./data/img/plat_o.png', dx=140, dy=100, vx=0, vy=1, etype=ENT_PLATFORM)
+		{name='platv2': MovingEntity(image='./data/img/plat_o.png', dx=170, dy=120, vx=0, vy=1, etype=ENT_PLATFORM)
+		{name='platv3': MovingEntity(image='./data/img/plat_o.png', dx=200, dy=140, vx=0, vy=1, etype=ENT_PLATFORM)
+		{name='spikesU_4_5': MovingEntity(image='./data/img/spikesU4.png', dx=92, dy=63, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_5_1': MovingEntity(image='./data/img/spikesU5.png', dx=212, dy=31, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_8_0': MovingEntity(image='./data/img/spikesU8.png', dx=132, dy=31, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_4_4': MovingEntity(image='./data/img/spikes4.png', dx=92, dy=188, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_5_0': MovingEntity(image='./data/img/spikes5.png', dx=212, dy=220, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_8_0': MovingEntity(image='./data/img/spikes8.png', dx=132, dy=220, vx=0, vy=0, etype=ENT_OBSTACLE)
+	3:
+		{name='checkpoint4': MovingEntity(image='./data/img/checkpointBW.png', dx=64, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='checkpointU1': MovingEntity(image='./data/img/checkpointUBW.png', dx=64, dy=164, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='yes1': MovingEntity(image='./data/img/sprites/sprite_YES_2.png', dx=132, dy=52, vx=0, vy=1, etype=ENT_OBSTACLE)
+		{name='yes2': MovingEntity(image='./data/img/sprites/sprite_YES_2.png', dx=264, dy=52, vx=0, vy=1, etype=ENT_OBSTACLE)
+		{name='yes3': MovingEntity(image='./data/img/sprites/sprite_YES_2.png', dx=182, dy=112, vx=0, vy=1, etype=ENT_OBSTACLE)
+		{name='yes4': MovingEntity(image='./data/img/sprites/sprite_YES_2.png', dx=132, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
+		{name='yes5': MovingEntity(image='./data/img/sprites/sprite_YES_2.png', dx=182, dy=148, vx=0, vy=1, etype=ENT_OBSTACLE)
+	4:
+		{name='checkpoint5': MovingEntity(image='./data/img/checkpointBW.png', dx=60, dy=124, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='checkpoint6': MovingEntity(image='./data/img/checkpointBW.png', dx=280, dy=220, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='plat1': MovingEntity(image='./data/img/plat_o.png', dx=100, dy=70, vx=0, vy=0, etype=ENT_PLATFORM)
+		{name='plat2': MovingEntity(image='./data/img/plat_o.png', dx=120, dy=70, vx=0, vy=0, etype=ENT_PLATFORM)
+		{name='plath1': MovingEntity(image='./data/img/plat_o.png', dx=52, dy=166, vx=1, vy=0, etype=ENT_PLATFORM)
+		{name='spikesU_5_2': MovingEntity(image='./data/img/spikesU5.png', dx=52, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_5_3': MovingEntity(image='./data/img/spikesU5.png', dx=102, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_5_4': MovingEntity(image='./data/img/spikesU5.png', dx=152, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_5_5': MovingEntity(image='./data/img/spikesU5.png', dx=200, dy=159, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_8_1': MovingEntity(image='./data/img/spikesU8.png', dx=92, dy=63, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_4_5': MovingEntity(image='./data/img/spikes4.png', dx=120, dy=116, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_5_1': MovingEntity(image='./data/img/spikes5.png', dx=132, dy=212, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_5_2': MovingEntity(image='./data/img/spikes5.png', dx=182, dy=212, vx=0, vy=0, etype=ENT_OBSTACLE)
+	5:
+		{name='checkpoint7': MovingEntity(image='./data/img/checkpointBW.png', dx=122, dy=124, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='reddisc': MovingEntity(image='./data/img/sprites/sprite_reddisc_1.png', dx=184, dy=188, vx=0, vy=1, etype=ENT_OBSTACLE)
+	},
+1:
+	1:
+		{name='bus': MovingEntity(image='./data/img/sprites/sprite_BUS_3.png', dx=320, dy=60, vx=1, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_7_0': MovingEntity(image='./data/img/spikesU7.png', dx=80, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_7_1': MovingEntity(image='./data/img/spikesU7.png', dx=250, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_8_2': MovingEntity(image='./data/img/spikesU8.png', dx=0, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_8_3': MovingEntity(image='./data/img/spikesU8.png', dx=170, dy=143, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_5_3': MovingEntity(image='./data/img/spikes5.png', dx=0, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_5_4': MovingEntity(image='./data/img/spikes5.png', dx=50, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_5_5': MovingEntity(image='./data/img/spikes5.png', dx=220, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_5_6': MovingEntity(image='./data/img/spikes5.png', dx=270, dy=108, vx=0, vy=0, etype=ENT_OBSTACLE)
+	2:
+		{name='trinket1': MovingEntity(image='./data/img/sprites/sprite_trinket.png', dx=270, dy=172, vx=0, vy=0, etype=ENT_TOKEN)
+		{name='man1': MovingEntity(image='./data/img/sprites/sprite_man_2.png', dx=124, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
+		{name='man2': MovingEntity(image='./data/img/sprites/sprite_man_2.png', dx=184, dy=214, vx=0, vy=1, etype=ENT_OBSTACLE)
+		{name='man3': MovingEntity(image='./data/img/sprites/sprite_man_2.png', dx=240, dy=224, vx=0, vy=1, etype=ENT_OBSTACLE)
+		{name='spikesU_2_0': MovingEntity(image='./data/img/spikesU2.png', dx=150, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_2_1': MovingEntity(image='./data/img/spikesU2.png', dx=210, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_3_0': MovingEntity(image='./data/img/spikesU3.png', dx=174, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_5_6': MovingEntity(image='./data/img/spikesU5.png', dx=234, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_8_4': MovingEntity(image='./data/img/spikesU8.png', dx=68, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
+	3:
+		{}
+	4:
+		{}
+	5:
+		{name='checkpoint8': MovingEntity(image='./data/img/checkpointBW.png', dx=12, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='green1': MovingEntity(image='./data/img/sprites/sprite_green_1.png', dx=84, dy=110, vx=1.5, vy=0, etype=ENT_OBSTACLE)
+		{name='green2': MovingEntity(image='./data/img/sprites/sprite_green_1.png', dx=124, dy=150, vx=1.5, vy=0, etype=ENT_OBSTACLE)
+	},
+2:
+	{1:
+		{name='checkpoint9': MovingEntity(image='./data/img/checkpointBW.png', dx=152, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='checkpointU2': MovingEntity(image='./data/img/checkpointUBW.png', dx=52, dy=148, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='spikes_3_0': MovingEntity(image='./data/img/spikes3.png', dx=80, dy=92, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_8_1': MovingEntity(image='./data/img/spikes8.png', dx=0, dy=92, vx=0, vy=0, etype=ENT_OBSTACLE)
+	2:
+		{name='plat3': MovingEntity(image='./data/img/plat_o.png', dx=200, dy=116, vx=0, vy=0, etype=ENT_PLATFORM)
+		{name='plat4': MovingEntity(image='./data/img/plat_o.png', dx=150, dy=52, vx=0, vy=0, etype=ENT_PLATFORM)
+		{name='spikesU_5_7': MovingEntity(image='./data/img/spikesU5.png', dx=132, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_5_8': MovingEntity(image='./data/img/spikesU5.png', dx=182, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_5_7': MovingEntity(image='./data/img/spikes5.png', dx=270, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_8_2': MovingEntity(image='./data/img/spikes8.png', dx=190, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+	3:
+		{name='checkpointA': MovingEntity(image='./data/img/checkpointBW.png', dx=32, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='spikes_4_6': MovingEntity(image='./data/img/spikes4.png', dx=170, dy=206, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_6_0': MovingEntity(image='./data/img/spikes6.png', dx=110, dy=206, vx=0, vy=0, etype=ENT_OBSTACLE)
+	4:
+		{name='checkpointB': MovingEntity(image='./data/img/checkpointBW.png', dx=198, dy=180, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='trinket2': MovingEntity(image='./data/img/sprites/sprite_trinket.png', dx=40, dy=140, vx=0, vy=0, etype=ENT_TOKEN)
+		{name='spikesU_3_1': MovingEntity(image='./data/img/spikesU3.png', dx=164, dy=95, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_5_9': MovingEntity(image='./data/img/spikesU5.png', dx=68, dy=95, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_2_0': MovingEntity(image='./data/img/spikes2.png', dx=52, dy=172, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_6_1': MovingEntity(image='./data/img/spikes6.png', dx=120, dy=172, vx=0, vy=0, etype=ENT_OBSTACLE)
+	5:
+		{name='checkpointC': MovingEntity(image='./data/img/checkpointBW.png', dx=110, dy=188, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='checkpointU3': MovingEntity(image='./data/img/checkpointUBW.png', dx=202, dy=68, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='spikesU_3_2': MovingEntity(image='./data/img/spikesU3.png', dx=160, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_6_0': MovingEntity(image='./data/img/spikesU6.png', dx=100, dy=37, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_6_2': MovingEntity(image='./data/img/spikes6.png', dx=132, dy=204, vx=0, vy=0, etype=ENT_OBSTACLE)
+	},
+3:
+	{0:
+		{}
+	1:
+		{name='spikesU_4_6': MovingEntity(image='./data/img/spikesU4.png', dx=140, dy=163, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_8_5': MovingEntity(image='./data/img/spikesU8.png', dx=56, dy=48, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_8_6': MovingEntity(image='./data/img/spikesU8.png', dx=184, dy=48, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_3_1': MovingEntity(image='./data/img/spikes3.png', dx=82, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_3_2': MovingEntity(image='./data/img/spikes3.png', dx=208, dy=91, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_4_7': MovingEntity(image='./data/img/spikes4.png', dx=140, dy=128, vx=0, vy=0, etype=ENT_OBSTACLE)
+	2:
+		{name='checkpointU4': MovingEntity(image='./data/img/checkpointUBW.png', dx=24, dy=52, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='checkpointU5': MovingEntity(image='./data/img/checkpointUBW.png', dx=280, dy=52, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='spikesU_4_7': MovingEntity(image='./data/img/spikesU4.png', dx=140, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_7_0': MovingEntity(image='./data/img/spikes7.png', dx=0, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_7_1': MovingEntity(image='./data/img/spikes7.png', dx=70, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_7_2': MovingEntity(image='./data/img/spikes7.png', dx=180, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_7_3': MovingEntity(image='./data/img/spikes7.png', dx=250, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+	3:
+		{name='checkpointD': MovingEntity(image='./data/img/checkpointBW.png', dx=52, dy=204, vx=0, vy=0, etype=ENT_CHECKPOINT)
+	4:
+		{}
+	5:
+		{name='checkpointU6': MovingEntity(image='./data/img/checkpointUBW.png', dx=186, dy=212, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='stop1': MovingEntity(image='./data/img/sprites/sprite_STOP_2.png', dx=192, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
+		{name='stop2': MovingEntity(image='./data/img/sprites/sprite_STOP_2.png', dx=42, dy=166, vx=0, vy=1.5, etype=ENT_OBSTACLE)
+		{name='stop3': MovingEntity(image='./data/img/sprites/sprite_STOP_2.png', dx=118, dy=50, vx=0, vy=1, etype=ENT_OBSTACLE)
+	},
+4:
+	{1:
+		{name='checkpointE': MovingEntity(image='./data/img/checkpointBW.png', dx=152, dy=108, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='checkpointU7': MovingEntity(image='./data/img/checkpointUBW.png', dx=38, dy=84, vx=0, vy=0, etype=ENT_CHECKPOINT)
+		{name='ghost': MovingEntity(image='./data/img/sprites/sprite_ghost_1.png', dx=212, dy=128, vx=0, vy=1, etype=ENT_OBSTACLE)
+		{name='spikesU_2_2': MovingEntity(image='./data/img/spikesU2.png', dx=187, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_7_2': MovingEntity(image='./data/img/spikesU7.png', dx=244, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_5_8': MovingEntity(image='./data/img/spikes5.png', dx=199, dy=129, vx=0, vy=0, etype=ENT_OBSTACLE)
+	2:
+		{name='plat5': MovingEntity(image='./data/img/plat_o.png', dx=132, dy=88, vx=0, vy=0, etype=ENT_PLATFORM)
+		{name='spikesU_4_8': MovingEntity(image='./data/img/spikesU4.png', dx=180, dy=32, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_3_3': MovingEntity(image='./data/img/spikes3.png', dx=132, dy=132, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_3_4': MovingEntity(image='./data/img/spikes3.png', dx=190, dy=132, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_4_8': MovingEntity(image='./data/img/spikes4.png', dx=50, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_5_9': MovingEntity(image='./data/img/spikes5.png', dx=0, dy=140, vx=0, vy=0, etype=ENT_OBSTACLE)
+	},
+5:
+	{1:
+		{name='walker1': MovingEntity(image='./data/img/sprites/sprite_walker_2.png', dx=272, dy=204, vx=1.5, vy=0, etype=ENT_OBSTACLE)
+		{name='walker2': MovingEntity(image='./data/img/sprites/sprite_walker_2.png', dx=284, dy=92, vx=1.5, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_2_3': MovingEntity(image='./data/img/spikesU2.png', dx=8, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_4_9': MovingEntity(image='./data/img/spikesU4.png', dx=68, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_4_A': MovingEntity(image='./data/img/spikesU4.png', dx=212, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikesU_4_B': MovingEntity(image='./data/img/spikesU4.png', dx=292, dy=47, vx=0, vy=0, etype=ENT_OBSTACLE)
+		{name='spikes_3_5': MovingEntity(image='./data/img/spikes3.png', dx=135, dy=124, vx=0, vy=0, etype=ENT_OBSTACLE)
+	},
+6:
+	{1:
+		{name='gc': MovingEntity(image='./data/img/gamecomplete.png', dx=0, dy=48, vx=0, vy=0, etype=ENT_TOKEN)
+	}
+}
 
 sprite = MovingEntity(image='./data/img/sprite1.png', vx=1, vy=1, etype=ENT_OBSTACLE)
 portal1 = MovingEntity(image='./data/img/warptoken.bmp', vx=0, vy=0, etype=ENT_PORTAL)
 portal2 = MovingEntity(image='./data/img/warptoken2.bmp', vx=0, vy=0, etype=ENT_PORTAL)
-gc = MovingEntity(image='./data/img/gamecomplete.png', dx=0, dy=48, vx=0, vy=0, etype=ENT_TOKEN)
 
 
 #{1: {3: [{'img_file': 'filename', 'dx': 174, 'dy': 37, 'vx': 0, 'vy': 0, 'etype': 2}, ...], 4: ...}. 2: {...}}
