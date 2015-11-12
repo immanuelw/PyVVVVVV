@@ -28,24 +28,14 @@ if __name__ == '__main__':
 	backbuf = pygame.Surface((window.get_width(), window.get_height()))
 
 	g = Geometry()
-	char = Character(cf.VIRIDIAN_BASE)
-	char.set_pulsation(cf.VIRIDIAN_PULSATION)
-	char.set_pulse_rate(cf.VIRIDIAN_PULSERATE)
-	char.set_spike(50, 188)
-	#char.set_spike(90, 50)
-	char.x_co = 1
-	char.y_co = 3
-
+	char = Character(color=cf.VIRIDIAN_BASE, x=50, y=188, x_co=1, y_co=3, pulsation=cf.VIRIDIAN_PULSATION, pulse_rate=cf.VIRIDIAN_PULSERATE)
 	bg = Background('./data/img/bg_cross.png', cf.GAMERECT, 1, 0)
-
-	g = Geometry()
 
 	old_x = char.x_co
 	old_y = char.y_co
 
 	#location of last room
-	last_x = 6
-	last_y = 1
+	last_x, last_y = (6, 1)
 
 	stopper = 0
 	cooldown = 0

@@ -8,12 +8,8 @@ from __future__ import print_function
 import time
 import random
 import pygame
-from pygame.locals import *
 from extrect import ExtRect
 import config as cf
-from geom import Geometry
-
-g = Geometry()
 
 IMG_CHAR = pygame.image.load('./data/img/char.png')
 IMG_CHAR_SAD = pygame.image.load('./data/img/char_sad.png')
@@ -21,33 +17,32 @@ IMG_CHAR_WALKING = pygame.image.load('./data/img/char_walking.png')
 IMG_CHAR_WALKING_SAD = pygame.image.load('./data/img/char_walking_sad.png')
 
 class Character(pygame.sprite.Sprite):
-	def __init__(self, col):
+	def __init__(self, color, x, y, x_co=1, y_co=3, pulsation=0, pulse_rate=1, enttype=cf.ENT_CHARACTER):
 		pygame.sprite.Sprite.__init__(self)
 		self.frame1 = IMG_CHAR.copy()
 		self.frame2 = IMG_CHAR_WALKING.copy()
 		self.nextframe = 0
 		self.image = self.frame1
 		self.rect = pygame.Rect(0, 0, self.image.get_width(), self.image.get_height())
+		self.rect.bottomleft = (x, y)
 		self.left = False #Heading left?
 		self.flipped = False #Inverted?
-		self.oldcol = cf.WHITE
-		self.basecol = col
-		self.pulsation = 0
-		self.pulserate = 1
-		self.pulsecur=0
-		self.pulserising = True
-		self.dead = False
-		self.sad = False
-		self.wassad = False
-		self.nextrevive = 0
+		self.old_color = cf.WHITE
+		self.base_color = color
+		self.pulsation = pulsation
+		self.pulse_rate = pulse_rate
+		self.pulse_cur = 0
+		self.is_pulse_rising = True
+		self.is_dead = False
+		self.is_sad = False
+		self.was_sad = False
+		self.next_revive = 0
 		self.vx = 0
 		self.vy = 0
-		self.check_x = 1
+		self.check_x = 1 #stores x_co if last checkpoint
 		self.check_y = 3
-		self.x_co = 1
-		self.y_co = 3
-		self.checkpoint_x = 0
-		self.checkpoint_y = 0
+		self.x_co = x_co
+		self.y_co = y_co
 		#self.conveyerspeed = 3
 		self.hitfloor = False #vy constrained to 0
 		self.hitwall = False #vx constrained to 0
@@ -55,14 +50,11 @@ class Character(pygame.sprite.Sprite):
 		self.goright = False #Apply positive accel x
 		self.standingon = None #An entity whose vx,vy is added to ours
 		self.checkpoint = None
-		self.hitcheckpoint = False
 		self.teleportpoint = None
 		self.tokens = 0
-		##self.tokens = []
-		##self.token_id = 1#correspond to room number eventually, token_id[room#_x][room#y]=random value
 		self.breakaway = 0
-		self.set_color(col)
-		self.enttype = cf.ENT_CHARACTER
+		self.set_color(color)
+		self.enttype = enttype
 
 	def draw(self, surf):
 		try:
@@ -72,27 +64,27 @@ class Character(pygame.sprite.Sprite):
 			print('Now don\'t ask me why this is happening, I don\'t really know yet.')
 			raise
 
-	def set_color(self, col):
+	def set_color(self, color):
 		for frm in (self.frame1, self.frame2):
 			pa = pygame.PixelArray(frm)
-			pa.replace(self.oldcol, col)
+			pa.replace(self.old_color, color)
 			del pa
-		self.oldcol = col
+		self.old_color = color
 
-	def set_frame_color(self, frm, col):
+	def set_frame_color(self, frm, color):
 		pa = pygame.PixelArray(frm)
-		pa.replace(self.oldcol, col)
+		pa.replace(self.old_color, color)
 		del pa
 
-	def set_base_col(self, col):
-		self.set_color(col)
-		self.basecol = col
+	def set_base_color(self, color):
+		self.set_color(color)
+		self.base_color = color
 
 	def set_pulsation(self, pulsation):
 		self.pulsation = pulsation
 
-	def set_pulse_rate(self, pulserate):
-		self.pulserate = pulserate
+	def set_pulse_rate(self, pulse_rate):
+		self.pulse_rate = pulse_rate
 
 	def set_dir(self, left):
 		if left == self.left:
@@ -114,21 +106,21 @@ class Character(pygame.sprite.Sprite):
 		self.frame2 = pygame.transform.flip(self.frame2, False, True)
 
 	def set_sad(self, sad):
-		self.sad = sad
+		self.is_sad = sad
 		if sad:
 			self.frame1 = IMG_CHAR_SAD.copy()
 			self.frame2 = IMG_CHAR_WALKING_SAD.copy()
 		else:
 			self.frame1 = IMG_CHAR.copy()
 			self.frame2 = IMG_CHAR_WALKING.copy()
-		col = self.oldcol
-		self.oldcol = cf.WHITE
-		self.set_color(col)
+		color = self.old_color
+		self.old_color = cf.WHITE
+		self.set_color(color)
 		self.frame1 = pygame.transform.flip(self.frame1, self.left, self.flipped)
 		self.frame2 = pygame.transform.flip(self.frame2, self.left, self.flipped)
 
 	def refresh_frames(self):
-		if self.sad:
+		if self.is_sad:
 			self.set_sad(False)
 			self.set_sad(True)
 		else:
@@ -178,20 +170,20 @@ class Character(pygame.sprite.Sprite):
 		self.rect.move_ip(x, y)
 
 	def kill(self):
-		if not self.dead:
-			self.dead = True
-			self.wassad = self.sad
+		if not self.is_dead:
+			self.is_dead = True
+			self.was_sad = self.is_sad
 			self.set_sad(True)
 			pygame.mixer.Sound('./data/snd/sfx/hurt.wav').play()
 			self.set_color(cf.DEAD)
 			self.set_frame_color(self.frame2, cf.DEADDARK)
 			self.nextframe = time.time() + random.uniform(cf.DEAD_FLICKER_MIN, cf.DEAD_FLICKER_MAX)
-			self.nextrevive = time.time() + cf.REVIVE_TIME
+			self.next_revive = time.time() + cf.REVIVE_TIME
 
 	def revive(self):
-		if self.dead:
-			self.dead = False
-			self.sad = self.wassad
+		if self.is_dead:
+			self.is_dead = False
+			self.is_sad = self.was_sad
 			self.refresh_frames()
 			self.x_co = self.check_x
 			self.y_co = self.check_y
@@ -218,8 +210,6 @@ class Character(pygame.sprite.Sprite):
 		#self.is_checkpoint_set(True)
 
 	def set_checkpoint(self, x, y):
-		self.checkpoint_x = x
-		self.checkpoint_y = y
 		self.checkpoint = ((x, y), self.flipped)
 
 	def teleport(self):
@@ -302,17 +292,17 @@ class Character(pygame.sprite.Sprite):
 	def pulsate(self):
 		if self.pulsation == 0:
 			return
-		if self.pulserising:
-			if self.pulsecur >= self.pulsation:
-				self.pulserising = False
+		if self.is_pulse_rising:
+			if self.pulse_cur >= self.pulsation:
+				self.is_pulse_rising = False
 			else:
-				self.pulsecur += self.pulserate
+				self.pulse_cur += self.pulse_rate
 		else:
-			if self.pulsecur <= 0:
-				self.pulserising = True
+			if self.pulse_cur <= 0:
+				self.is_pulse_rising = True
 			else:
-				self.pulsecur -= self.pulserate
-		self.set_color(self.basecol + pygame.Color(int(self.pulsecur), int(self.pulsecur), int(self.pulsecur)))
+				self.pulse_cur -= self.pulse_rate
+		self.set_color(self.base_color + pygame.Color(int(self.pulse_cur), int(self.pulse_cur), int(self.pulse_cur)))
 
 	def flicker(self):
 		if time.time() > self.nextframe:
@@ -321,7 +311,7 @@ class Character(pygame.sprite.Sprite):
 				self.image = self.frame2
 			else:
 				self.image = self.frame1
-		if time.time() > self.nextrevive:
+		if time.time() > self.next_revive:
 			self.revive()
 
 	def collide(self, geom):
@@ -436,7 +426,7 @@ class Character(pygame.sprite.Sprite):
 				pass
 
 	def update(self, gamearea, env=None):
-		if self.dead:
+		if self.is_dead:
 			self.flicker()
 		else:
 			self.accelerate()

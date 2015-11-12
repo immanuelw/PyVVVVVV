@@ -24,15 +24,6 @@ class Entity(pygame.sprite.Sprite):
 	def draw(self, surf):
 		surf.blit(self.image, self.rect.topleft)
 
-	def SetPos(self, x, y):
-		self.rect.center = (x, y)
-
-	def SetSpike(self, x, y):
-		self.rect.bottomleft = (x, y)
-
-	def SetSpikeU(self, x, y):
-		self.rect.topleft = (x, y)
-
 class MovingEntity(Entity):
 	def __init__(self, image, dx=0, dy=0, vx=0, vy=0, etype=cf.ENT_OBSTACLE):
 		Entity.__init__(self, image, dx, dy, etype)
