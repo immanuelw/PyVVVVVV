@@ -76,8 +76,8 @@ if __name__ == '__main__':
 		window.blit(backbuf, (0, 0))
 		pygame.display.update()
 
-		#char.set_hit_wall(False)
-		#char.set_hit_floor(False)
+		#char.set_on_wall(False)
+		#char.set_on_floor(False)
 		#print(char.vx, char.vy)
 		if stopper < 1:
 			for ev in pygame.event.get():
@@ -89,21 +89,21 @@ if __name__ == '__main__':
 					if ev.key == K_LEFT:
 						char.set_left()
 						char.set_go_left(True)
-						char.set_hit_wall(False) #Allow logic to figure out whether or not a wall is hit
-						#char.set_hit_floor(False)
+						char.set_on_wall(False) #Allow logic to figure out whether or not a wall is hit
+						#char.set_on_floor(False)
 					elif ev.key == K_RIGHT:
 						char.set_right()
 						char.set_go_right(True)
-						char.set_hit_wall(False) #Allow logic to figure out whether or not a wall is hit
-						#char.set_hit_floor(False)
-					elif ev.key in (K_UP, K_DOWN, K_SPACE) and char.hitfloor:
+						char.set_on_wall(False) #Allow logic to figure out whether or not a wall is hit
+						#char.set_on_floor(False)
+					elif ev.key in (K_UP, K_DOWN, K_SPACE) and char.on_floor:
 						char.flip()
-						#char.set_hit_wall(False)
-						char.set_hit_floor(False) #Allow logic to figure out whether or not a floor is hit
+						#char.set_on_wall(False)
+						char.set_on_floor(False) #Allow logic to figure out whether or not a floor is hit
 					#elif ev.key==K_f:
-					#	char.set_hit_floor(not char.hitfloor)
+					#	char.set_on_floor(not char.on_floor)
 					#elif ev.key==K_w:
-					#	char.set_hit_wall(not char.hitwall)
+					#	char.set_on_wall(not char.hitwall)
 					elif ev.key == K_s:
 						char.set_sad(True)
 					elif ev.key == K_h:
@@ -119,7 +119,7 @@ if __name__ == '__main__':
 						char.set_go_right(False)
 		elif stopper == 1:
 			char.set_go_right(True)
-			char.set_hit_wall(False)
+			char.set_on_wall(False)
 			pygame.mixer.music.load('./data/snd/bgm/05 - Path Complete.mp3')
 			pygame.mixer.music.play(0, 0.0)
 		elif stopper == 40:
