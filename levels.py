@@ -9,9 +9,7 @@ from env import Environment
 from entity import Entity, MovingEntity, AnimatingEntity, MovingAnimatingEntity
 from config import *
 from rects import rect_list
-
-imgs = {x_coord: {y_coord: pygame.image.load('./data/img/background/background_{x}-{y}_320x240.png'.format(x=x_coord, y=y_coord))\
-					for y_coord in range(7) if (x_coord, y_coord) in level_array} for x_coord in range(7)}
+from img import imgs, img_dict
 
 window = pygame.display.set_mode((GAMERECT.width * 2, GAMERECT.height * 2))
 gamesurf = pygame.Surface((GAMERECT.width, GAMERECT.height))
@@ -23,48 +21,7 @@ char.SetPulseRate(VIRIDIAN_PULSERATE)
 
 g = Geometry()
 
-#could import glob: glob.glob(./data/img/*.png)
-all_imgs = ('./data/img/bg_cross.png',
-			'./data/img/plat_o.png',
-			'./data/img/sprite1.png',
-			'./data/img/checkpointBW.png',
-			'./data/img/checkpointUBW.png',
-			'./data/img/checkpoint.png',
-			'./data/img/sprites/sprite_trinket.png',
-			'./data/img/warptoken.bmp',
-			'./data/img/warptoken2.bmp',
-			'./data/img/sprites/sprite_BUS_3.png',
-			'./data/img/sprites/sprite_green_1.png',
-			'./data/img/sprites/sprite_reddisc_1.png',
-			'./data/img/sprites/sprite_STOP_2.png',
-			'./data/img/sprites/sprite_walker_2.png',
-			'./data/img/sprites/sprite_YES_2.png',
-			'./data/img/sprites/sprite_ghost_1.png',
-			'./data/img/sprites/sprite_man_2.png',
-			'./data/img/gamecomplete.png',
-			'./data/img/spikes1.png',
-			'./data/img/spikes2.png',
-			'./data/img/spikes3.png',
-			'./data/img/spikes4.png',
-			'./data/img/spikes5.png',
-			'./data/img/spikes6.png',
-			'./data/img/spikes7.png',
-			'./data/img/spikes8.png',
-			'./data/img/spikesU1.png',
-			'./data/img/spikesU2.png',
-			'./data/img/spikesU3.png',
-			'./data/img/spikesU4.png',
-			'./data/img/spikesU5.png',
-			'./data/img/spikesU6.png',
-			'./data/img/spikesU7.png',
-			'./data/img/spikesU8.png')
-
-#there is an image_dict:
-img_dict = {img_name: pygame.image.load(img_name) for img_name in all_imgs}
-
-
-bgimg = pygame.image.load('./data/img/bg_cross.png')
-bg = Background(bgimg, GAMERECT, 1, 0)
+bg = Background(img_dict['./data/img/bg_cross.png'], GAMERECT, 1, 0)
 
 plat1 = MovingEntity(img_dict['./data/img/plat_o.png'], dx=100, dy=70, vx=0, vy=0, etype=ENT_PLATFORM)
 plat2 = MovingEntity(img_dict['./data/img/plat_o.png'], dx=120, dy=70, vx=0, vy=0, etype=ENT_PLATFORM)
