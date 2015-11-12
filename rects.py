@@ -258,11 +258,12 @@ rect_list = {0:
 				}
 			}
 
-level_array = tuple((x,y) for x, val in rect_list.items() for y, value in val.items())
-rects = {x_co: {y_co: rect_list[x_co][y_co] if (x_co, y_co) in level_array else ((0, 0, 0, 0),) for y_co in range(7)} for x_co in range(7)}
-print(level_array)
-#print(rects)
+if __name__ == '__main__':
+	level_array = tuple((x,y) for x, val in rect_list.items() for y, value in val.items())
+	rects = {x_co: {y_co: rect_list[x_co][y_co] if (x_co, y_co) in level_array else ((0, 0, 0, 0),) for y_co in range(7)} for x_co in range(7)}
+	print(level_array)
+	#print(rects)
 
-backup_path = 'rects.json'
-with open(backup_path, 'w') as bkup:
-	json.dump(rects, bkup, sort_keys=True, indent=4)
+	backup_path = 'rects.json'
+	with open(backup_path, 'w') as bkup:
+		json.dump(rects, bkup, sort_keys=True, indent=4)
