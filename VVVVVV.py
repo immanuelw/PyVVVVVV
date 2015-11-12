@@ -3,6 +3,7 @@ from __future__ import print_function
 import sys
 import random
 import pygame
+import json
 from pygame.locals import *
 from character import Character
 from geom import Geometry
@@ -19,6 +20,19 @@ def env_create(GAMERECT, g, bg, char):
 
 	return env
 
+def save_game(char, backup_path):
+	char_data = {'x': char.rect.bottomleft[0],
+					'y': char.rect.bottomleft[1],
+					'x_co': char.x_co,
+					'y_co': char.y_co,
+					'check_x': char.check_x,
+					'check_y': char.check_y,
+					'checkpoint': char.checkpoint,
+					'pulsation': char.pulsation,
+					'pulse_rate': char.pulse_rate}
+	with open(backup_path, 'w') as bkup:
+		json.dump(char_data, bkup, sort_keys=True, indent=4)
+
 if __name__ == '__main__':
 	pygame.init()
 	clk = pygame.time.Clock()
@@ -28,7 +42,14 @@ if __name__ == '__main__':
 	backbuf = pygame.Surface((window.get_width(), window.get_height()))
 
 	g = Geometry()
+
 	char = Character(color=cf.VIRIDIAN_BASE, x=50, y=188, x_co=1, y_co=3, pulsation=cf.VIRIDIAN_PULSATION, pulse_rate=cf.VIRIDIAN_PULSERATE)
+	backup_path = 'save.json'
+	if len(sys.argv) > 1:
+		if sys.argv[1] == 'save':
+			with open(backup_path, 'r') as bkup:
+				char = Character(color=cf.VIRIDIAN_BASE, **json.load(bkup))
+
 	bg = Background('./data/img/bg_cross.png', cf.GAMERECT, 1, 0)
 
 	old_x = char.x_co
@@ -112,6 +133,8 @@ if __name__ == '__main__':
 						char.kill()
 					elif ev.key == K_r:
 						char.revive()
+					elif ev.key == K_w:
+						save_game(char, backup_path)
 				elif ev.type == KEYUP:
 					if ev.key == K_LEFT:
 						char.set_go_left(False)

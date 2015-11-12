@@ -17,7 +17,8 @@ IMG_CHAR_WALKING = pygame.image.load('./data/img/char_walking.png')
 IMG_CHAR_WALKING_SAD = pygame.image.load('./data/img/char_walking_sad.png')
 
 class Character(pygame.sprite.Sprite):
-	def __init__(self, color, x, y, x_co=1, y_co=3, pulsation=0, pulse_rate=1, enttype=cf.ENT_CHARACTER):
+	def __init__(self, color, x, y, x_co=1, y_co=3, check_x=1, check_y=3, checkpoint=((50, 188), False),
+						pulsation=0, pulse_rate=1, enttype=cf.ENT_CHARACTER):
 		pygame.sprite.Sprite.__init__(self)
 		self.frame1 = IMG_CHAR.copy()
 		self.frame2 = IMG_CHAR_WALKING.copy()
@@ -39,8 +40,8 @@ class Character(pygame.sprite.Sprite):
 		self.next_revive = 0
 		self.vx = 0
 		self.vy = 0
-		self.check_x = 1 #stores x_co if last checkpoint
-		self.check_y = 3
+		self.check_x = check_x #stores x_co if last checkpoint
+		self.check_y = check_y
 		self.x_co = x_co
 		self.y_co = y_co
 		#self.conveyerspeed = 3
@@ -49,7 +50,7 @@ class Character(pygame.sprite.Sprite):
 		self.go_left = False #Apply negative accel x
 		self.go_right = False #Apply positive accel x
 		self.standingon = None #An entity whose vx,vy is added to ours
-		self.checkpoint = None
+		self.checkpoint = checkpoint
 		self.teleportpoint = None
 		self.tokens = 0
 		#self.breakaway = 0
