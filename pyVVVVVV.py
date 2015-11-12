@@ -37,9 +37,7 @@ stopper = 0
 cooldown = 0
 endgame = 0
 
-environ = eval('env_%d_%d()' %(char.x_co, char.y_co))
-envi = Environment(environ[0], environ[1], environ[2], environ[3], environ[4])
-#print environ[1].rects
+envi = Environment(*env_create(char.x_co, char.y_co))
 
 if random.randint(0, 1) == 0:
 	pygame.mixer.music.load('./data/snd/bgm/07 - Positive Force.mp3')
@@ -64,11 +62,9 @@ while True:
 	#switches environments upon moving screens, NEEDS CHECKPOINT FIXING?
 	if old_x != char.x_co or old_y != char.y_co:
 		#print('changed screen to', char.x_co, '-', char.y_co)
-		environ[1].rects = []
 		old_x = char.x_co
 		old_y = char.y_co
-		environ = eval('env_%d_%d()' %(char.x_co, char.y_co))
-		envi = Environment(environ[0], environ[1], environ[2], environ[3], environ[4])
+		envi = Environment(*env_create(char.x_co, char.y_co))
 
 	envi.update()
 	envi.draw(gamesurf)
