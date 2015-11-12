@@ -195,7 +195,7 @@ class Character(pygame.sprite.Sprite):
 		if self.checkpoint is not None:
 			if self.checkpoint[1] != self.is_flipped:
 				self.flip()
-			self.rect.center = self.checkpoint[0]
+			self.rect.bottomleft = self.checkpoint[0]
 			self.vx = 0
 			self.vy = 0
 			self.set_on_floor(False)
@@ -205,7 +205,7 @@ class Character(pygame.sprite.Sprite):
 		#pygame.mixer.Sound('./data/snd/sfx/save.wav').play()
 		self.check_x = self.x_co
 		self.check_y = self.y_co
-		self.checkpoint = (self.rect.center, self.is_flipped)
+		self.checkpoint = (self.rect.bottomleft, self.is_flipped)
 		#self.is_checkpoint_set(True)
 
 	def set_checkpoint(self, x, y):
