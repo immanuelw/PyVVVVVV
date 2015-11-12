@@ -8,14 +8,14 @@ from character import Character
 from geom import Geometry
 from bg import Background
 from env import Environment
-from entity import Entity, MovingEntity, AnimatingEntity, MovingAnimatingEntity
-from config import *
-from levels import *
+import config as cf
+import levels as lv
+from img import imgs, img_dict
 
-def env_create(x_co, y_co):
-	g.rects = rect_dict[x_co][y_co]
-	entities = tuple(ent for ent in ent_list[x_co][y_co])
-	env = [GAMERECT, g, imgs[x_co][y_co], bg, (char,) + entities]
+def env_create(GAMERECT, g, bg, char):
+	g.rects = lv.rect_dict[char.x_co][char.y_co]
+	entities = tuple(ent for ent in lv.ent_list[char.x_co][char.y_co])
+	env = [GAMERECT, g, imgs[char.x_co][char.y_co], bg, (char,) + entities]
 
 	return env
 
@@ -23,18 +23,20 @@ if __name__ == '__main__':
 	pygame.init()
 	clk = pygame.time.Clock()
 
-	window = pygame.display.set_mode((GAMERECT.width * 2, GAMERECT.height * 2))
-	gamesurf = pygame.Surface((GAMERECT.width, GAMERECT.height))
+	window = pygame.display.set_mode((cf.GAMERECT.width * 2, cf.GAMERECT.height * 2))
+	gamesurf = pygame.Surface((cf.GAMERECT.width, cf.GAMERECT.height))
 	backbuf = pygame.Surface((window.get_width(), window.get_height()))
 
 	g = Geometry()
-	char = Character(VIRIDIAN_BASE)
-	char.SetPulsation(VIRIDIAN_PULSATION)
-	char.SetPulseRate(VIRIDIAN_PULSERATE)
-	char.SetSpike(50, 188)
-	#char.SetSpike(90, 50)
+	char = Character(cf.VIRIDIAN_BASE)
+	char.set_pulsation(cf.VIRIDIAN_PULSATION)
+	char.set_pulse_rate(cf.VIRIDIAN_PULSERATE)
+	char.set_spike(50, 188)
+	#char.set_spike(90, 50)
 	char.x_co = 1
 	char.y_co = 3
+
+	bg = Background('./data/img/bg_cross.png', cf.GAMERECT, 1, 0)
 
 	g = Geometry()
 
@@ -49,7 +51,7 @@ if __name__ == '__main__':
 	cooldown = 0
 	endgame = 0
 
-	envi = Environment(*env_create(char.x_co, char.y_co))
+	envi = Environment(*env_create(cf.GAMERECT, g, bg, char))
 
 	if random.randint(0, 1) == 0:
 		pygame.mixer.music.load('./data/snd/bgm/07 - Positive Force.mp3')
@@ -67,12 +69,12 @@ if __name__ == '__main__':
 			#print('changed screen to', char.x_co, '-', char.y_co)
 			old_x = char.x_co
 			old_y = char.y_co
-			envi = Environment(*env_create(char.x_co, char.y_co))
+			envi = Environment(*env_create(cf.GAMERECT, g, bg, char))
 
-		gamesurf.fill(BLACK)
-		g.DebugRender(gamesurf)
+		gamesurf.fill(cf.BLACK)
+		g.debug_render(gamesurf)
 
-		if (char.x_co == last_x) and (char.y_co == last_y): #placeholder for specifying rooms in which active
+		if (char.x_co, char.y_co) == (last_x, last_y): #placeholder for specifying rooms in which active
 			stopper += 1
 
 		#can do selective physics by making rules only apply to certain list:
@@ -84,55 +86,54 @@ if __name__ == '__main__':
 		window.blit(backbuf, (0, 0))
 		pygame.display.update()
 
-		#char.SetHitWall(False)
-		#char.SetHitFloor(False)
+		#char.set_hit_wall(False)
+		#char.set_hit_floor(False)
 		#print(char.vx, char.vy)
 		if stopper < 1:
 			for ev in pygame.event.get():
 				if ev.type == QUIT:
-					#print(eval('env_%d_%d()' %(char.x_co, char.y_co))[1])
 					pygame.mixer.music.stop()
 					pygame.quit()
 					sys.exit()
 				elif ev.type == KEYDOWN:
 					if ev.key == K_LEFT:
-						char.SetLeft()
-						char.SetGoLeft(True)
-						char.SetHitWall(False) #Allow logic to figure out whether or not a wall is hit
-						#char.SetHitFloor(False)
+						char.set_left()
+						char.set_go_left(True)
+						char.set_hit_wall(False) #Allow logic to figure out whether or not a wall is hit
+						#char.set_hit_floor(False)
 					elif ev.key == K_RIGHT:
-						char.SetRight()
-						char.SetGoRight(True)
-						char.SetHitWall(False) #Allow logic to figure out whether or not a wall is hit
-						#char.SetHitFloor(False)
+						char.set_right()
+						char.set_go_right(True)
+						char.set_hit_wall(False) #Allow logic to figure out whether or not a wall is hit
+						#char.set_hit_floor(False)
 					elif ev.key in (K_UP, K_DOWN, K_SPACE) and char.hitfloor:
-						char.Flip()
-						#char.SetHitWall(False)
-						char.SetHitFloor(False) #Allow logic to figure out whether or not a floor is hit
+						char.flip()
+						#char.set_hit_wall(False)
+						char.set_hit_floor(False) #Allow logic to figure out whether or not a floor is hit
 					#elif ev.key==K_f:
-					#	char.SetHitFloor(not char.hitfloor)
+					#	char.set_hit_floor(not char.hitfloor)
 					#elif ev.key==K_w:
-					#	char.SetHitWall(not char.hitwall)
+					#	char.set_hit_wall(not char.hitwall)
 					elif ev.key == K_s:
-						char.SetSad(True)
+						char.set_sad(True)
 					elif ev.key == K_h:
-						char.SetSad(False)
+						char.set_sad(False)
 					elif ev.key == K_k:
-						char.Kill()
+						char.kill()
 					elif ev.key == K_r:
-						char.Revive()
+						char.revive()
 				elif ev.type == KEYUP:
 					if ev.key == K_LEFT:
-						char.SetGoLeft(False)
+						char.set_go_left(False)
 					elif ev.key == K_RIGHT:
-						char.SetGoRight(False)
+						char.set_go_right(False)
 		elif stopper == 1:
-			char.SetGoRight(True)
-			char.SetHitWall(False)
+			char.set_go_right(True)
+			char.set_hit_wall(False)
 			pygame.mixer.music.load('./data/snd/bgm/05 - Path Complete.mp3')
 			pygame.mixer.music.play(0, 0.0)
 		elif stopper == 40:
-			char.SetGoRight(False)
+			char.set_go_right(False)
 		else:
 			for ev in pygame.event.get():
 				if ev.type == QUIT:
@@ -142,4 +143,4 @@ if __name__ == '__main__':
 			if endgame >= 360:
 				pygame.quit()
 				sys.exit()
-		clk.tick(FRAMERATE)
+		clk.tick(cf.FRAMERATE)

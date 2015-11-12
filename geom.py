@@ -17,48 +17,39 @@ no hit on that axis.
 import pygame
 from pygame.locals import *
 from extrect import ExtRect
-from config import *
+import config as cf
 
 class Geometry(object):
 	def __init__(self, rects=None):
 		self.rects = [] if rects is None else rects
 
-	def AddRect(self, rect):
+	def add_rect(self, rect):
 		self.rects.append(rect)
 
-	def RemoveRect(self, rect):
+	def remove_rect(self, rect):
 		try:
 			self.rects.remove(rect)
 		except ValueError:
 			pass
 
-	'''
-	def RemoveRects(self, rects):
-		self.rects = rects
-		try:
-			for rect in self.rects[::-1]:
-				self.rects.remove(rect)
-		except ValueError:
-			pass
-	'''
-
-	def TestRect(self, rect):
-		d = {HITLEFT: (0, None), HITRIGHT: (0, None), HITTOP: (0, None), HITBOTTOM: (0, None)}
+	def test_rect(self, rect):
+		d = {cf.HITLEFT: (0, None), cf.HITRIGHT: (0, None), cf.HITTOP: (0, None), cf.HITBOTTOM: (0, None)}
 		for r in self.rects:
-			coll = ExtRect.AsRect(rect).clip(ExtRect.AsRect(r))
+			coll = ExtRect.as_rect(rect).clip(ExtRect.as_rect(r))
 			if not (coll.width or coll.height):
 				#No intersection
 				continue
-			if coll.left == rect.left and d[HITLEFT][0] < coll.width and coll.width < rect.width:
-				d[HITLEFT]=(coll.width, r)
-			if coll.right == rect.right and d[HITRIGHT][0] < coll.width and coll.width < rect.width:
-				d[HITRIGHT] = (coll.width, r)
-			if coll.top == rect.top and d[HITTOP][0] < coll.height and coll.height < rect.height:
-				d[HITTOP] = (coll.height, r)
-			if coll.bottom == rect.bottom and d[HITBOTTOM][0] < coll.height and coll.height < rect.height:
-				d[HITBOTTOM] = (coll.height, r)
+			if coll.left == rect.left and d[cf.HITLEFT][0] < coll.width and coll.width < rect.width:
+				d[cf.HITLEFT]=(coll.width, r)
+			if coll.right == rect.right and d[cf.HITRIGHT][0] < coll.width and coll.width < rect.width:
+				d[cf.HITRIGHT] = (coll.width, r)
+			if coll.top == rect.top and d[cf.HITTOP][0] < coll.height and coll.height < rect.height:
+				d[cf.HITTOP] = (coll.height, r)
+			if coll.bottom == rect.bottom and d[cf.HITBOTTOM][0] < coll.height and coll.height < rect.height:
+				d[cf.HITBOTTOM] = (coll.height, r)
+
 		return d
 
-	def DebugRender(self, surf):
+	def debug_render(self, surf):
 		for r in self.rects:
-			pygame.draw.rect(surf, GEOMDEBUG, ExtRect.AsRect(r), 1)
+			pygame.draw.rect(surf, cf.GEOMDEBUG, ExtRect.as_rect(r), 1)

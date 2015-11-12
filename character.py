@@ -10,7 +10,7 @@ import random
 import pygame
 from pygame.locals import *
 from extrect import ExtRect
-from config import *
+import config as cf
 from geom import Geometry
 
 g = Geometry()
@@ -30,7 +30,7 @@ class Character(pygame.sprite.Sprite):
 		self.rect = pygame.Rect(0, 0, self.image.get_width(), self.image.get_height())
 		self.left = False #Heading left?
 		self.flipped = False #Inverted?
-		self.oldcol = WHITE
+		self.oldcol = cf.WHITE
 		self.basecol = col
 		self.pulsation = 0
 		self.pulserate = 1
@@ -61,8 +61,8 @@ class Character(pygame.sprite.Sprite):
 		##self.tokens = []
 		##self.token_id = 1#correspond to room number eventually, token_id[room#_x][room#y]=random value
 		self.breakaway = 0
-		self.SetColor(col)
-		self.enttype = ENT_CHARACTER
+		self.set_color(col)
+		self.enttype = cf.ENT_CHARACTER
 
 	def draw(self, surf):
 		try:
@@ -72,48 +72,48 @@ class Character(pygame.sprite.Sprite):
 			print('Now don\'t ask me why this is happening, I don\'t really know yet.')
 			raise
 
-	def SetColor(self, col):
+	def set_color(self, col):
 		for frm in (self.frame1, self.frame2):
 			pa = pygame.PixelArray(frm)
 			pa.replace(self.oldcol, col)
 			del pa
 		self.oldcol = col
 
-	def SetFrameColor(self, frm, col):
+	def set_frame_color(self, frm, col):
 		pa = pygame.PixelArray(frm)
 		pa.replace(self.oldcol, col)
 		del pa
 
-	def SetBaseCol(self, col):
-		self.SetColor(col)
+	def set_base_col(self, col):
+		self.set_color(col)
 		self.basecol = col
 
-	def SetPulsation(self, pulsation):
+	def set_pulsation(self, pulsation):
 		self.pulsation = pulsation
 
-	def SetPulseRate(self, pulserate):
+	def set_pulse_rate(self, pulserate):
 		self.pulserate = pulserate
 
-	def SetDir(self, left):
+	def set_dir(self, left):
 		if left == self.left:
 			return
 		self.left = left
 		self.frame1 = pygame.transform.flip(self.frame1, True, False)
 		self.frame2 = pygame.transform.flip(self.frame2, True, False)
 
-	def SetLeft(self):
-		self.SetDir(True)
+	def set_left(self):
+		self.set_dir(True)
 
-	def SetRight(self):
-		self.SetDir(False)
+	def set_right(self):
+		self.set_dir(False)
 
-	def Flip(self):
+	def flip(self):
 		pygame.mixer.Sound('./data/snd/sfx/jump.wav').play()
 		self.flipped = not self.flipped
 		self.frame1 = pygame.transform.flip(self.frame1, False, True)
 		self.frame2 = pygame.transform.flip(self.frame2, False, True)
 
-	def SetSad(self, sad):
+	def set_sad(self, sad):
 		self.sad = sad
 		if sad:
 			self.frame1 = IMG_CHAR_SAD.copy()
@@ -122,159 +122,156 @@ class Character(pygame.sprite.Sprite):
 			self.frame1 = IMG_CHAR.copy()
 			self.frame2 = IMG_CHAR_WALKING.copy()
 		col = self.oldcol
-		self.oldcol = WHITE
-		self.SetColor(col)
+		self.oldcol = cf.WHITE
+		self.set_color(col)
 		self.frame1 = pygame.transform.flip(self.frame1, self.left, self.flipped)
 		self.frame2 = pygame.transform.flip(self.frame2, self.left, self.flipped)
 
-	def RefreshFrames(self):
+	def refresh_frames(self):
 		if self.sad:
-			self.SetSad(False)
-			self.SetSad(True)
+			self.set_sad(False)
+			self.set_sad(True)
 		else:
-			self.SetSad(True)
-			self.SetSad(False)
+			self.set_sad(True)
+			self.set_sad(False)
 
-	def SetHitFloor(self, hitfloor):
+	def set_hit_floor(self, hitfloor):
 		self.hitfloor = hitfloor
 		if hitfloor:
 			self.vy = 0
-			self.nextframe = time.time() + WALK_ANIM_TIME
+			self.nextframe = time.time() + cf.WALK_ANIM_TIME
 
-	def SetHitWall(self, hitwall):
+	def set_hit_wall(self, hitwall):
 		self.hitwall = hitwall
 		if hitwall:
 			self.vx = 0
 
-	def SetGoLeft(self, goleft):
+	def set_go_left(self, goleft):
 		self.goleft = goleft
 		if goleft:
-			self.nextframe = time.time() + WALK_ANIM_TIME
+			self.nextframe = time.time() + cf.WALK_ANIM_TIME
 
-	def SetGoRight(self, goright):
+	def set_go_right(self, goright):
 		self.goright = goright
 		if goright:
-			self.nextframe=time.time() + WALK_ANIM_TIME
+			self.nextframe = time.time() + cf.WALK_ANIM_TIME
 
-	def SetStandingOn(self, ent):
+	def set_standing_on(self, ent):
 		self.standingon = ent
 
-	def SetPos(self, x, y):
-		self.rect.center = (x, y)
-
-	def SetSpike(self, x, y):
+	def set_spike(self, x, y):
 		self.rect.bottomleft = (x, y)
 
-	def SetVel(self, vx, vy):
+	def set_vel(self, vx, vy):
 		if not self.hitwall:
 			self.vx = vx
 		if not self.hitfloor:
 			self.vy = vy
 
-	def Move(self):
+	def move(self):
 		if self.standingon:
 			self.rect.move_ip(self.standingon.vx + self.vx, self.standingon.vy + self.vy)
 		else:
 			self.rect.move_ip(self.vx, self.vy)
 
-	def MoveDelta(self, x, y):
+	def move_delta(self, x, y):
 		self.rect.move_ip(x, y)
 
-	def Kill(self):
+	def kill(self):
 		if not self.dead:
 			self.dead = True
 			self.wassad = self.sad
-			self.SetSad(True)
+			self.set_sad(True)
 			pygame.mixer.Sound('./data/snd/sfx/hurt.wav').play()
-			self.SetColor(DEAD)
-			self.SetFrameColor(self.frame2, DEADDARK)
-			self.nextframe = time.time() + random.uniform(DEAD_FLICKER_MIN, DEAD_FLICKER_MAX)
-			self.nextrevive = time.time() + REVIVE_TIME
+			self.set_color(cf.DEAD)
+			self.set_frame_color(self.frame2, cf.DEADDARK)
+			self.nextframe = time.time() + random.uniform(cf.DEAD_FLICKER_MIN, cf.DEAD_FLICKER_MAX)
+			self.nextrevive = time.time() + cf.REVIVE_TIME
 
-	def Revive(self):
+	def revive(self):
 		if self.dead:
 			self.dead = False
 			self.sad = self.wassad
-			self.RefreshFrames()
+			self.refresh_frames()
 			self.x_co = self.check_x
 			self.y_co = self.check_y
 			#print(self.x_co, self.check_x)
-			self.RestoreCheckpoint()
+			self.restore_checkpoint()
 			self.breakaway = 0
 
-	def RestoreCheckpoint(self):
+	def restore_checkpoint(self):
 		if not self.checkpoint:
 			return
 		if self.checkpoint[1] != self.flipped:
-			self.Flip()
+			self.flip()
 		self.rect.center = self.checkpoint[0]
 		self.vx = 0
 		self.vy = 0
-		self.SetHitFloor(False)
-		self.SetHitWall(False)
+		self.set_hit_floor(False)
+		self.set_hit_wall(False)
 
-	def SetCheckpointHere(self):
+	def set_checkpoint_here(self):
 		#pygame.mixer.Sound('./data/snd/sfx/save.wav').play()
 		self.check_x = self.x_co
 		self.check_y = self.y_co
 		self.checkpoint = (self.rect.center, self.flipped)
-		#self.isCheckpointSet(True)
+		#self.is_checkpoint_set(True)
 
-	def SetCheckpoint(self, x, y):
+	def set_checkpoint(self, x, y):
 		self.checkpoint_x = x
 		self.checkpoint_y = y
 		self.checkpoint = ((x, y), self.flipped)
 
-	def Teleport(self):
+	def teleport(self):
 		pygame.mixer.Sound('./data/snd/sfx/teleport.wav').play()
 		if not self.teleportpoint:
 			return
 		if self.teleportpoint[1] != self.flipped:
-			self.Flip()
+			self.flip()
 		self.rect.center = self.teleportpoint[0]
 		self.vx = 0
 		self.vy = 0
-		self.SetHitFloor(False)
-		self.SetHitWall(False)
+		self.set_hit_floor(False)
+		self.set_hit_wall(False)
 
-	#def Conveyer(self, hitfloor):
+	#def conveyer(self, hitfloor):
 	#	self.hitfloor = hitfloor
 	#	if hitfloor:
 	#		self.vx += self.conveyerspeed
-	#		self.nextframe = time.time() + WALK_ANIM_TIME
+	#		self.nextframe = time.time() + cf.WALK_ANIM_TIME
 
-	#def Breakaway(self):
+	#def breakaway(self):
 		#want it to remove images in order(or place), and then finally remove rect.
 
-	def Accelerate(self):
+	def accelerate(self):
 		if self.hitwall:
 			self.vx = 0
 		else:
-			ax = ((1 if self.goright else 0) - (1 if self.goleft else 0)) * XACCEL
+			ax = ((1 if self.goright else 0) - (1 if self.goleft else 0)) * cf.XACCEL
 			if ax == 0: #We want to stop moving...
 				if self.vx > 0:
-					ax = -XDECEL
+					ax = -cf.XDECEL
 				elif self.vx < 0:
-					ax = XDECEL
+					ax = cf.XDECEL
 			self.vx += ax
 
 			#Clip to terminal velocity
-			if self.vx > XTERM:
-				self.vx = XTERM
-			elif self.vx < -XTERM:
-				self.vx = -XTERM
+			if self.vx > cf.XTERM:
+				self.vx = cf.XTERM
+			elif self.vx < -cf.XTERM:
+				self.vx = -cf.XTERM
 
 		#Similar logic (but easier) logic on y
 		if self.hitfloor:
 			self.vy = 0
 		else:
-			self.vy += YGRAV * (-1 if self.flipped else 1)
-			if self.vy > YTERM:
-				self.vy = YTERM
-			elif self.vy < -YTERM:
-				self.vy = -YTERM
+			self.vy += cf.YGRAV * (-1 if self.flipped else 1)
+			if self.vy > cf.YTERM:
+				self.vy = cf.YTERM
+			elif self.vy < -cf.YTERM:
+				self.vy = -cf.YTERM
 
-	def Normalize(self, gamearea):#loops character
+	def normalize(self, gamearea):#loops character
 		if self.flipped:#y
 			if self.rect.bottom < 0:
 				self.y_co += 1
@@ -290,29 +287,11 @@ class Character(pygame.sprite.Sprite):
 			self.x_co += 1
 			self.rect.right = 0
 
-	'''
-	def Normal(self, gamearea):#changes to new area
-		if self.flipped:#y
-			if self.rect.bottom < 0:
-				#env = env[i][j-1]
-				self.rect.top = gamearea.bottom
-		else:
-			if self.rect.top > gamearea.bottom:
-				#env = env[i][j+1]
-				self.rect.bottom = 0
-		if self.rect.right < 0:#x
-			#env = env[i+1][j]
-			self.rect.left = gamearea.right
-		if self.rect.left > gamearea.right:
-			#env = env[i-1][j]
-			self.rect.right = 0
-	'''
-
-	def SetSprite(self):
+	def set_sprite(self):
 		#if self.vx and not self.vy:
 		if self.hitfloor and self.vx:
 			if time.time() > self.nextframe:
-				self.nextframe = time.time() + WALK_ANIM_TIME
+				self.nextframe = time.time() + cf.WALK_ANIM_TIME
 				if self.image == self.frame1:
 					self.image = self.frame2
 				else:
@@ -320,7 +299,7 @@ class Character(pygame.sprite.Sprite):
 		else:
 			self.image = self.frame1
 
-	def Pulsate(self):
+	def pulsate(self):
 		if self.pulsation == 0:
 			return
 		if self.pulserising:
@@ -333,139 +312,138 @@ class Character(pygame.sprite.Sprite):
 				self.pulserising = True
 			else:
 				self.pulsecur -= self.pulserate
-		self.SetColor(self.basecol + pygame.Color(int(self.pulsecur), int(self.pulsecur), int(self.pulsecur)))
+		self.set_color(self.basecol + pygame.Color(int(self.pulsecur), int(self.pulsecur), int(self.pulsecur)))
 
-	def Flicker(self):
+	def flicker(self):
 		if time.time() > self.nextframe:
-			self.nextframe = time.time() + random.uniform(DEAD_FLICKER_MIN, DEAD_FLICKER_MAX)
+			self.nextframe = time.time() + random.uniform(cf.DEAD_FLICKER_MIN, cf.DEAD_FLICKER_MAX)
 			if self.image == self.frame1:
 				self.image = self.frame2
 			else:
 				self.image = self.frame1
 		if time.time() > self.nextrevive:
-			self.Revive()
+			self.revive()
 
-	def Collide(self, geom):
+	def collide(self, geom):
 		#We're doing a preemptive collision test now -- the below code was unsatisfactory
-		colinfo = geom.TestRect(self.rect)
-		if colinfo[HITTOP][0] and self.flipped: #One does not simply headstand!
-			if getattr(colinfo[HITTOP][1], 'obstacle', False):
-				self.Kill()
-			ent = getattr(colinfo[HITTOP][1], 'ent', None)
+		colinfo = geom.test_rect(self.rect)
+		if colinfo[cf.HITTOP][0] and self.flipped: #One does not simply headstand!
+			if getattr(colinfo[cf.HITTOP][1], 'obstacle', False):
+				self.kill()
+			ent = getattr(colinfo[cf.HITTOP][1], 'ent', None)
 			if ent:
-				self.SetStandingOn(ent)
-			self.MoveDelta(0, colinfo[HITTOP][0])
-			self.SetHitFloor(True)
+				self.set_standing_on(ent)
+			self.move_delta(0, colinfo[cf.HITTOP][0])
+			self.set_hit_floor(True)
 
-		if colinfo[HITBOTTOM][0] and not self.flipped:
-			if getattr(colinfo[HITBOTTOM][1], 'obstacle', False):
-				self.Kill()
-			ent = getattr(colinfo[HITBOTTOM][1], 'ent', None)
+		if colinfo[cf.HITBOTTOM][0] and not self.flipped:
+			if getattr(colinfo[cf.HITBOTTOM][1], 'obstacle', False):
+				self.kill()
+			ent = getattr(colinfo[cf.HITBOTTOM][1], 'ent', None)
 			if ent:
-				self.SetStandingOn(ent)
-			self.MoveDelta(0, -colinfo[HITBOTTOM][0])
-			self.SetHitFloor(True)
+				self.set_standing_on(ent)
+			self.move_delta(0, -colinfo[cf.HITBOTTOM][0])
+			self.set_hit_floor(True)
 
-		if not (colinfo[HITTOP][0] or colinfo[HITBOTTOM][0]):
+		if not (colinfo[cf.HITTOP][0] or colinfo[cf.HITBOTTOM][0]):
 			#Hey, there's the possibility we're no longer standing on the floor...lessee
 			exprect = self.rect.inflate(2, 2)
-			col = geom.TestRect(exprect)
-			if not (col[HITTOP][0] or col[HITBOTTOM][0]):
-				self.SetHitFloor(False)
-				self.SetStandingOn(None)
+			col = geom.test_rect(exprect)
+			if not (col[cf.HITTOP][0] or col[cf.HITBOTTOM][0]):
+				self.set_hit_floor(False)
+				self.set_standing_on(None)
 
 		#Update with new collision info
-		if colinfo[HITTOP][0] or colinfo[HITBOTTOM][0]:
-			colinfo = geom.TestRect(self.rect)
+		if colinfo[cf.HITTOP][0] or colinfo[cf.HITBOTTOM][0]:
+			colinfo = geom.test_rect(self.rect)
 
-		if colinfo[HITLEFT][0]:
-			if getattr(colinfo[HITLEFT][1], 'obstacle', False):
-				self.Kill()
-			self.MoveDelta(colinfo[HITLEFT][0], 0)
-			self.SetHitWall(True)
+		if colinfo[cf.HITLEFT][0]:
+			if getattr(colinfo[cf.HITLEFT][1], 'obstacle', False):
+				self.kill()
+			self.move_delta(colinfo[cf.HITLEFT][0], 0)
+			self.set_hit_wall(True)
 
-		if colinfo[HITRIGHT][0]:
-			if getattr(colinfo[HITRIGHT][1], 'obstacle', False):
-				self.Kill()
-			self.MoveDelta(-colinfo[HITRIGHT][0], 0)
-			self.SetHitWall(True)
+		if colinfo[cf.HITRIGHT][0]:
+			if getattr(colinfo[cf.HITRIGHT][1], 'obstacle', False):
+				self.kill()
+			self.move_delta(-colinfo[cf.HITRIGHT][0], 0)
+			self.set_hit_wall(True)
 
-		if not (colinfo[HITLEFT][0] or colinfo[HITRIGHT][0]):
+		if not (colinfo[cf.HITLEFT][0] or colinfo[cf.HITRIGHT][0]):
 			#Hey, there's the possibility we're not hitting the wall
 			exprect = self.rect.inflate(2, 2)
-			col = geom.TestRect(exprect)
-			if not (col[HITLEFT][0] or col[HITRIGHT][0]):
-				self.SetHitWall(False)
+			col = geom.test_rect(exprect)
+			if not (col[cf.HITLEFT][0] or col[cf.HITRIGHT][0]):
+				self.set_hit_wall(False)
 
 		##Test for any collisions just outside our rect right now, and set appropriate movement constraints
 		#exprect = self.rect.inflate(2, 2)
-		#colinfo = geom.TestRect(exprect)
+		#colinfo = geom.test_rect(exprect)
 
-		#if colinfo[HITTOP][0] or colinfo[HITBOTTOM][0]:
-		#	self.SetHitFloor(True)
+		#if colinfo[cf.HITTOP][0] or colinfo[cf.HITBOTTOM][0]:
+		#	self.set_hit_floor(True)
 
-		#if colinfo[HITLEFT][0] or colinfo[HITRIGHT][0]:
-		#	self.SetHitWall(True)
+		#if colinfo[cf.HITLEFT][0] or colinfo[cf.HITRIGHT][0]:
+		#	self.set_hit_wall(True)
 
 		##Now interpolate any remaining movement axes over time to the next collision
 		#nextrect = self.rect.move(self.vx, self.vy) #FIXME -- lerp
-		#colinfo = geom.TestRect(nextrect)
+		#colinfo = geom.test_rect(nextrect)
 
-		#if colinfo[HITTOP][0] and self.vy < 0:
-		#	self.vy += colinfo[HITTOP][0]
-		#if colinfo[HITBOTTOM][0] and self.vy > 0:
-		#	self.vy -= colinfo[HITBOTTOM][0]
-		#if colinfo[HITLEFT][0] and self.vx < 0:
-		#	self.vx += colinfo[HITLEFT][0]
-		#if colinfo[HITRIGHT][0] and self.vx > 0:
-		#	self.vx -= colinfo[HITRIGHT][0]
+		#if colinfo[cf.HITTOP][0] and self.vy < 0:
+		#	self.vy += colinfo[cf.HITTOP][0]
+		#if colinfo[cf.HITBOTTOM][0] and self.vy > 0:
+		#	self.vy -= colinfo[cf.HITBOTTOM][0]
+		#if colinfo[cf.HITLEFT][0] and self.vx < 0:
+		#	self.vx += colinfo[cf.HITLEFT][0]
+		#if colinfo[cf.HITRIGHT][0] and self.vx > 0:
+		#	self.vx -= colinfo[cf.HITRIGHT][0]
 
-	def CollideEntities(self, ents):
+	def collide_entities(self, ents):
 		for ent in ents:
-			if ent.enttype == ENT_CHARACTER:
+			if ent.enttype == cf.ENT_CHARACTER:
 				continue #Never collide
 
-			coll = self.rect.clip(ExtRect.AsRect(ent.rect))
+			coll = self.rect.clip(ExtRect.as_rect(ent.rect))
 			if not (coll.width or coll.height):
 				continue #Not colliding
 
-			if ent.enttype == ENT_PLATFORM:
+			if ent.enttype == cf.ENT_PLATFORM:
 				#As a hack, this kind of entity usually inserts its own rect into the Geometry's
 				#rects (and updates it in place), so we don't have to worry about collisions.
 				#See collide for more info.
 				pass
-			elif ent.enttype == ENT_OBSTACLE:
-				self.Kill()
-			elif ent.enttype == ENT_TOKEN:
+			elif ent.enttype == cf.ENT_OBSTACLE:
+				self.kill()
+			elif ent.enttype == cf.ENT_TOKEN:
 				pygame.mixer.Sound('./data/snd/sfx/souleyeminijingle.wav').play()
 				self.tokens += 1
-			elif ent.enttype == ENT_CHECKPOINT:
-				self.SetCheckpointHere()
-			elif ent.enttype == ENT_SCRIPTED:
-				ent.OnCharCollide(self)
-			elif ent.enttype == ENT_PORTAL:
-				self.Teleport()
-			#elif ent.enttype == ENT_INVERTER:
-			#	self.Flip()
-			#elif ent.enttype == ENT_CONVEYER_A:
-			#	self.Conveyer()
-			#elif ent.enttype == ENT_CONVEYER_B:
-			#	self.Conveyer()
-			elif ent.enttype==ENT_BREAKAWAY:
+			elif ent.enttype == cf.ENT_CHECKPOINT:
+				self.set_checkpoint_here()
+			elif ent.enttype == cf.ENT_SCRIPTED:
+				ent.on_char_collide(self)
+			elif ent.enttype == cf.ENT_PORTAL:
+				self.teleport()
+			#elif ent.enttype == cf.ENT_INVERTER:
+			#	self.flip()
+			#elif ent.enttype == cf.ENT_CONVEYER_A:
+			#	self.conveyer()
+			#elif ent.enttype == cf.ENT_CONVEYER_B:
+			#	self.conveyer()
+			elif ent.enttype == cf.ENT_BREAKAWAY:
 				self.breakaway += 1
-			elif ent.enttype == ENT_EMPTY:
+			elif ent.enttype == cf.ENT_EMPTY:
 				pass
 
 	def update(self, gamearea, env=None):
 		if self.dead:
-			self.Flicker()
+			self.flicker()
 		else:
-			self.Accelerate()
-			self.Move()
-			self.Normalize(gamearea)
-			#self.Normal(gamearea)
-			self.Pulsate()
-			self.SetSprite()
+			self.accelerate()
+			self.move()
+			self.normalize(gamearea)
+			self.pulsate()
+			self.set_sprite()
 		if env:
-			self.Collide(env.geometry)
-			self.CollideEntities(env.entities)
+			self.collide(env.geometry)
+			self.collide_entities(env.entities)

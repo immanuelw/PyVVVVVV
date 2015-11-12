@@ -13,13 +13,13 @@ class ExtRect(object):
         self._rect = pygame.Rect(*args, **kwargs)
 
     @classmethod
-    def Wrap(cls, obj):
+    def wrap(cls, obj):
         if isinstance(obj, ExtRect):
             return obj
         return cls(obj)
 
     @classmethod
-    def AsRect(cls, obj):
+    def as_rect(cls, obj):
         if isinstance(obj, pygame.Rect):
             return obj
         return obj._rect

@@ -11,7 +11,7 @@ collection of all the entities in that tile.
 '''
 import pygame
 from pygame.locals import *
-from config import *
+import config as cf
 
 class Environment(object):
 	def __init__(self, area, geometry, image, background, entities):
@@ -24,10 +24,10 @@ class Environment(object):
 		self.dodebugdraw = False
 		for ent in self.entities:
 			#Call it a hack...
-			if ent.enttype == ENT_PLATFORM:
-				geometry.AddRect(ent.rect)
+			if ent.enttype == cf.ENT_PLATFORM:
+				geometry.add_rect(ent.rect)
 				ent.rect.ent = ent
-			elif ent.enttype == ENT_CHARACTER:
+			elif ent.enttype == cf.ENT_CHARACTER:
 				self.characters.add(ent)
 
 	def draw(self, surf):
@@ -36,16 +36,16 @@ class Environment(object):
 		for ent in self.entities:
 			ent.draw(surf)
 
-	def AddEntity(self, ent):
-		if ent.enttype == ENT_PLATFORM:
-			self.geometry.AddRect(ent.rect)
+	def add_entity(self, ent):
+		if ent.enttype == cf.ENT_PLATFORM:
+			self.geometry.add_rect(ent.rect)
 			ent.rect.ent = ent
-		elif ent.enttype == ENT_CHARACTER:
+		elif ent.enttype == cf.ENT_CHARACTER:
 			self.characters.add(ent)
 		self.entities.add(ent)
 
-	def RemoveEntity(self, ent):
-		self.geometry.RemoveRect(ent.rect)
+	def remove_entity(self, ent):
+		self.geometry.remove_rect(ent.rect)
 		self.characters.discard(ent)
 		self.entities.discard(ent)
 

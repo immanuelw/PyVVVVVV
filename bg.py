@@ -6,7 +6,6 @@ Defines the basic set of backgrounds.
 '''
 import pygame
 from pygame.locals import *
-from config import *
 from img import img_dict
 
 class Background(object):
@@ -19,9 +18,9 @@ class Background(object):
 	def draw(self, surf):
 		surf.blit(self.image, (0, 0))
 		#self.image.scroll(self.dx, self.dy)
-		self.Scroll()
+		self.scroll()
 
-	def Scroll(self):
+	def scroll(self):
 		#Ouch.
 		img2 = self.image.copy()
 		pa2 = pygame.PixelArray(img2)
