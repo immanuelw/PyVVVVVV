@@ -2,6 +2,7 @@ data
 *.idea*
 build
 dist
+*.json
 *.pyc
 .*.swp
 .*.swo
