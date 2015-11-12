@@ -188,7 +188,7 @@ spikesU_8_6 = MovingEntity(image='./data/img/spikesU8.png', dx=184, dy=48, vx=0,
 
 #{1: {3: [{'img_file': 'filename', 'dx': 174, 'dy': 37, 'vx': 0, 'vy': 0, 'etype': 2}, ...], 4: ...}. 2: {...}}
 #{'filename': pygame_image_object}
-#ent_list = {x_co: {y_co: (MovingEntity(img_dict[ent['img_file']], dx=ent['dx'], dy=ent['dy'], vx=ent['vx'], vy=ent['vy'], etype=ent['etype'])\
+#ent_list = {x_co: {y_co: (MovingEntity(image=ent['img_file'], dx=ent['dx'], dy=ent['dy'], vx=ent['vx'], vy=ent['vy'], etype=ent['etype'])\
 #							for ent in ent_dict[x_co][y_co]) for y_co in range(7) if (x_co, y_co) in level_array} for x_co in range(7)}
 
 
