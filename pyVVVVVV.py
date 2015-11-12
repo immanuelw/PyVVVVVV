@@ -62,6 +62,13 @@ if __name__ == '__main__':
 	pygame.display.set_caption('VVVVVV')
 
 	while True:
+		#switches environments upon moving screens, NEEDS CHECKPOINT FIXING?
+		if old_x != char.x_co or old_y != char.y_co:
+			#print('changed screen to', char.x_co, '-', char.y_co)
+			old_x = char.x_co
+			old_y = char.y_co
+			envi = Environment(*env_create(char.x_co, char.y_co))
+
 		gamesurf.fill(BLACK)
 		g.DebugRender(gamesurf)
 
@@ -70,13 +77,6 @@ if __name__ == '__main__':
 
 		#can do selective physics by making rules only apply to certain list:
 		#	create array where char.x_co, char.y_co have value which says how physics works
-
-		#switches environments upon moving screens, NEEDS CHECKPOINT FIXING?
-		if old_x != char.x_co or old_y != char.y_co:
-			#print('changed screen to', char.x_co, '-', char.y_co)
-			old_x = char.x_co
-			old_y = char.y_co
-			envi = Environment(*env_create(char.x_co, char.y_co))
 
 		envi.update()
 		envi.draw(gamesurf)
