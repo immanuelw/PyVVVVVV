@@ -21,6 +21,8 @@ char.SetPulseRate(VIRIDIAN_PULSERATE)
 
 g = Geometry()
 
+rect_dict = {x_co: {y_co: [pygame.Rect(*rect) for rect in rect_list[x_co][y_co]] for y_co in range(7) if (x_co, y_co) in level_array} for x_co in range(7)}
+
 bg = Background('./data/img/bg_cross.png', GAMERECT, 1, 0)
 
 plat1 = MovingEntity(image='./data/img/plat_o.png', dx=100, dy=70, vx=0, vy=0, etype=ENT_PLATFORM)
@@ -254,7 +256,7 @@ def env_1_2():
 
 
 def env_create(x_co, y_co):
-	g.rects = [pygame.Rect(*rect) for rect in rect_list[x_co][y_co]]
+	g.rects = rect_dict[x_co][y_co]]
 	#stuff = tuple(ent for ent in ent_list[x_co][y_co])
 	stuff = (gc,)
 	env = [GAMERECT, g, imgs[x_co][y_co], bg, (char,)+stuff]
@@ -262,7 +264,8 @@ def env_create(x_co, y_co):
 	return env
 
 def env_1_3():
-	g.rects = [pygame.Rect(*rect) for rect in rect_list[1][3]]
+	g.rects = rect_dict[1][3]
+	#g.rects = [pygame.Rect(*rect) for rect in rect_list[1][3]]
 
 	#initalizes all parts of screen
 	env = [GAMERECT, g, imgs[1][3], bg, (char,)]
