@@ -30,6 +30,7 @@ def save_game(char, backup_path):
 					'checkpoint': char.checkpoint,
 					'pulsation': char.pulsation,
 					'pulse_rate': char.pulse_rate}
+
 	with open(backup_path, 'w') as bkup:
 		json.dump(char_data, bkup, sort_keys=True, indent=4)
 
