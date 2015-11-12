@@ -9,12 +9,13 @@ import pygame
 from pygame.locals import *
 from extrect import ExtRect
 from config import *
+from img import img_dict
 
 class Entity(pygame.sprite.Sprite):
 	#A basic entity inherits all sprite properties.
 	def __init__(self, image, dx=0, dy=0, etype=ENT_OBSTACLE):
-		self.image = image
-		self.rect = ExtRect.Wrap(image.get_rect())
+		self.image = img_dict[image]
+		self.rect = ExtRect.Wrap(self.image.get_rect())
 		self.enttype = etype
 		self.dx = dx
 		self.dy = dy

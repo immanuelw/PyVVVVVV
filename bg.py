@@ -7,10 +7,11 @@ Defines the basic set of backgrounds.
 import pygame
 from pygame.locals import *
 from config import *
+from img import img_dict
 
 class Background(object):
 	def __init__(self, image, area, dx, dy):
-		self.image = image
+		self.image = img_dict[image]
 		self.area = area
 		self.dx = dx
 		self.dy = dy
