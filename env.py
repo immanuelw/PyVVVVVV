@@ -22,22 +22,22 @@ class Environment(object):
 	remove_entity | removes entity from environment
 	update | updates all entities
 	'''
-	def __init__(self, area, geometry, image, background, entities):
+	def __init__(self, area, background, geometry, image, entities):
 		'''
 		assigns area object, geometry object, image, background object, and list of entities
 
 		Parameters
 		----------
 		area | object: screen area rect object
+		background | background object
 		geometry | object: geometry object
 		image | object: level image object
-		background | background object
 		entities | list: list of entities
 		'''
 		self.area = area
+		self.background = background
 		self.geometry = geometry
 		self.image = image
-		self.background = background
 		self.entities = set(entities)
 		self.characters = set()
 		self.checkpoints = set()

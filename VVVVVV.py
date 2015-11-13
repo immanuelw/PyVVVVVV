@@ -1,4 +1,13 @@
-#Testing the entire Environment
+'''
+VVVVVV | runs the game
+
+author | Immanuel Washington
+
+Functions
+---------
+env_create | pulls in all information needed to create environment
+save_game | saves game to json file
+'''
 from __future__ import print_function
 import sys
 import random
@@ -13,14 +22,38 @@ import config as cf
 import levels as lv
 from img import imgs, img_dict
 
-def env_create(GAMERECT, g, bg, char):
+def env_create(g, char):
+	'''
+	outputs all info needed to create environment
+	sets environment rects and img
+
+	Parameters
+	----------
+	g | object: geometry object
+	char | object: character object
+
+	Returns
+	-------
+	tuple:
+		object: geometry object
+		object: image object
+		list[object]: list of entity objects
+	'''
 	g.rects = lv.rect_dict[char.x_co][char.y_co]
 	entities = tuple(ent for ent in lv.ent_list[char.x_co][char.y_co])
-	env = [GAMERECT, g, imgs[char.x_co][char.y_co], bg, (char,) + entities]
+	env = [g, imgs[char.x_co][char.y_co], (char,) + entities]
 
 	return env
 
-def save_game(char, backup_path):
+def save_game(char, save_path):
+	'''
+	saves game to json file
+
+	Parameters
+	----------
+	char | object: character object
+	save_path | str: path of file to save json to
+	'''
 	char_data = {'x': char.rect.bottomleft[0],
 					'y': char.rect.bottomleft[1],
 					'x_co': char.x_co,
@@ -31,8 +64,8 @@ def save_game(char, backup_path):
 					'pulsation': char.pulsation,
 					'pulse_rate': char.pulse_rate}
 
-	with open(backup_path, 'w') as bkup:
-		json.dump(char_data, bkup, sort_keys=True, indent=4)
+	with open(save_path, 'w') as save_file:
+		json.dump(char_data, save_file, sort_keys=True, indent=4)
 
 if __name__ == '__main__':
 	pygame.init()
@@ -45,11 +78,11 @@ if __name__ == '__main__':
 	g = Geometry()
 
 	char = Character(color=cf.VIRIDIAN_BASE, x=50, y=188, x_co=1, y_co=3, pulsation=cf.VIRIDIAN_PULSATION, pulse_rate=cf.VIRIDIAN_PULSERATE)
-	backup_path = 'save.json'
+	save_path = 'save.json'
 	if len(sys.argv) > 1:
 		if sys.argv[1] == 'save':
-			with open(backup_path, 'r') as bkup:
-				char = Character(color=cf.VIRIDIAN_BASE, **json.load(bkup))
+			with open(save_path, 'r') as save_file:
+				char = Character(color=cf.VIRIDIAN_BASE, **json.load(save_file))
 
 	bg = Background('./data/img/bg_cross.png', cf.GAMERECT, 1, 0)
 
@@ -63,7 +96,7 @@ if __name__ == '__main__':
 	cooldown = 0
 	endgame = 0
 
-	envi = Environment(*env_create(cf.GAMERECT, g, bg, char))
+	envi = Environment(cf.GAMERECT, bg, *env_create(g, char))
 
 	if random.randint(0, 1) == 0:
 		pygame.mixer.music.load('./data/snd/bgm/07 - Positive Force.mp3')
@@ -76,12 +109,10 @@ if __name__ == '__main__':
 	pygame.display.set_caption('VVVVVV')
 
 	while True:
-		#switches environments upon moving screens, NEEDS CHECKPOINT FIXING?
 		if old_x != char.x_co or old_y != char.y_co:
-			#print('changed screen to', char.x_co, '-', char.y_co)
 			old_x = char.x_co
 			old_y = char.y_co
-			envi = Environment(*env_create(cf.GAMERECT, g, bg, char))
+			envi = Environment(cf.GAMERECT, bg, *env_create(g, char))
 
 		gamesurf.fill(cf.BLACK)
 		g.debug_render(gamesurf)
@@ -89,18 +120,12 @@ if __name__ == '__main__':
 		if (char.x_co, char.y_co) == (last_x, last_y): #placeholder for specifying rooms in which active
 			stopper += 1
 
-		#can do selective physics by making rules only apply to certain list:
-		#	create array where char.x_co, char.y_co have value which says how physics works
-
 		envi.update()
 		envi.draw(gamesurf)
 		pygame.transform.scale(gamesurf, (backbuf.get_width(), backbuf.get_height()), backbuf)
 		window.blit(backbuf, (0, 0))
 		pygame.display.update()
 
-		#char.set_on_wall(False)
-		#char.set_on_floor(False)
-		#print(char.vx, char.vy)
 		if stopper < 1:
 			for ev in pygame.event.get():
 				if ev.type == QUIT:
@@ -135,7 +160,7 @@ if __name__ == '__main__':
 					elif ev.key == K_r:
 						char.revive()
 					elif ev.key == K_w:
-						save_game(char, backup_path)
+						save_game(char, save_path)
 				elif ev.type == KEYUP:
 					if ev.key == K_LEFT:
 						char.set_go_left(False)
