@@ -11,8 +11,9 @@ from __future__ import print_function
 import time
 import random
 import pygame
-from extrect import ExtRect
 import config as cf
+import levels as lv
+from extrect import ExtRect
 from img import img_dict
 
 IMG_CHAR = pygame.image.load('./data/img/char.png')
@@ -117,7 +118,6 @@ class Character(pygame.sprite.Sprite):
 		self.last_checkpoint = last_checkpoint #id of last checkpoint
 		self.tokens = [] if tokens is None else tokens
 		self.teleportpoint = None
-		#self.breakaway = 0
 		self.set_color(color)
 		self.enttype = enttype
 
@@ -381,9 +381,7 @@ class Character(pygame.sprite.Sprite):
 			self.refresh_frames()
 			self.x_co = self.check_x
 			self.y_co = self.check_y
-			#print(self.x_co, self.check_x)
 			self.restore_checkpoint()
-			#self.breakaway = 0
 
 	def restore_checkpoint(self):
 		'''
@@ -453,12 +451,6 @@ class Character(pygame.sprite.Sprite):
 	#	if on_floor:
 	#		self.vx += self.conveyerspeed
 	#		self.next_frame = time.time() + cf.WALK_ANIM_TIME
-
-	#def breakaway(self):
-	#	'''
-	#	breakaway blocks
-	#	'''
-		#want it to remove images in order(or place), and then finally remove rect.
 
 	def accelerate(self):
 		'''
@@ -541,9 +533,13 @@ class Character(pygame.sprite.Sprite):
 					self.pulse_cur -= self.pulse_rate
 			self.set_color(self.base_color + pygame.Color(int(self.pulse_cur), int(self.pulse_cur), int(self.pulse_cur)))
 
-	def flicker(self):
+	def flicker(self, env):
 		'''
-		flickers character image
+		flickers character image and refreshes breakaway blocks
+
+		Parameters
+		----------
+		env | object: environment object
 		'''
 		if time.time() > self.next_frame:
 			self.next_frame = time.time() + random.uniform(cf.DEAD_FLICKER_MIN, cf.DEAD_FLICKER_MAX)
@@ -553,6 +549,14 @@ class Character(pygame.sprite.Sprite):
 				self.image = self.frame1
 		if time.time() > self.next_revive:
 			self.revive()
+			if env:
+				for ent in env.entities:
+					if ent.enttype == cf.ENT_BREAKAWAY:
+						ent.is_breaking = False
+						ent.counter = 0
+						ent.image = img_dict['./data/img/plat_o.png']
+						env.geometry.add_rect(ent.rect)
+				env.entities = set((self,) + tuple(ent for ent in lv.ent_list[self.x_co][self.y_co]))
 
 	def collide(self, geom):
 		'''
@@ -570,6 +574,8 @@ class Character(pygame.sprite.Sprite):
 			ent = getattr(colinfo[cf.HITTOP][1], 'ent', None)
 			if ent:
 				self.set_standing_on(ent)
+				if ent.enttype == cf.ENT_BREAKAWAY:
+					self.breakaway(ent)
 			self.move_delta(0, colinfo[cf.HITTOP][0])
 			self.set_on_floor(True)
 
@@ -579,6 +585,8 @@ class Character(pygame.sprite.Sprite):
 			ent = getattr(colinfo[cf.HITBOTTOM][1], 'ent', None)
 			if ent:
 				self.set_standing_on(ent)
+				if ent.enttype == cf.ENT_BREAKAWAY:
+					self.breakaway(ent)
 			self.move_delta(0, -colinfo[cf.HITBOTTOM][0])
 			self.set_on_floor(True)
 
@@ -636,6 +644,19 @@ class Character(pygame.sprite.Sprite):
 		#if colinfo[cf.HITRIGHT][0] and self.vx > 0:
 		#	self.vx -= colinfo[cf.HITRIGHT][0]
 
+	def breakaway(self, ent):
+		'''
+		sets breakaway entity attributes
+
+		Parameters
+		----------
+		ent | breakaway entity object
+		'''
+		is_breaking = getattr(ent, 'is_breaking', False)
+		if not is_breaking:
+			ent.counter = 0
+			ent.is_breaking = True
+
 	def collide_entities(self, ents):
 		'''
 		checks for collison with entitites and performs appropriate action
@@ -671,8 +692,8 @@ class Character(pygame.sprite.Sprite):
 			#	self.flip()
 			#elif ent.enttype in (cf.ENT_CONVEYER_A, cf.ENT_CONVEYER_B):
 			#	self.conveyer()
-			#elif ent.enttype == cf.ENT_BREAKAWAY:
-			#	self.breakaway += 1
+			elif ent.enttype == cf.ENT_BREAKAWAY:
+				self.breakaway(ent)
 			elif ent.enttype == cf.ENT_EMPTY:
 				pass
 
@@ -686,7 +707,7 @@ class Character(pygame.sprite.Sprite):
 		env | Optional[object]: environment object --defaults to None
 		'''
 		if self.is_dead:
-			self.flicker()
+			self.flicker(env)
 		else:
 			self.accelerate()
 			self.move()

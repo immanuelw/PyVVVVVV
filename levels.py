@@ -49,8 +49,8 @@ ent_dict = \
 	4:
 		[{'name': 'checkpoint5', 'image': './data/img/checkpointBW.png', 'dx': 60, 'dy': 124, 'vx': 0, 'vy': 0, 'etype': cf.ENT_CHECKPOINT},
 		{'name': 'checkpoint6', 'image': './data/img/checkpointBW.png', 'dx': 280, 'dy': 220, 'vx': 0, 'vy': 0, 'etype': cf.ENT_CHECKPOINT},
-		{'name': 'plat1', 'image': './data/img/plat_o.png', 'dx': 100, 'dy': 70, 'vx': 0, 'vy': 0, 'etype': cf.ENT_PLATFORM},
-		{'name': 'plat2', 'image': './data/img/plat_o.png', 'dx': 120, 'dy': 70, 'vx': 0, 'vy': 0, 'etype': cf.ENT_PLATFORM},
+		{'name': 'plat1', 'image': './data/img/plat_o.png', 'dx': 100, 'dy': 70, 'vx': 0, 'vy': 0, 'etype': cf.ENT_BREAKAWAY},
+		{'name': 'plat2', 'image': './data/img/plat_o.png', 'dx': 140, 'dy': 70, 'vx': 0, 'vy': 0, 'etype': cf.ENT_BREAKAWAY},
 		{'name': 'plath1', 'image': './data/img/plat_o.png', 'dx': 52, 'dy': 166, 'vx': 1, 'vy': 0, 'etype': cf.ENT_PLATFORM},
 		{'name': 'spikesU_5_2', 'image': './data/img/spikesU5.png', 'dx': 52, 'dy': 159, 'vx': 0, 'vy': 0, 'etype': cf.ENT_OBSTACLE},
 		{'name': 'spikesU_5_3', 'image': './data/img/spikesU5.png', 'dx': 102, 'dy': 159, 'vx': 0, 'vy': 0, 'etype': cf.ENT_OBSTACLE},
