@@ -7,6 +7,7 @@ Classes
 -------
 Environment | creates environment object
 '''
+from __future__ import print_function
 import config as cf
 from img import img_dict
 
@@ -80,9 +81,12 @@ class Environment(object):
 		if ent.enttype == cf.ENT_PLATFORM:
 			self.geometry.add_rect(ent.rect)
 			ent.rect.ent = ent
+		elif ent.enttype == cf.ENT_BREAKAWAY:
+			self.geometry.add_rect(ent.rect)
+			ent.rect.ent = ent
 		elif ent.enttype == cf.ENT_CHARACTER:
 			self.characters.add(ent)
-		self.entities.add(ent)
+		#self.entities.add(ent)
 
 	def remove_entity(self, ent):
 		'''
@@ -126,9 +130,6 @@ class Environment(object):
 					if ent.counter == 15:
 						ent.image = img_dict['./data/img/plat_p.png']
 					elif ent.counter == 30:
-						ent.counter = 0
-						ent.is_breaking = False
-						ent.image = img_dict['./data/img/plat_o.png']
 						remove_ents.append(ent)
 			ent.update(self.area, self)
 

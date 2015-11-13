@@ -7,6 +7,7 @@ Classes
 -------
 Geometry | creates geometry object
 '''
+from __future__ import print_function
 import pygame
 from extrect import ExtRect
 import config as cf
@@ -42,6 +43,7 @@ class Geometry(object):
 		rect | object : rect object
 		'''
 		self.rects.append(rect)
+		print('added')
 
 	def remove_rect(self, rect):
 		'''
@@ -51,10 +53,8 @@ class Geometry(object):
 		----------
 		rect | object : rect object
 		'''
-		try:
-			self.rects.remove(rect)
-		except ValueError:
-			pass
+		self.rects.remove(rect)
+		print('removed')
 
 	def test_rect(self, rect):
 		'''

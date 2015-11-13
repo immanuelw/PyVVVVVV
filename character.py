@@ -550,13 +550,14 @@ class Character(pygame.sprite.Sprite):
 		if time.time() > self.next_revive:
 			self.revive()
 			if env:
+				env.entities = set((self,) + tuple(ent for ent in lv.ent_list[self.x_co][self.y_co]))
 				for ent in env.entities:
 					if ent.enttype == cf.ENT_BREAKAWAY:
+						if getattr(ent, 'is_breaking', False):
+							env.add_entity(ent)
 						ent.is_breaking = False
 						ent.counter = 0
 						ent.image = img_dict['./data/img/plat_o.png']
-						env.geometry.add_rect(ent.rect)
-				env.entities = set((self,) + tuple(ent for ent in lv.ent_list[self.x_co][self.y_co]))
 
 	def collide(self, geom):
 		'''
