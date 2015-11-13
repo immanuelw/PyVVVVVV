@@ -61,6 +61,8 @@ def save_game(char, save_path):
 					'check_x': char.check_x,
 					'check_y': char.check_y,
 					'checkpoint': char.checkpoint,
+					'last_checkpoint': char.last_checkpoint,
+					'tokens': char.tokens,
 					'pulsation': char.pulsation,
 					'pulse_rate': char.pulse_rate}
 

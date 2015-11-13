@@ -50,6 +50,7 @@ class Character(pygame.sprite.Sprite):
 	revive | revive character
 	restore_checkpoint | restore character position to last checkpoint
 	set_checkpoint_here | set checkpoint position
+	get_token | adds token to character
 	teleport | teleports character to certain position
 	accelerate | accelerates character
 	normalize | changes screen upon moving past area boundaries
@@ -60,8 +61,8 @@ class Character(pygame.sprite.Sprite):
 	collide_entities | checks for collisions with entity objects
 	update | updates character object
 	'''
-	def __init__(self, color, x, y, x_co=1, y_co=3, check_x=1, check_y=3, checkpoint=((50, 188), False),
-						pulsation=0, pulse_rate=1, enttype=cf.ENT_CHARACTER):
+	def __init__(self, color, x, y, x_co=1, y_co=3, check_x=1, check_y=3, checkpoint=((50, 188), False), last_checkpoint=None,
+						pulsation=0, pulse_rate=1, tokens=None, enttype=cf.ENT_CHARACTER):
 		'''
 		initializes attributes for the character object
 
@@ -75,8 +76,10 @@ class Character(pygame.sprite.Sprite):
 		check_x | Optional[int]: x value of level array for checkpoint -- defaults to 1
 		check_y | Optional[int]: y value of level array for checkpoint -- defaults to 3
 		checkpoint | tuple: tuple of coordinates of checkpoint and boolean value if character is flipped
+		last_checkpoint | str: name of last checkpoint --defaults to None
 		pulsation | int: pulsation number --defaults to 0
 		pulse_rate | int: rate of pulsation -- defaults to 1
+		tokens | list[str]: names of tokens collected --defaults to empty list
 		enttype | int: entity type --defaults to cf.ENT_CHARACTER
 		'''
 		pygame.sprite.Sprite.__init__(self)
@@ -111,9 +114,9 @@ class Character(pygame.sprite.Sprite):
 		self.go_right = False #Apply positive accel x
 		self.standing_on = None #An entity whose vx,vy is added to ours
 		self.checkpoint = checkpoint
-		self.last_checkpoint = None #id of last checkpoint
+		self.last_checkpoint = last_checkpoint #id of last checkpoint
+		self.tokens = [] if tokens is None else tokens
 		self.teleportpoint = None
-		self.tokens = 0
 		#self.breakaway = 0
 		self.set_color(color)
 		self.enttype = enttype
@@ -410,6 +413,19 @@ class Character(pygame.sprite.Sprite):
 			self.check_y = self.y_co
 			self.checkpoint = (self.rect.bottomleft, self.is_flipped)
 
+	def get_token(self, ent):
+		'''
+		adds token to character
+
+		Parameters
+		----------
+		ent | object: token entity object
+		'''
+		if ent.name not in self.tokens:
+			pygame.mixer.Sound('./data/snd/sfx/souleyeminijingle.wav').play()
+			self.tokens.append(ent.name)
+			self.tokens = list(set(self.tokens))
+
 	def teleport(self):
 		'''
 		teleport character
@@ -644,8 +660,7 @@ class Character(pygame.sprite.Sprite):
 			elif ent.enttype == cf.ENT_OBSTACLE:
 				self.kill()
 			elif ent.enttype == cf.ENT_TOKEN:
-				pygame.mixer.Sound('./data/snd/sfx/souleyeminijingle.wav').play()
-				self.tokens += 1
+				self.get_token(ent)
 			elif ent.enttype == cf.ENT_CHECKPOINT:
 				self.set_checkpoint_here(ent)
 			elif ent.enttype == cf.ENT_SCRIPTED:

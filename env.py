@@ -112,4 +112,8 @@ class Environment(object):
 						ent.image = img_dict['./data/img/checkpointBW.png']
 					elif ent.image == img_dict['./data/img/checkpointU.png']:
 						ent.image = img_dict['./data/img/checkpointUBW.png']
+			elif ent.enttype == cf.ENT_TOKEN:
+				if ent.name in char.tokens:
+					ent.image = img_dict['./data/img/empty.png']
+				
 			ent.update(self.area, self)
