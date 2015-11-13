@@ -1,8 +1,11 @@
 '''
-Py6V -- Pythonic VVVVVV
-character -- Character sprites
+character | creates character object
 
-Defines the sprites which are used to render characters.
+author | Immanuel Washington
+
+Classes
+---------
+Character | defines character object
 '''
 from __future__ import print_function
 import time
@@ -17,8 +20,64 @@ IMG_CHAR_WALKING = pygame.image.load('./data/img/char_walking.png')
 IMG_CHAR_WALKING_SAD = pygame.image.load('./data/img/char_walking_sad.png')
 
 class Character(pygame.sprite.Sprite):
+	'''
+	instantaties character class that inherits all of pygame Sprite's properties
+
+	Methods
+	-------
+	draw | draws character on screen
+	set_color | sets character color
+	set_frame_color | set character color
+	set_base_color | sets character's base color
+	set_pulsation | set pulsation
+	set_pulse_rate | set pulse rate
+	set_dir | sets character image direction
+	set_left | changes character image to the left
+	set_right | changes character image to the right
+	flip | flips character model and changes gravity
+	set_sad | sets image of character to sad or happy
+	refresh_frames | switches back and forth between happy and sad images
+	set_on_floor | set bool value to on floor
+	set_on_wall | set bool value to on wall
+	set_go_left | set bool value to left
+	set_go_right | set bool value to right
+	set_standing_on | set entity to add velocity to character
+	set_vel | set velocity of character
+	move | moves character with extra velocity
+	move_delta | moves character
+	kill | kill character
+	revive | revive character
+	restore_checkpoint | restore character position to last checkpoint
+	set_checkpoint_here | set checkpoint position
+	teleport | teleports character to certain position
+	accelerate | accelerates character
+	normalize | changes screen upon moving past area boundaries
+	set_sprite | sets sprite image
+	pulsate | sets pulsate colors
+	flicker | sets flicker colors and revives character
+	collide | checks for collisions with rect objects
+	collide_entities | checks for collisions with entity objects
+	update | updates character object
+	'''
 	def __init__(self, color, x, y, x_co=1, y_co=3, check_x=1, check_y=3, checkpoint=((50, 188), False),
 						pulsation=0, pulse_rate=1, enttype=cf.ENT_CHARACTER):
+		'''
+		initializes attributes for the character object
+
+		Parameters
+		----------
+		color | object: color object
+		x | int: x coordinate of object to place bottom-left point
+		y | int: y coordinate of object to place bottom-left point
+		x_co | Optional[int]: x value of level array -- defaults to 1
+		y_co | Optional[int]: y value of level array -- defaults to 3
+		check_x | Optional[int]: x value of level array for checkpoint -- defaults to 1
+		check_y | Optional[int]: y value of level array for checkpoint -- defaults to 3
+		checkpoint | tuple: tuple of coordinates of checkpoint and boolean value if character is flipped
+		pulsation | int: pulsation number --defaults to 0
+		pulse_rate | int: rate of pulsation -- defaults to 1
+		enttype | int: entity type --defaults to cf.ENT_CHARACTER
+		'''
 		pygame.sprite.Sprite.__init__(self)
 		self.frame1 = IMG_CHAR.copy()
 		self.frame2 = IMG_CHAR_WALKING.copy()
@@ -49,7 +108,7 @@ class Character(pygame.sprite.Sprite):
 		self.on_wall = False #vx constrained to 0
 		self.go_left = False #Apply negative accel x
 		self.go_right = False #Apply positive accel x
-		self.standingon = None #An entity whose vx,vy is added to ours
+		self.standing_on = None #An entity whose vx,vy is added to ours
 		self.checkpoint = checkpoint
 		self.teleportpoint = None
 		self.tokens = 0
@@ -58,6 +117,13 @@ class Character(pygame.sprite.Sprite):
 		self.enttype = enttype
 
 	def draw(self, surf):
+		'''
+		draw image as surface object on screen
+
+		Parameters
+		----------
+		surf | object: surface object
+		'''
 		try:
 			surf.blit(self.image, self.rect.topleft)
 		except TypeError:
@@ -66,6 +132,13 @@ class Character(pygame.sprite.Sprite):
 			raise
 
 	def set_color(self, color):
+		'''
+		sets character color
+
+		Parameters
+		----------
+		color | object: color object
+		'''
 		for frm in (self.frame1, self.frame2):
 			pa = pygame.PixelArray(frm)
 			pa.replace(self.old_color, color)
@@ -73,39 +146,93 @@ class Character(pygame.sprite.Sprite):
 		self.old_color = color
 
 	def set_frame_color(self, frm, color):
+		'''
+		sets frame color
+
+		Parameters
+		----------
+		frm | object: image object
+		color | object: color object
+		'''
 		pa = pygame.PixelArray(frm)
 		pa.replace(self.old_color, color)
 		del pa
 
 	def set_base_color(self, color):
+		'''
+		sets character color
+
+		Parameters
+		----------
+		color | object: color object
+		'''
 		self.set_color(color)
 		self.base_color = color
 
 	def set_pulsation(self, pulsation):
+		'''
+		sets pulsation
+
+		Parameters
+		----------
+		pulsation | int: pulsation number
+		'''
 		self.pulsation = pulsation
 
 	def set_pulse_rate(self, pulse_rate):
+		'''
+		sets pulse rate
+
+		Parameters
+		----------
+		pulse_rate | int: pulse rate
+		'''
 		self.pulse_rate = pulse_rate
 
 	def set_dir(self, left):
+		'''
+		sets direction
+
+		Parameters
+		----------
+		left | bool: True if to left, False if to right
+		'''
 		if left != self.left:
 			self.left = left
 			self.frame1 = pygame.transform.flip(self.frame1, True, False)
 			self.frame2 = pygame.transform.flip(self.frame2, True, False)
 
 	def set_left(self):
+		'''
+		sets direction to left
+		'''
 		self.set_dir(True)
 
 	def set_right(self):
+		'''
+		sets direction to right
+		'''
 		self.set_dir(False)
 
 	def flip(self):
+		'''
+		flips the character image
+		plays the jump sound
+		reverses character gravity
+		'''
 		pygame.mixer.Sound('./data/snd/sfx/jump.wav').play()
 		self.is_flipped = not self.is_flipped
 		self.frame1 = pygame.transform.flip(self.frame1, False, True)
 		self.frame2 = pygame.transform.flip(self.frame2, False, True)
 
 	def set_sad(self, sad):
+		'''
+		sets character image to sad or happy
+
+		Parameters
+		----------
+		sad | bool: change to sad
+		'''
 		self.is_sad = sad
 		if sad:
 			self.frame1 = IMG_CHAR_SAD.copy()
@@ -120,6 +247,9 @@ class Character(pygame.sprite.Sprite):
 		self.frame2 = pygame.transform.flip(self.frame2, self.left, self.is_flipped)
 
 	def refresh_frames(self):
+		'''
+		refreshes frames by switching from sad to happy
+		'''
 		if self.is_sad:
 			self.set_sad(False)
 			self.set_sad(True)
@@ -128,48 +258,103 @@ class Character(pygame.sprite.Sprite):
 			self.set_sad(False)
 
 	def set_on_floor(self, on_floor):
+		'''
+		sets character bool value to on floor or not
+
+		Parameters
+		----------
+		on_floor | bool: is character on floor
+		'''
 		self.on_floor = on_floor
 		if on_floor:
 			self.vy = 0
 			self.next_frame = time.time() + cf.WALK_ANIM_TIME
 
 	def set_on_wall(self, on_wall):
+		'''
+		sets character bool value to on wall or not
+
+		Parameters
+		----------
+		on_wall | bool: is character on wall
+		'''
 		self.on_wall = on_wall
 		if on_wall:
 			self.vx = 0
 
 	def set_go_left(self, go_left):
+		'''
+		sets character to go left
+
+		Parameters
+		----------
+		go_left | bool : is character going left
+		'''
 		self.go_left = go_left
 		if go_left:
 			self.next_frame = time.time() + cf.WALK_ANIM_TIME
 
 	def set_go_right(self, go_right):
+		'''
+		sets character to go right
+
+		Parameters
+		----------
+		go_right | bool : is character going right
+		'''
 		self.go_right = go_right
 		if go_right:
 			self.next_frame = time.time() + cf.WALK_ANIM_TIME
 
 	def set_standing_on(self, ent):
-		self.standingon = ent
+		'''
+		sets entity character adds velocity from
 
-	def set_spike(self, x, y):
-		self.rect.bottomleft = (x, y)
+		Parameters
+		----------
+		ent | object: entity object
+		'''
+		self.standing_on = ent
 
 	def set_vel(self, vx, vy):
+		'''
+		sets character velocity
+
+		Parameters
+		----------
+		vx | int: x velocity
+		vy | int: y velocity
+		'''
 		if not self.on_wall:
 			self.vx = vx
 		if not self.on_floor:
 			self.vy = vy
 
 	def move(self):
-		if self.standingon:
-			self.rect.move_ip(self.standingon.vx + self.vx, self.standingon.vy + self.vy)
+		'''
+		moves character
+		'''
+		if self.standing_on:
+			self.rect.move_ip(self.standing_on.vx + self.vx, self.standing_on.vy + self.vy)
 		else:
 			self.rect.move_ip(self.vx, self.vy)
 
 	def move_delta(self, x, y):
+		'''
+		moves character
+
+		Parameters
+		----------
+		x | int: x amount to move character
+		y | int: y amount to move character
+		'''
 		self.rect.move_ip(x, y)
 
 	def kill(self):
+		'''
+		kill character and set next revive time
+		play death sound
+		'''
 		if not self.is_dead:
 			self.is_dead = True
 			self.was_sad = self.is_sad
@@ -181,6 +366,10 @@ class Character(pygame.sprite.Sprite):
 			self.next_revive = time.time() + cf.REVIVE_TIME
 
 	def revive(self):
+		'''
+		revive character
+		set back to last checkpoint
+		'''
 		if self.is_dead:
 			self.is_dead = False
 			self.is_sad = self.was_sad
@@ -192,6 +381,9 @@ class Character(pygame.sprite.Sprite):
 			#self.breakaway = 0
 
 	def restore_checkpoint(self):
+		'''
+		set character to most recent checkpoint
+		'''
 		if self.checkpoint is not None:
 			if self.checkpoint[1] != self.is_flipped:
 				self.flip()
@@ -202,16 +394,20 @@ class Character(pygame.sprite.Sprite):
 			self.set_on_wall(False)
 
 	def set_checkpoint_here(self):
+		'''
+		set checkpoint
+		'''
 		#pygame.mixer.Sound('./data/snd/sfx/save.wav').play()
 		self.check_x = self.x_co
 		self.check_y = self.y_co
 		self.checkpoint = (self.rect.bottomleft, self.is_flipped)
 		#self.is_checkpoint_set(True)
 
-	def set_checkpoint(self, x, y):
-		self.checkpoint = ((x, y), self.is_flipped)
-
 	def teleport(self):
+		'''
+		teleport character
+		play teleport sound
+		'''
 		pygame.mixer.Sound('./data/snd/sfx/teleport.wav').play()
 		if self.teleportpoint is not None:
 			if self.teleportpoint[1] != self.is_flipped:
@@ -223,15 +419,28 @@ class Character(pygame.sprite.Sprite):
 			self.set_on_wall(False)
 
 	#def conveyer(self, on_floor):
+	#	'''
+	#	add conveyer velocity to character
+	#
+	#	Parameters
+	#	----------
+	#	on_floor | bool: is character on floor
+	#	'''
 	#	self.on_floor = on_floor
 	#	if on_floor:
 	#		self.vx += self.conveyerspeed
 	#		self.next_frame = time.time() + cf.WALK_ANIM_TIME
 
 	#def breakaway(self):
+	#	'''
+	#	breakaway blocks
+	#	'''
 		#want it to remove images in order(or place), and then finally remove rect.
 
 	def accelerate(self):
+		'''
+		accelerates character
+		'''
 		if self.on_wall:
 			self.vx = 0
 		else:
@@ -259,7 +468,10 @@ class Character(pygame.sprite.Sprite):
 			elif self.vy < -cf.YTERM:
 				self.vy = -cf.YTERM
 
-	def normalize(self, gamearea):#loops character
+	def normalize(self, gamearea):
+		'''
+		changes screen if character exceeds screen area bounds
+		'''
 		if self.is_flipped:#y
 			if self.rect.bottom < 0:
 				self.y_co += 1
@@ -276,7 +488,9 @@ class Character(pygame.sprite.Sprite):
 			self.rect.right = 0
 
 	def set_sprite(self):
-		#if self.vx and not self.vy:
+		'''
+		sets sprite image
+		'''
 		if self.on_floor and self.vx:
 			if time.time() > self.next_frame:
 				self.next_frame = time.time() + cf.WALK_ANIM_TIME
@@ -288,6 +502,9 @@ class Character(pygame.sprite.Sprite):
 			self.image = self.frame1
 
 	def pulsate(self):
+		'''
+		pulsates character color
+		'''
 		if self.pulsation != 0:
 			if self.is_pulse_rising:
 				if self.pulse_cur >= self.pulsation:
@@ -302,6 +519,9 @@ class Character(pygame.sprite.Sprite):
 			self.set_color(self.base_color + pygame.Color(int(self.pulse_cur), int(self.pulse_cur), int(self.pulse_cur)))
 
 	def flicker(self):
+		'''
+		flickers character image
+		'''
 		if time.time() > self.next_frame:
 			self.next_frame = time.time() + random.uniform(cf.DEAD_FLICKER_MIN, cf.DEAD_FLICKER_MAX)
 			if self.image == self.frame1:
@@ -312,6 +532,13 @@ class Character(pygame.sprite.Sprite):
 			self.revive()
 
 	def collide(self, geom):
+		'''
+		checks for collision with rect objects
+
+		Parameters
+		----------
+		geom | object: geometry object
+		'''
 		#We're doing a preemptive collision test now -- the below code was unsatisfactory
 		colinfo = geom.test_rect(self.rect)
 		if colinfo[cf.HITTOP][0] and self.is_flipped: #One does not simply headstand!
@@ -387,6 +614,13 @@ class Character(pygame.sprite.Sprite):
 		#	self.vx -= colinfo[cf.HITRIGHT][0]
 
 	def collide_entities(self, ents):
+		'''
+		checks for collison with entitites and performs appropriate action
+
+		Parameters
+		----------
+		ents | list[object]: list of entity objects
+		'''
 		for ent in ents:
 			if ent.enttype == cf.ENT_CHARACTER:
 				continue #Never collide
@@ -413,9 +647,7 @@ class Character(pygame.sprite.Sprite):
 				self.teleport()
 			#elif ent.enttype == cf.ENT_INVERTER:
 			#	self.flip()
-			#elif ent.enttype == cf.ENT_CONVEYER_A:
-			#	self.conveyer()
-			#elif ent.enttype == cf.ENT_CONVEYER_B:
+			#elif ent.enttype in (cf.ENT_CONVEYER_A, cf.ENT_CONVEYER_B):
 			#	self.conveyer()
 			#elif ent.enttype == cf.ENT_BREAKAWAY:
 			#	self.breakaway += 1
@@ -423,6 +655,14 @@ class Character(pygame.sprite.Sprite):
 				pass
 
 	def update(self, gamearea, env=None):
+		'''
+		updates character entity
+
+		Parameters
+		----------
+		gamearea | object: area object
+		env | Optional[object]: environment object --defaults to None
+		'''
 		if self.is_dead:
 			self.flicker()
 		else:
