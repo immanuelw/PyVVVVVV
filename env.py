@@ -97,12 +97,19 @@ class Environment(object):
 	def update(self):
 		'''
 		updates all entities contained in environment
+		changes checkpoint image
 		'''
 		char = tuple(self.characters)[0]
 		for ent in self.entities:
-			#if ent in self.checkpoints:
-			#	if ent.rect.bottom == char.rect.bottom + 16 and char.rect.left <= ent.rect.right and char.rect.left >= ent.rect.left:
-			#		ent.image = img_dict['./data/img/checkpoint.png']
-			#	else:
-			#		ent.image = img_dict['./data/img/checkpointBW.png']
+			if ent.enttype == cf.ENT_CHECKPOINT:
+				if char.last_checkpoint == ent.name:
+					if ent.image == img_dict['./data/img/checkpointBW.png']:
+						ent.image = img_dict['./data/img/checkpoint.png']
+					elif ent.image == img_dict['./data/img/checkpointUBW.png']:
+						ent.image = img_dict['./data/img/checkpointU.png']
+				else:
+					if ent.image == img_dict['./data/img/checkpoint.png']:
+						ent.image = img_dict['./data/img/checkpointBW.png']
+					elif ent.image == img_dict['./data/img/checkpointU.png']:
+						ent.image = img_dict['./data/img/checkpointUBW.png']
 			ent.update(self.area, self)

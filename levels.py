@@ -190,8 +190,10 @@ portal1 = MovingEntity(image='./data/img/warptoken.bmp', vx=0, vy=0, etype=cf.EN
 portal2 = MovingEntity(image='./data/img/warptoken2.bmp', vx=0, vy=0, etype=cf.ENT_PORTAL)
 
 
-ent_list = {x_co: {y_co: [MovingEntity(image=ent['image'], dx=ent['dx'], dy=ent['dy'], vx=ent['vx'], vy=ent['vy'], etype=ent['etype'])\
-							for ent in ent_dict[x_co][y_co]] for y_co in range(7) if (x_co, y_co) in cf.level_array} for x_co in range(7)}
+#ent_list = {x_co: {y_co: [MovingEntity(image=ent['image'], dx=ent['dx'], dy=ent['dy'], vx=ent['vx'], vy=ent['vy'], etype=ent['etype'])\
+#							for ent in ent_dict[x_co][y_co]] for y_co in range(7) if (x_co, y_co) in cf.level_array} for x_co in range(7)}
+ent_list = {x_co: {y_co: [MovingEntity(**ent) for ent in ent_dict[x_co][y_co]] for y_co in range(7) if (x_co, y_co) in cf.level_array}\
+																				for x_co in range(7)}
 
 if __name__ == '__main__':
 	backup_path = 'ents.json'

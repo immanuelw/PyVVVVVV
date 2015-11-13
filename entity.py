@@ -25,7 +25,7 @@ class Entity(pygame.sprite.Sprite):
 	-------
 	draw | draws entity onto surface
 	'''
-	def __init__(self, image, dx=0, dy=0, etype=cf.ENT_OBSTACLE):
+	def __init__(self, image, dx=0, dy=0, etype=cf.ENT_OBSTACLE, name=''):
 		'''
 		instantiates an entity object by assigning its image and position
 
@@ -35,6 +35,7 @@ class Entity(pygame.sprite.Sprite):
 		dx | Optional[int]: x coordinate of object to place bottom-left point --defaults to 0
 		dy | Optional[int]: y coordinate of object to place bottom-left point --defaults to 0
 		etype | Optional[int]: value of entity assigned in config file --defaults to cf.ENT_OBSTACLE
+		name | Optional[str]: id of entity --defaults to ''
 		'''
 		self.image = img_dict[image]
 		self.rect = ExtRect.wrap(self.image.get_rect())
@@ -42,6 +43,7 @@ class Entity(pygame.sprite.Sprite):
 		self.dx = dx
 		self.dy = dy
 		self.rect.bottomleft = (dx, dy)
+		self.name = name
 
 	def draw(self, surf):
 		'''
@@ -64,7 +66,7 @@ class MovingEntity(Entity):
 	move | moves entity according to its velocity
 	update | updates entity
 	'''
-	def __init__(self, image, dx=0, dy=0, vx=0, vy=0, etype=cf.ENT_OBSTACLE):
+	def __init__(self, image, dx=0, dy=0, vx=0, vy=0, etype=cf.ENT_OBSTACLE, name=''):
 		'''
 		instantiates a moving entity object by assigning its image, position, and velocity
 
@@ -76,8 +78,9 @@ class MovingEntity(Entity):
 		vx | Optional[int]: x velocity of object --defaults to 0
 		vy | Optional[int]: y velocity of object --defaults to 0
 		etype | Optional[int]: value of entity assigned in config file --defaults to cf.ENT_OBSTACLE
+		name | Optional[str]: id of entity --defaults to ''
 		'''
-		Entity.__init__(self, image, dx, dy, etype)
+		Entity.__init__(self, image, dx, dy, etype, name)
 		self.vx = vx
 		self.vy = vy
 
@@ -140,7 +143,7 @@ class AnimatingEntity(Entity):
 	animate | changes images for entity in a cycle
 	update | updates entity
 	'''
-	def __init__(self, images, frame_time, etype=cf.ENT_OBSTACLE):
+	def __init__(self, images, frame_time, etype=cf.ENT_OBSTACLE, name=''):
 		'''
 		instantiates an animated entity object by assigning images and frame_time
 
@@ -149,8 +152,9 @@ class AnimatingEntity(Entity):
 		images | list[object]: list of image objects
 		frame_time | float: amount of time between frames
 		etype | Optional[int]: value of entity assigned in config file --defaults to cf.ENT_OBSTACLE
+		name | Optional[str]: id of entity --defaults to ''
 		'''
-		Entity.__init__(self, images[0], etype)
+		Entity.__init__(self, images[0], etype, name)
 		self.images = images
 		self.idx = 0
 		self.frame_time = frame_time
@@ -186,7 +190,7 @@ class MovingAnimatingEntity(MovingEntity, AnimatingEntity):
 	-------
 	update | updates entity
 	'''
-	def __init__(self, images, frame_time, dx, dy, vx, vy, etype=cf.ENT_OBSTACLE):
+	def __init__(self, images, frame_time, dx, dy, vx, vy, etype=cf.ENT_OBSTACLE, name=''):
 		'''
 		instantiates a moving animated entity object by assigning its image, position, and velocity
 		also instantiates by assigning images and frame_time
@@ -200,9 +204,10 @@ class MovingAnimatingEntity(MovingEntity, AnimatingEntity):
 		vx | Optional[int]: x velocity of object --defaults to 0
 		vy | Optional[int]: y velocity of object --defaults to 0
 		etype | Optional[int]: value of entity assigned in config file --defaults to cf.ENT_OBSTACLE
+		name | Optional[str]: id of entity --defaults to ''
 		'''
-		MovingEntity.__init__(self, images[0], dx, dy, vx, vy, etype)
-		AnimatingEntity.__init__(self, images, frame_time, etype)
+		MovingEntity.__init__(self, images[0], dx, dy, vx, vy, etype, name)
+		AnimatingEntity.__init__(self, images, frame_time, etype, name)
 
 	def update(self, gamearea, env=None):
 		'''
@@ -225,7 +230,7 @@ class ScriptedEntity(Entity):
 	set_solid_in | sets entity rect
 	on_char_collide | decides what to do when colliding with character
 	'''
-	def __init__(self, image, dx=0, dy=0):
+	def __init__(self, image, dx=0, dy=0, name=''):
 		'''
 		instantiates a scripted entity object by assigning its image and position
 
@@ -234,8 +239,9 @@ class ScriptedEntity(Entity):
 		image | str: path to image file
 		dx | Optional[int]: x coordinate of object to place bottom-left point --defaults to 0
 		dy | Optional[int]: y coordinate of object to place bottom-left point --defaults to 0
+		name | Optional[str]: id of entity --defaults to ''
 		'''
-		Entity.__init__(self, image, dx, dy, etype=cf.ENT_SCRIPTED)
+		Entity.__init__(self, image, dx, dy, etype=cf.ENT_SCRIPTED, name='')
 
 	def set_solid_in(self, solid, env):
 		'''

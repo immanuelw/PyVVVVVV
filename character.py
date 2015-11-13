@@ -13,6 +13,7 @@ import random
 import pygame
 from extrect import ExtRect
 import config as cf
+from img import img_dict
 
 IMG_CHAR = pygame.image.load('./data/img/char.png')
 IMG_CHAR_SAD = pygame.image.load('./data/img/char_sad.png')
@@ -110,6 +111,7 @@ class Character(pygame.sprite.Sprite):
 		self.go_right = False #Apply positive accel x
 		self.standing_on = None #An entity whose vx,vy is added to ours
 		self.checkpoint = checkpoint
+		self.last_checkpoint = None #id of last checkpoint
 		self.teleportpoint = None
 		self.tokens = 0
 		#self.breakaway = 0
@@ -393,15 +395,20 @@ class Character(pygame.sprite.Sprite):
 			self.set_on_floor(False)
 			self.set_on_wall(False)
 
-	def set_checkpoint_here(self):
+	def set_checkpoint_here(self, ent):
 		'''
-		set checkpoint
+		set checkpoint and plays sound
+
+		Parameters
+		----------
+		ent | object: checkpoint entity object
 		'''
-		#pygame.mixer.Sound('./data/snd/sfx/save.wav').play()
-		self.check_x = self.x_co
-		self.check_y = self.y_co
-		self.checkpoint = (self.rect.bottomleft, self.is_flipped)
-		#self.is_checkpoint_set(True)
+		if self.last_checkpoint != ent.name:
+			pygame.mixer.Sound('./data/snd/sfx/save.wav').play()
+			self.last_checkpoint = ent.name
+			self.check_x = self.x_co
+			self.check_y = self.y_co
+			self.checkpoint = (self.rect.bottomleft, self.is_flipped)
 
 	def teleport(self):
 		'''
@@ -640,7 +647,7 @@ class Character(pygame.sprite.Sprite):
 				pygame.mixer.Sound('./data/snd/sfx/souleyeminijingle.wav').play()
 				self.tokens += 1
 			elif ent.enttype == cf.ENT_CHECKPOINT:
-				self.set_checkpoint_here()
+				self.set_checkpoint_here(ent)
 			elif ent.enttype == cf.ENT_SCRIPTED:
 				ent.on_char_collide(self)
 			elif ent.enttype == cf.ENT_PORTAL:
