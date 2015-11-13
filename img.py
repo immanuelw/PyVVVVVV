@@ -1,3 +1,8 @@
+'''
+img | containes the images for each environment as well as each entity
+
+author | Immanuel Washington
+'''
 import glob
 import pygame
 import config as cf

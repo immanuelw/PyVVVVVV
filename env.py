@@ -1,21 +1,39 @@
 '''
-Py6V -- Pythonic VVVVVV
-env -- Environment
+env | defines the environment object which holds all entities on the screen
 
-Defines the Environment.
+author | Immanuel Washington
 
-An Environment is instantiated once per Map tile, including scrolling
-tiles (handled by ScrollingEnvironments). It contains all the geometry
-and rendering data needed to render that one tile, along with a
-collection of all the entities in that tile.
+Classes
+-------
+Environment | creates environment object
 '''
-import pygame
-#from pygame.locals import *
 import config as cf
 from img import img_dict
 
 class Environment(object):
+	'''
+	environment object
+	used to instantiate a container for all entities on screen and main image
+
+	Methods
+	-------
+	draw | draws environment
+	add_entity | adds entity to environment
+	remove_entity | removes entity from environment
+	update | updates all entities
+	'''
 	def __init__(self, area, geometry, image, background, entities):
+		'''
+		assigns area object, geometry object, image, background object, and list of entities
+
+		Parameters
+		----------
+		area | object: screen area rect object
+		geometry | object: geometry object
+		image | object: level image object
+		background | background object
+		entities | list: list of entities
+		'''
 		self.area = area
 		self.geometry = geometry
 		self.image = image
@@ -35,12 +53,27 @@ class Environment(object):
 				self.checkpoints.add(ent)
 
 	def draw(self, surf):
+		'''
+		draw image as surface object on screen
+
+		Parameters
+		----------
+		surf | object: surface object
+		'''
 		self.background.draw(surf)
 		surf.blit(self.image, (0, 0))
 		for ent in self.entities:
 			ent.draw(surf)
 
 	def add_entity(self, ent):
+		'''
+		adds entity to environment
+		adds entity rect to geometry
+
+		Parameters
+		----------
+		ent | object: entity object
+		'''
 		if ent.enttype == cf.ENT_PLATFORM:
 			self.geometry.add_rect(ent.rect)
 			ent.rect.ent = ent
@@ -49,11 +82,22 @@ class Environment(object):
 		self.entities.add(ent)
 
 	def remove_entity(self, ent):
+		'''
+		removes entity from environment
+		removes entity rect from geometry
+
+		Parameters
+		----------
+		ent | object: entity object
+		'''
 		self.geometry.remove_rect(ent.rect)
 		self.characters.discard(ent)
 		self.entities.discard(ent)
 
 	def update(self):
+		'''
+		updates all entities contained in environment
+		'''
 		char = tuple(self.characters)[0]
 		for ent in self.entities:
 			#if ent in self.checkpoints:

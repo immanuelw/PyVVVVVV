@@ -1,34 +1,70 @@
 '''
-Py6V -- Pythonic VVVVVV
-extrect -- Extended rectangle
+extrect | defines an extended rect object that can have atrributes assigned to it
 
-Like the pygame Rect object, but attributes can be assigned to it.
+author | Immanuel Washington
 
-Really just wraps a real Rect object.
+Classes
+-------
+ExtRect | creates extended rect object
 '''
 import pygame
 
 class ExtRect(object):
-    def __init__(self, *args, **kwargs):
-        self._rect = pygame.Rect(*args, **kwargs)
+	'''
+	extended rect object
 
-    @classmethod
-    def wrap(cls, obj):
-        if isinstance(obj, ExtRect):
-            return obj
-        return cls(obj)
+	Methods
+	-------
+	wrap | allows wrapping of object
+	as_rect | returns rect object
+	__getattr__ | gets attributes
+	__setattr__ | sets attributes
+	'''
+	def __init__(self, *args, **kwargs):
+		self._rect = pygame.Rect(*args, **kwargs)
 
-    @classmethod
-    def as_rect(cls, obj):
-        if isinstance(obj, pygame.Rect):
-            return obj
-        return obj._rect
+	@classmethod
+	def wrap(cls, obj):
+		'''
+		allows wrapping of rect object
+		'''
+		if isinstance(obj, ExtRect):
+			return obj
+		return cls(obj)
 
-    def __getattr__(self, attr):
-        return getattr(self._rect, attr)
+	@classmethod
+	def as_rect(cls, obj):
+		'''
+		returns rect object of extended rect
+		'''
+		if isinstance(obj, pygame.Rect):
+			return obj
+		return obj._rect
 
-    def __setattr__(self, attr, val):
-        if hasattr(pygame.Rect, attr):
-            setattr(self._rect, attr, val)
-        else:
-            object.__setattr__(self, attr, val)
+	def __getattr__(self, attr):
+		'''
+		gets attribute
+
+		Parameters
+		----------
+		attr | ???: attribute to be grabbed
+
+		Returns
+		-------
+		???: value of attribute
+		'''
+		return getattr(self._rect, attr)
+
+	def __setattr__(self, attr, val):
+		'''
+		sets attribute
+
+		Parameters
+		----------
+		attr | ???: attribute to be changed
+		val | ???: value to assign to attribute
+		'''
+		if hasattr(pygame.Rect, attr):
+			setattr(self._rect, attr, val)
+		else:
+			object.__setattr__(self, attr, val)

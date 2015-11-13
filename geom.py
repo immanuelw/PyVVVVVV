@@ -1,38 +1,73 @@
 '''
-Py6V -- Pythonic VVVVVV
-geom -- Geometry
+geom | defines a geometry object which contains a collection of rectangles defining each environment
 
-Defines the Geometry class.
+author | Immanuel Washington
 
-Because of our simplistic world, a Geometry is a region defined by a collection
-of rectangles. At any time another rectangle can be tested against it, and it
-will return a dict mapping a HIT* constant to the tuple (penetration, rect),
-such that if the rectangle is moved by penetration pixels to the opposite
-direction (e.g. right for HITLEFT), the rectangle will no longer be inside (but
-will be flush with) the surface. If two opposing sides are penetrating, there is
-no way the rectangle can fit into the geometry. The rect itself is returned so
-that any attributes stored on it may be accessed. An entry (0, None) represents
-no hit on that axis.
+Classes
+-------
+Geometry | creates geometry object
 '''
 import pygame
-from pygame.locals import *
 from extrect import ExtRect
 import config as cf
 
 class Geometry(object):
+	'''
+	geometry object
+	used to instantiate a container for all rects on screen
+
+	Methods
+	-------
+	add_rect | adds rect to geometry object
+	remove_rect | removes rect from geometry object
+	test_rect | checks for intersections between rectangles
+	debug_render | tests rendering of rects
+	'''
 	def __init__(self, rects=None):
+		'''
+		instantiates rects contained by geometry
+
+		Parameters
+		----------
+		rects | Optional[list(object)]: list of rect objects in geometry --defaults to None
+		'''
 		self.rects = [] if rects is None else rects
 
 	def add_rect(self, rect):
+		'''
+		adds rects to geometry
+
+		Parameters
+		----------
+		rect | object : rect object
+		'''
 		self.rects.append(rect)
 
 	def remove_rect(self, rect):
+		'''
+		removes rects from geometry
+
+		Parameters
+		----------
+		rect | object : rect object
+		'''
 		try:
 			self.rects.remove(rect)
 		except ValueError:
 			pass
 
 	def test_rect(self, rect):
+		'''
+		tests rect placement collisons
+
+		Parameters
+		----------
+		rect | object : rect object
+
+		Returns
+		-------
+		dict: dict of values of rects that have collisions
+		'''
 		d = {cf.HITLEFT: (0, None), cf.HITRIGHT: (0, None), cf.HITTOP: (0, None), cf.HITBOTTOM: (0, None)}
 		for r in self.rects:
 			coll = ExtRect.as_rect(rect).clip(ExtRect.as_rect(r))
@@ -40,7 +75,7 @@ class Geometry(object):
 				#No intersection
 				continue
 			if coll.left == rect.left and d[cf.HITLEFT][0] < coll.width and coll.width < rect.width:
-				d[cf.HITLEFT]=(coll.width, r)
+				d[cf.HITLEFT] = (coll.width, r)
 			if coll.right == rect.right and d[cf.HITRIGHT][0] < coll.width and coll.width < rect.width:
 				d[cf.HITRIGHT] = (coll.width, r)
 			if coll.top == rect.top and d[cf.HITTOP][0] < coll.height and coll.height < rect.height:
@@ -51,5 +86,12 @@ class Geometry(object):
 		return d
 
 	def debug_render(self, surf):
+		'''
+		attempts to draw each rect on surface object to debug
+
+		Parameters
+		----------
+		surf | object: surface object
+		'''
 		for r in self.rects:
 			pygame.draw.rect(surf, cf.GEOMDEBUG, ExtRect.as_rect(r), 1)

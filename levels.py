@@ -1,7 +1,10 @@
+'''
+levels | defines the entities to place in each level, saves to json if ran as script
+
+author | Immanuel Washington
+'''
 import json
 import pygame
-#from pygame.locals import *
-from env import Environment
 from entity import MovingEntity
 import config as cf
 from rects import rect_list

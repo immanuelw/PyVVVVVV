@@ -1,9 +1,7 @@
 '''
-Py6V -- Pythonic VVVVVV
-config -- Configuration variables
+config | defines constants for starting the game, as well as in game constants
 
-Defines some system constants, along with configurable "constants" that
-can be used to tweak the game.
+author | Immanuel Washington
 '''
 import pygame
 
