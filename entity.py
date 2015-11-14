@@ -106,7 +106,7 @@ class MovingEntity(Entity):
 		geom | object: geometry object
 		'''
 		res = geom.test_rect(self.rect)
-		for key, val in res.iteritems():
+		for key, val in res.items():
 			depth, rect = val
 			if depth != 0 and getattr(rect, 'ent', None) != self:
 				if key in (cf.HITLEFT, cf.HITRIGHT):

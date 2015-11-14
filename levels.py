@@ -162,7 +162,7 @@ ent_dict = \
 		{'name': 'spikesU_7_2', 'image': './data/img/spikesU7.png', 'dx': 244, 'dy': 47, 'vx': 0, 'vy': 0, 'etype': cf.ENT_OBSTACLE},
 		{'name': 'spikes_5_8', 'image': './data/img/spikes5.png', 'dx': 199, 'dy': 129, 'vx': 0, 'vy': 0, 'etype': cf.ENT_OBSTACLE}],
 	2:
-		[{'name': 'plat5', 'image': './data/img/plat_o.png', 'dx': 132, 'dy': 88, 'vx': 0, 'vy': 0, 'etype': cf.ENT_PLATFORM},
+		[{'name': 'plat5', 'image': './data/img/plat_o.png', 'dx': 132, 'dy': 88, 'vx': 0, 'vy': 0, 'etype': cf.ENT_BREAKAWAY},
 		{'name': 'spikesU_4_8', 'image': './data/img/spikesU4.png', 'dx': 180, 'dy': 32, 'vx': 0, 'vy': 0, 'etype': cf.ENT_OBSTACLE},
 		{'name': 'spikes_3_3', 'image': './data/img/spikes3.png', 'dx': 132, 'dy': 132, 'vx': 0, 'vy': 0, 'etype': cf.ENT_OBSTACLE},
 		{'name': 'spikes_3_4', 'image': './data/img/spikes3.png', 'dx': 190, 'dy': 132, 'vx': 0, 'vy': 0, 'etype': cf.ENT_OBSTACLE},
