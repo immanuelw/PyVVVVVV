@@ -196,6 +196,6 @@ ent_list = {x_co: {y_co: [MovingEntity(**ent) for ent in ent_dict[x_co][y_co]] f
 																				for x_co in range(7)}
 
 if __name__ == '__main__':
-	backup_path = 'ents.json'
+	backup_path = './storage/ents.json'
 	with open(backup_path, 'w') as bkup:
 		json.dump(ent_dict, bkup, sort_keys=True, indent=4)

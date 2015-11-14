@@ -264,6 +264,6 @@ if __name__ == '__main__':
 	print(level_array)
 	#print(rects)
 
-	backup_path = 'rects.json'
+	backup_path = './storage/rects.json'
 	with open(backup_path, 'w') as bkup:
 		json.dump(rects, bkup, sort_keys=True, indent=4)

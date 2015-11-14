@@ -80,7 +80,7 @@ if __name__ == '__main__':
 	g = Geometry()
 
 	char = Character(color=cf.VIRIDIAN_BASE, x=50, y=188, x_co=1, y_co=3, pulsation=cf.VIRIDIAN_PULSATION, pulse_rate=cf.VIRIDIAN_PULSERATE)
-	save_path = 'save.json'
+	save_path = './storage/save.json'
 	if len(sys.argv) > 1:
 		if sys.argv[1] == 'save':
 			with open(save_path, 'r') as save_file:
